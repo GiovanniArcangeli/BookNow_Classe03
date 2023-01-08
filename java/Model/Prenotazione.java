@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 public class Prenotazione {
 
     private int ID_Prenotazione, numOspiti;
-    private String dataIn, dataOut;
+    private GregorianClendar dataIn, dataOut;
 
 
     public int getID_Prenotazione() {
@@ -24,19 +24,19 @@ public class Prenotazione {
         this.numOspiti = numOspiti;
     }
 
-    public String getDataIn() {
+    public GregorianCalendar getDataIn() {
         return dataIn;
     }
 
-    public void setDataIn(String dataIn) {
+    public void setDataIn(GregorianCalendar dataIn) {
         this.dataIn = dataIn;
     }
 
-    public String getDataOut() {
+    public GregorianCalendar getDataOut() {
         return dataOut;
     }
 
-    public void setDataOut(String dataOut) {
+    public void setDataOut(GregorianCalendar dataOut) {
         this.dataOut = dataOut;
     }
 }
