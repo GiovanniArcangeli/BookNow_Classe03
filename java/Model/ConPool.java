@@ -35,7 +35,6 @@ package Model;
  * @author Mattia De Rosa
  *
  */
-/*___________________________________________________________DA MODIFICARE________________________________________________________________________________________________
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
@@ -50,10 +49,10 @@ public class ConPool {
     public static Connection getConnection() throws SQLException {
         if (datasource == null) {
             PoolProperties p = new PoolProperties();
-            p.setUrl("jdbc:mysql://localhost:3306/tsw?serverTimezone=" + TimeZone.getDefault().getID());
+            p.setUrl("jdbc:mysql://localhost:3306/BookNow?serverTimezone=" + TimeZone.getDefault().getID());
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-            p.setUsername("tsw");
-            p.setPassword("Tsw12345");
+            p.setUsername("user");
+            p.setPassword("booknow123");
             p.setMaxActive(100);
             p.setInitialSize(10);
             p.setMinIdle(10);
@@ -65,4 +64,3 @@ public class ConPool {
         return datasource.getConnection();
     }
 }
-*/
