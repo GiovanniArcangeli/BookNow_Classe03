@@ -9,6 +9,7 @@ public class UtenteDAO {
         Statement st;
         ResultSet rs;
         Utente user;
+        //prova
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM Utente WHERE 1=1");
