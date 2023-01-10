@@ -4,14 +4,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import BookNow.Entity.Stanza;
+import BookNow.Entity.Struttura;
 
 public class StanzaDAO {
 
-    public List<Stanza> doRetrieveById(int idStruttura){
+    public List<Stanza> doRetrieveById(Struttura s){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select NumeroStanza, Capienza, costo, serviziOfferti, Descrizione" +
                     " from stanza where ID_Struttura = ?");
-            ps.setInt(1, idStruttura);
+            ps.setInt(1, s.getID_Struttura());
 
             ResultSet rs = ps.executeQuery();
             List<Stanza> strutture = new ArrayList<>();
@@ -23,7 +24,7 @@ public class StanzaDAO {
                 String serviziOfferti = rs.getString(4);
                 String descrizione = rs.getString(5);
 
-                strutture.add(new Stanza(numeroStanza, capienza, descrizione, serviziOfferti, costo));
+                strutture.add(new Stanza(numeroStanza, capienza, descrizione, serviziOfferti, costo, s));
             }
             return strutture;
         }
