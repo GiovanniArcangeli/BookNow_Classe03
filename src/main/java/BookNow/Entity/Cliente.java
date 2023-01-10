@@ -1,12 +1,20 @@
 package BookNow.Entity;
 
+import java.sql.Date;
 import java.util.GregorianCalendar;
 
 public class Cliente extends Utente{
 
     private String numero_carta;
-    private GregorianCalendar scadenza_carta;
+    private Date scadenza_carta;
     private int cvv;
+
+    public Cliente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, String numero_carta, Date scadenza_carta, int cvv) {
+        super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, 0);
+        this.cvv=cvv;
+        this.scadenza_carta=scadenza_carta;
+        this.numero_carta=numero_carta;
+    }
 
     public String getNumero_carta() {
         return numero_carta;
@@ -16,11 +24,11 @@ public class Cliente extends Utente{
         this.numero_carta = numero_carta;
     }
 
-    public GregorianCalendar getScadenza_carta() {
+    public Date getScadenza_carta() {
         return scadenza_carta;
     }
 
-    public void setScadenza_carta(GregorianCalendar scadenza_carta) {
+    public void setScadenza_carta(Date scadenza_carta) {
         this.scadenza_carta = scadenza_carta;
     }
 

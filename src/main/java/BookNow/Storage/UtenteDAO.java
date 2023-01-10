@@ -11,20 +11,20 @@ public class UtenteDAO {
         Statement st;
         ResultSet rs;
         Utente user;
-        //prova
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM Utente WHERE 1=1");
             while (rs.next()) {
-                user = new Utente();
-                user.setUsername(rs.getString(7));
+                user = new Utente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), Integer.parseInt(rs.getString(9)));
+                /*user.setUsername(rs.getString(7));
                 user.setPassword(rs.getString(6));
                 user.setNome(rs.getString(2));
                 user.setCognome(rs.getString(3));
                 user.setEmail(rs.getString(8));
-                user.setDataNascita(rs.getString(4));
+                user.setDataNascita(Date.valueOf(rs.getString(4)));
                 user.setRecapitoTelefonico(rs.getString(5));
                 user.setCf(rs.getString(1));
+                user.setAlbergatore(Boolean.getBoolean(rs.getString(9)));*/
                 a.add(user);
             }
             con.close();
@@ -47,7 +47,7 @@ public class UtenteDAO {
         Statement st;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            String q = "Insert into Utente values('" + user.getCf() + "', '" + user.getNome() + "', '" + user.getCognome() + "', '" + user.getCognome() + "', '" + user.getDataNascita() + "', '" + user.getRecapitoTelefonico() + "', '" + user.getPassword() + "', '" + user.getUsername() + "','" + user.getEmail() + "')";
+            String q = "Insert into Utente values('" + user.getCf() + "', '" + user.getNome() + "', '" + user.getCognome() + "', '" + user.getCognome() + "', '" + user.getDataNascita() + "', '" + user.getRecapitoTelefonico() + "', '" + user.getPassword() + "', '" + user.getUsername() + "','" + user.getEmail() + "','"+user.isAlbergatore()+"')";
             st.executeUpdate(q);
             con.close();
         } catch (SQLException ex) {

@@ -1,11 +1,32 @@
 package BookNow.Entity;
 
-import java.util.GregorianCalendar;
+import java.sql.Date;
 
 public class Utente {
 
     private String cf, nome, cognome, recapitoTelefonico, password, username, email;
-    private String dataNascita;
+    private Date dataNascita;
+    private int isAlbergatore;
+
+    public Utente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, int isAlbergatore) {
+        this.cf = cf;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.recapitoTelefonico = recapitoTelefonico;
+        this.password = password;
+        this.username = username;
+        this.email = email;
+        this.dataNascita = dataNascita;
+        this.isAlbergatore = isAlbergatore;
+    }
+
+    public int isAlbergatore() {
+        return isAlbergatore;
+    }
+
+    public void setAlbergatore(int albergatore) {
+        isAlbergatore = albergatore;
+    }
 
     public String getCf() {
         return cf;
@@ -63,11 +84,11 @@ public class Utente {
         this.email = email;
     }
 
-    public String getDataNascita() {
+    public Date getDataNascita() {
         return dataNascita;
     }
 
-    public void setDataNascita(String dataNascita) {
+    public void setDataNascita(Date dataNascita) {
         this.dataNascita = dataNascita;
     }
 }
