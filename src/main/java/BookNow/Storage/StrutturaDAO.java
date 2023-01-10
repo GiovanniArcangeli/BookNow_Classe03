@@ -27,7 +27,7 @@ public class StrutturaDAO {
             return strutture;
         }
         catch(SQLException e){
-            throw new RunTimeException("UNABLE TO CONNECT TO DATABASE");
+            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
 
@@ -49,13 +49,15 @@ public class StrutturaDAO {
             return strutture;
         }
         catch(SQLException e){
-            throw new RunTimeException("UNABLE TO CONNECT TO DATABASE");
+            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-    public void doUpdate(String CF){
+    public void doUpdate(Struttura s, String CF){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where CF = ?");
-            ps.setString(CF);
+            ps.setString(1, s.getIndirizzo());
+            ps.setString(2, s.getNome());
+            ps.setString(3, CF);
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
