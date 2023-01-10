@@ -1,5 +1,7 @@
 package BookNow.Storage;
 
+import BookNow.Entity.Post;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

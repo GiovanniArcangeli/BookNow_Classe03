@@ -1,15 +1,18 @@
 package BookNow.Storage;
 
+import BookNow.Entity.Struttura;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 public class StrutturaDAO {
 
     public List<Struttura> doRetrieveAll(){
-        try(Connection con = ConPool.getConncection()){
-            PreparedStatement ps = con.preparedStatement("select ID_Struttura, indirizzo, Nome from struttura");
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura");
 
             ResultSet rs = ps.executeQuery();
             List<Struttura> strutture = new ArrayList<>();
