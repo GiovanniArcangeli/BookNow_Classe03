@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +28,6 @@
         <input id="passwordLogin" type="password" name="passwordLogin"><br>
         <input type="submit" value="Login">
     </form>
-    <!-- Link alla Registrazione -->
-    <p>Non sei ancora registrato?<a href="./registrazione.jsp">Registrati</a></p>
 </div>
-<jsp:include page="./footer.jsp" />
 </body>
 </html>
