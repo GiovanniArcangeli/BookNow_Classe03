@@ -1,17 +1,16 @@
 package BookNow.Entity;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 public class Prenotazione {
 
     private int ID_Prenotazione, numOspiti;
-    private GregorianCalendar dataIn, dataOut;
+    private Date dataIn, dataOut;
 
-    public Prenotazione(int idPrenotazione, Calendar dataIn, Calendar dataOut, int numOspiti){
+    public Prenotazione(int idPrenotazione, Date dataIn, Date dataOut, int numOspiti){
         this.ID_Prenotazione = idPrenotazione;
-        this.dataIn = (GregorianCalendar) dataIn;
-        this.dataOut = (GregorianCalendar) dataOut;
+        this.dataIn = dataIn;
+        this.dataOut = dataOut;
         this.numOspiti = numOspiti;
     }
 
@@ -32,19 +31,19 @@ public class Prenotazione {
         this.numOspiti = numOspiti;
     }
 
-    public GregorianCalendar getDataIn() {
+    public Date getDataIn() {
         return dataIn;
     }
 
-    public void setDataIn(GregorianCalendar dataIn) {
+    public void setDataIn(Date dataIn) {
         this.dataIn = dataIn;
     }
 
-    public GregorianCalendar getDataOut() {
+    public Date getDataOut() {
         return dataOut;
     }
 
-    public void setDataOut(GregorianCalendar dataOut) {
+    public void setDataOut(Date dataOut) {
         this.dataOut = dataOut;
     }
 }
