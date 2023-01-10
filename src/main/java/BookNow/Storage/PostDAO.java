@@ -1,4 +1,4 @@
-package Model;
+package BookNow.Storage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

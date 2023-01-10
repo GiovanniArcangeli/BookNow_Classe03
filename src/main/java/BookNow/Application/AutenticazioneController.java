@@ -1,4 +1,4 @@
-package Application;
+package BookNow.Application;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

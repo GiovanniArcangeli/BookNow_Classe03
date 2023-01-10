@@ -1,4 +1,4 @@
-package Model;
+package BookNow.Entity;
 
 import java.util.GregorianCalendar;
 

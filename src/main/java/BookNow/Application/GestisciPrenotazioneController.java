@@ -1,4 +1,4 @@
-package Application;
+package BookNow.Application;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/prenotazione")
-public class PrenotaStanzaController extends HttpServlet {
+@WebServlet("/gestione-prenotazione")
+public class GestisciPrenotazioneController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

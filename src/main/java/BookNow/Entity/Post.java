@@ -1,4 +1,4 @@
-package Model;
+package BookNow.Entity;
 
 public class Post {
     private int ID_Post;

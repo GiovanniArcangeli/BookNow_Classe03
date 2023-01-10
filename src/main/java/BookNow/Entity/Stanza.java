@@ -1,4 +1,4 @@
-package Model;
+package BookNow.Entity;
 
 public class Stanza {
     private int numeroStanza, capienza;

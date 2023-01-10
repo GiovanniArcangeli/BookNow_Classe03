@@ -1,4 +1,6 @@
-package Model;
+package BookNow.Storage;
+
+import BookNow.Entity.Utente;
 
 import java.sql.*;
 import java.util.ArrayList;

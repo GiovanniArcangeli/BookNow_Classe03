@@ -1,6 +1,6 @@
-package Model;
+package BookNow.Entity;
 
-public class Albergatore extends Utente{
+public class Albergatore extends Utente {
 
     private String p_iva;
 

@@ -1,4 +1,4 @@
-package Model;
+package BookNow.Entity;
 
 public class Struttura {
     private int ID_Struttura;
