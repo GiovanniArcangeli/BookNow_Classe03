@@ -4,13 +4,15 @@ public class Stanza {
     private int numeroStanza, capienza;
     private String descrizione, serviziOfferti;
     private float costo;
+    private Struttura struttura;
 
-    public Stanza(int numeroStanza, int capienza, String descrizione, String serviziOfferti, float costo) {
+    public Stanza(int numeroStanza, int capienza, String descrizione, String serviziOfferti, float costo, Struttura struttura) {
         this.numeroStanza = numeroStanza;
         this.capienza = capienza;
         this.descrizione = descrizione;
         this.serviziOfferti = serviziOfferti;
         this.costo = costo;
+        this.struttura = struttura;
     }
 
     public int getNumeroStanza() {
@@ -51,5 +53,13 @@ public class Stanza {
 
     public void setCosto(float costo) {
         this.costo = costo;
+    }
+
+    public Struttura getStruttura() {
+        return struttura;
+    }
+
+    public void setStruttura(Struttura struttura) {
+        this.struttura = struttura;
     }
 }

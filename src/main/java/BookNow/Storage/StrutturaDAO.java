@@ -1,6 +1,8 @@
 package BookNow.Storage;
 
+import BookNow.Entity.Albergatore;
 import BookNow.Entity.Struttura;
+import BookNow.Entity.Utente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +14,7 @@ public class StrutturaDAO {
 
     public List<Struttura> doRetrieveAll(){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura");
+            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome, CF from struttura");
 
             ResultSet rs = ps.executeQuery();
             List<Struttura> strutture = new ArrayList<>();
@@ -21,8 +23,18 @@ public class StrutturaDAO {
                 int idStruttura = rs.getInt(1);
                 String indirizzo = rs.getString(2);
                 String nome = rs.getString(3);
+                String CF = rs.getString(4);
 
-                strutture.add(new Struttura(idStruttura, indirizzo, nome));
+                Albergatore albergatore = null;
+                AlbergatoreDAO service = new AlbergatoreDAO();
+                List<Utente> utenti = service.getAllUsers();
+                for(Utente utente: utenti){
+                    if(utente.getCf().equals(CF)){
+                        albergatore = (Albergatore) utente;
+                        break;
+                    }
+                }
+                strutture.add(new Struttura(idStruttura, indirizzo, nome, albergatore));
             }
             return strutture;
         }
@@ -31,10 +43,10 @@ public class StrutturaDAO {
         }
     }
 
-    public List<Struttura> doRetrieveByCF(String CF){
+    public List<Struttura> doRetrieveByCF(Albergatore a){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura where CF = ?");
-            ps.setString(1,CF);
+            ps.setString(1, a.getCf());
 
             ResultSet rs = ps.executeQuery();
             List<Struttura> strutture = new ArrayList<>();
@@ -44,7 +56,7 @@ public class StrutturaDAO {
                 String indirizzo = rs.getString(2);
                 String nome = rs.getString(3);
 
-                strutture.add(new Struttura(idStruttura, indirizzo, nome));
+                strutture.add(new Struttura(idStruttura, indirizzo, nome, a));
             }
             return strutture;
         }
@@ -52,12 +64,12 @@ public class StrutturaDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-    public void doUpdate(Struttura s, String CF){
+    public void doUpdate(Struttura s){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where CF = ?");
             ps.setString(1, s.getIndirizzo());
             ps.setString(2, s.getNome());
-            ps.setString(3, CF);
+            ps.setString(3, s.getAlbergatore().getCf());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
