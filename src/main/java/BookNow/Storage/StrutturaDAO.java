@@ -24,7 +24,7 @@ public class StrutturaDAO {
 
                 strutture.add(new Struttura(idStruttura, indirizzo, nome));
             }
-            return prenotazioni;
+            return strutture;
         }
         catch(SQLException e){
             throw new RunTimeException("UNABLE TO CONNECT TO DATABASE");
@@ -32,9 +32,9 @@ public class StrutturaDAO {
     }
 
     public List<Struttura> doRetrieveByCF(String CF){
-        try(Connection con = ConPool.getConncection()){
-            PreparedStatement ps = con.preparedStatement("select ID_Struttura, indirizzo, Nome from struttura where CF = ?");
-            ps.setString(CF);
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura where CF = ?");
+            ps.setString(1,CF);
 
             ResultSet rs = ps.executeQuery();
             List<Struttura> strutture = new ArrayList<>();
@@ -46,7 +46,7 @@ public class StrutturaDAO {
 
                 strutture.add(new Struttura(idStruttura, indirizzo, nome));
             }
-            return prenotazioni;
+            return strutture;
         }
         catch(SQLException e){
             throw new RunTimeException("UNABLE TO CONNECT TO DATABASE");
