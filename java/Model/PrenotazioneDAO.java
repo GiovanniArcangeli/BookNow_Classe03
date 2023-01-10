@@ -11,7 +11,7 @@ public class PrenotazioneDAO {
 
     public List<Prenotazione> doRetrieveByCF(String CF){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.preparedStatement("select idPrenotazione, DataIn, DataOut, NumOspiti from prenotazione where CF = ?");
+            PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti from prenotazione where CF = ?");
 
             ResultSet rs = ps.executeQuery();
             List<Prenotazione> prenotazioni = new ArrayList<>();
