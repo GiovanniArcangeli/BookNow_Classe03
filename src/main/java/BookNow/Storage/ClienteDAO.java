@@ -2,6 +2,7 @@ package BookNow.Storage;
 
 import BookNow.Entity.Albergatore;
 import BookNow.Entity.Cliente;
+import BookNow.Entity.Prenotazione;
 import BookNow.Entity.Utente;
 
 import java.sql.*;
@@ -94,5 +95,17 @@ public class ClienteDAO extends UtenteDAO{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void addPrenotazione(Prenotazione p){
+        p.getCliente().addPrenotazioni(p);
+    }
+
+    public void removePrenotazione(Prenotazione p){
+        p.getCliente().deletePrenotazioni(p);
+    }
+
+    public void updatePrenotazione(Prenotazione p, int id){
+
     }
 }
