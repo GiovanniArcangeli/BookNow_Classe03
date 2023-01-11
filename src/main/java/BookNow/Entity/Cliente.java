@@ -1,16 +1,20 @@
 package BookNow.Entity;
 
+import BookNow.Storage.PostDAO;
+import BookNow.Storage.PrenotazioneDAO;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class Cliente extends Utente{
 
     private String numero_carta;
     private Date scadenza_carta;
     private int cvv;
-    private ArrayList<Prenotazione> prenotazioni;
-    private ArrayList<Post> posts;
+    private List<Prenotazione> prenotazioni;
+    private List<Post> posts;
 
     public Cliente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, String numero_carta, Date scadenza_carta, int cvv) {
         super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, 0);
@@ -19,6 +23,10 @@ public class Cliente extends Utente{
         this.numero_carta=numero_carta;
         prenotazioni=new ArrayList<Prenotazione>();
         posts=new ArrayList<Post>();
+        PrenotazioneDAO pd=new PrenotazioneDAO();
+        prenotazioni=pd.doRetrieveByCF(this);
+        PostDAO ps=new PostDAO();
+        posts=ps.doRetrieveByCf(this);
     }
 
     public String getNumero_carta() {
@@ -45,7 +53,7 @@ public class Cliente extends Utente{
         this.cvv = cvv;
     }
 
-    public ArrayList<Prenotazione> getPrenotazioni() {
+    public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
 
@@ -68,7 +76,7 @@ public class Cliente extends Utente{
         }
     }
 
-    public ArrayList<Post> getPosts() {
+    public List<Post> getPosts() {
         return posts;
     }
 
