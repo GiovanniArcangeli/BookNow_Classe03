@@ -40,7 +40,7 @@ public class PrenotazioneDAO {
 
     public void doSave(Prenotazione p){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?)");
             ps.setDate(1, p.getDataIn());
             ps.setDate(2, p.getDataOut());
             ps.setInt(3, p.getNumOspiti());

@@ -1,7 +1,7 @@
 package BookNow.Storage;
 
-import BookNow.Entity.Stanza;
-import java.util.GregorianCalendar;
+import BookNow.Entity.*;
+import java.sql.Date;
 
 public final class StorageFacade {
     private static StorageFacade instance;
@@ -28,11 +28,19 @@ public final class StorageFacade {
 
     }
 
-    public void modificaPrenotazione(int id, GregorianCalendar dataIn, GregorianCalendar dataOut, int numOspiti, Stanza stanza){
+    public void modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti, Stanza stanza){
 
     }
 
-    public void prenotazioneStanza(int id, GregorianCalendar dataIn, GregorianCalendar dataOut, int numOspiti, Stanza stanza){
+    public void prenotazioneStanza(Cliente cliente, int ID_Struttura, int numeroStanza, Date dataIn, Date dataOut, int numOspiti){
+        Prenotazione prenotazione = new Prenotazione();
+        prenotazione.setCliente(cliente);
+        prenotazione.setDataIn(dataIn);
+        prenotazione.setDataOut(dataOut);
+        prenotazione.setNumOspiti(numOspiti);
+        prenotazione.setStanza(new StanzaDAO().doRetrieveById(numeroStanza, ID_Struttura));
+
+        new PrenotazioneDAO().doSave(prenotazione);
 
     }
 }
