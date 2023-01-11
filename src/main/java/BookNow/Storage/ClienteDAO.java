@@ -1,9 +1,6 @@
 package BookNow.Storage;
 
-import BookNow.Entity.Albergatore;
-import BookNow.Entity.Cliente;
-import BookNow.Entity.Prenotazione;
-import BookNow.Entity.Utente;
+import BookNow.Entity.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -108,4 +105,16 @@ public class ClienteDAO extends UtenteDAO{
     public void updatePrenotazione(Prenotazione p){
         p.getCliente().aggiornaPrenotazione(p);
     }
+
+    public void addPost(Post p){
+        p.getCliente().aggiungiPost(p);
+    }
+
+    public void removePost(Post p){
+        p.getCliente().deletePost(p);
+    }
+/*
+    public void updatePost(Post p){
+        p.getCliente().aggiornaPost(p);
+    }*/
 }

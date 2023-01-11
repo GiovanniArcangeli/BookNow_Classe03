@@ -10,6 +10,7 @@ public class Cliente extends Utente{
     private Date scadenza_carta;
     private int cvv;
     private ArrayList<Prenotazione> prenotazioni;
+    private ArrayList<Post> posts;
 
     public Cliente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, String numero_carta, Date scadenza_carta, int cvv) {
         super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, 0);
@@ -17,6 +18,7 @@ public class Cliente extends Utente{
         this.scadenza_carta=scadenza_carta;
         this.numero_carta=numero_carta;
         prenotazioni=new ArrayList<Prenotazione>();
+        posts=new ArrayList<Post>();
     }
 
     public String getNumero_carta() {
@@ -65,4 +67,27 @@ public class Cliente extends Utente{
             }
         }
     }
+
+    public ArrayList<Post> getPosts() {
+        return posts;
+    }
+
+    public void aggiungiPost(Post p) {
+        posts.add(p);
+    }
+
+    public void deletePost(Post p){
+        for(Post ps: posts){
+            if(p.getID_Post()==ps.getID_Post()) posts.remove(ps);
+        }
+    }
+/*
+    public void aggiornaPost(Post p){
+        for(Post ps: posts){
+            if(p.getID_Post()==ps.getID_Post()){
+                posts.remove(ps);
+                posts.add(p);
+            }
+        }
+    }*/
 }
