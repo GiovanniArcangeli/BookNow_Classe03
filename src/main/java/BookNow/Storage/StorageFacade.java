@@ -32,7 +32,7 @@ public final class StorageFacade {
 
     }
 
-    public void prenotazioneStanza(Cliente cliente, int ID_Struttura, int numeroStanza, Date dataIn, Date dataOut, int numOspiti){
+    public Prenotazione prenotazioneStanza(Cliente cliente, int ID_Struttura, int numeroStanza, Date dataIn, Date dataOut, int numOspiti){
         Prenotazione prenotazione = new Prenotazione();
         prenotazione.setCliente(cliente);
         prenotazione.setDataIn(dataIn);
@@ -40,7 +40,8 @@ public final class StorageFacade {
         prenotazione.setNumOspiti(numOspiti);
         prenotazione.setStanza(new StanzaDAO().doRetrieveById(numeroStanza, ID_Struttura));
 
-        new PrenotazioneDAO().doSave(prenotazione);
-
+        int idPrenotazione = new PrenotazioneDAO().doSave(prenotazione);
+        prenotazione.setID_Prenotazione(idPrenotazione);
+        return prenotazione;
     }
 }

@@ -38,7 +38,7 @@ public class PrenotazioneDAO {
         }
     }
 
-    public void doSave(Prenotazione p){
+    public int doSave(Prenotazione p){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?)");
             ps.setDate(1, p.getDataIn());
@@ -48,11 +48,17 @@ public class PrenotazioneDAO {
             ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
             ps.setInt(6, p.getStanza().getNumeroStanza());
 
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("INSERT ERROR");
+            if (ps.executeUpdate() == 1) {
 
-            ClienteDAO service = new ClienteDAO();
-            service.addPrenotazione(p);
+                ClienteDAO service = new ClienteDAO();
+                service.addPrenotazione(p);
+
+                //Restituisce l'ID auto-generato della prenotazione salvata
+                ResultSet rs = ps.getGeneratedKeys();
+                if(rs.next())
+                    return rs.getInt(1);
+            }
+            return -1;
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");

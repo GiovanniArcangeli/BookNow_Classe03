@@ -1,6 +1,7 @@
 package BookNow.Application;
 
 import BookNow.Entity.Cliente;
+import BookNow.Entity.Prenotazione;
 import BookNow.Entity.Utente;
 import BookNow.Storage.StorageFacade;
 import jakarta.servlet.ServletException;
@@ -37,10 +38,14 @@ public class PrenotaStanzaController extends HttpServlet {
                 int numOspiti = Integer.parseInt(request.getParameter("numOspiti"));
                 Cliente cliente = (Cliente) utente;
 
-                StorageFacade.getInstance().prenotazioneStanza(cliente, ID_Stuttura, numeroStanza, dataIn, dataOut, numOspiti);
+                Prenotazione prenotazione = StorageFacade.getInstance().prenotazioneStanza(cliente, ID_Stuttura, numeroStanza, dataIn, dataOut, numOspiti);
+
+                if(prenotazione.getID_Prenotazione() < 0)
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
                 //Se la prenotazione va a buon fine, viene mostrata la pagina per gestirla
                 //Bisogna SETTARE GLI ATTRIBUTI che servono alla view
+
                 request.getRequestDispatcher("/WEB-INF/GestisciPrenotazioneGUI.jsp").forward(request, response);
             }
         } catch (RuntimeException | ParseException e){
