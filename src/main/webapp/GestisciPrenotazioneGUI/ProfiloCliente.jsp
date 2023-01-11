@@ -7,7 +7,8 @@
 <body>
 <h2 id="profiloCliente">Profilo Cliente</h2>
 <p id="links"><a href="Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="../PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a></p>
-<table>
+
+<table id="dati">
     <tr>
         <td>Username </td>
         <td>Password </td>

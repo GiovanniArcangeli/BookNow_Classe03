@@ -5,19 +5,20 @@
     text-align: center;
     background-color: cornflowerblue;
     padding: 1%;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
-
 #links {
     width: 100%;
     font-size: medium;
     background-color: white;
     color: cornflowerblue;
+    padding: 1%;
+    margin-top: 0px;
 }
-
 a {
     color: cornflowerblue;
 }
-
 body {
     background-color: darkgray;
 }
