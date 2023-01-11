@@ -115,8 +115,10 @@ public class PrenotazioneDAO {
                 if(rs.next()) {
                     idPrenotazione = rs.getInt(1);
                     p.setID_Prenotazione(idPrenotazione);
-                    ClienteDAO service = new ClienteDAO();
-                    service.addPrenotazione(p);
+                    ClienteDAO sc = new ClienteDAO();
+                    sc.addPrenotazione(p);
+                    StanzaDAO ss = new StanzaDAO();
+                    ss.addPrenotazione(p);
                 }
             }
             return idPrenotazione;
@@ -140,6 +142,8 @@ public class PrenotazioneDAO {
 
             ClienteDAO service = new ClienteDAO();
             service.updatePrenotazione(p);
+            StanzaDAO ss = new StanzaDAO();
+            ss.addPrenotazione(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
@@ -162,6 +166,9 @@ public class PrenotazioneDAO {
 
             p.setID_Prenotazione(idPrenotazione);
             ClienteDAO service = new ClienteDAO();
+            StanzaDAO ss = new StanzaDAO();
+            ss.addPrenotazione(p);
+
             service.addPrenotazione(p);
 
             ps = con.prepareStatement("delete from prenotazione where idPrenotazione = ?");
