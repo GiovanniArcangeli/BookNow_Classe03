@@ -105,7 +105,7 @@ public class ClienteDAO extends UtenteDAO{
         p.getCliente().deletePrenotazioni(p);
     }
 
-    public void updatePrenotazione(Prenotazione p, int id){
-
+    public void updatePrenotazione(Prenotazione p){
+        p.getCliente().aggiornaPrenotazione(p);
     }
 }
