@@ -28,8 +28,14 @@ public final class StorageFacade {
 
     }
 
-    public void modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti, Stanza stanza){
+    public void modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
+        Prenotazione oldOne = new PrenotazioneDAO().doRetrieveById(id);
+        //Il controllo sulla disponibilità delle date è stato già fatto
+        oldOne.setDataIn(dataIn);
+        oldOne.setDataOut(dataOut);
+        oldOne.setNumOspiti(numOspiti);
 
+        new PrenotazioneDAO().doUpdate(oldOne);
     }
 
     public Prenotazione prenotazioneStanza(Cliente cliente, int ID_Struttura, int numeroStanza, Date dataIn, Date dataOut, int numOspiti){
