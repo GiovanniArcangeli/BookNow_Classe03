@@ -27,15 +27,8 @@ public class PrenotazioneDAO {
                int idStruttura = rs.getInt(5);
                int numeroStanza = rs.getInt(6);
 
-               Stanza stanza = null;
                StanzaDAO service = new StanzaDAO();
-               List<Stanza> stanze = service.doRetrieveById(new Struttura(idStruttura));
-               for (Stanza s: stanze){
-                   if (s.getNumeroStanza() == numeroStanza) {
-                       stanza = s;
-                       break;
-                   }
-               }
+               Stanza stanza = service.doRetrieveById(numeroStanza, idStruttura);
                prenotazioni.add(new Prenotazione(idPrenotazione, dataIn, dataOut, numOspiti, stanza, c));
             }
             return prenotazioni;
