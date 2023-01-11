@@ -128,30 +128,16 @@ public class PrenotazioneDAO {
 
     public void doUpdate(Prenotazione p) {
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("update prenotazione set DatIn = ?, DataOut = ?, NumOspiti = ?, NumeroStanza" +
+            PreparedStatement ps = con.prepareStatement("update prenotazione set DataIn = ?, DataOut = ?, NumOspiti = ?" +
                     " where idPrenotazione = ?");
             ps.setDate(1, p.getDataIn());
             ps.setDate(2, p.getDataOut());
             ps.setInt(3, p.getNumOspiti());
-            ps.setInt(4, p.getStanza().getNumeroStanza());
-            ps.setInt(5, p.getID_Prenotazione());
+            ps.setInt(4, p.getID_Prenotazione());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
 
-            ps = con.prepareStatement("select idPrenotazione from prenotazione" +
-                    " where DataIn = ?, DataOut = ?, NumOspiti = ?, CF = ?, ID_Struttura = ?, NumeroStanza = ?");
-            ps.setDate(1, p.getDataIn());
-            ps.setDate(2, p.getDataOut());
-            ps.setInt(3, p.getNumOspiti());
-            ps.setString(4, p.getCliente().getCf());
-            ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
-            ps.setInt(6, p.getStanza().getNumeroStanza());
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            int idPrenotazione = rs.getInt(1);
-
-            p.setID_Prenotazione(idPrenotazione);
             ClienteDAO service = new ClienteDAO();
             service.updatePrenotazione(p);
         }
