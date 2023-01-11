@@ -100,6 +100,17 @@ public class StrutturaDAO {
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
 
+            ps = con.prepareStatement("select ID_Struttura from prenotazione" +
+                    " where Indirizzo = ?, Nome = ?, CF = ?");
+            ps.setString(1, s.getIndirizzo());
+            ps.setString(2, s.getNome());
+            ps.setString(3, s.getAlbergatore().getCf());
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int idStruttura = rs.getInt(1);
+
+            s.setID_Struttura(idStruttura);
             AlbergatoreDAO service = new AlbergatoreDAO();
             service.addStruttura(s);
         }
@@ -118,6 +129,20 @@ public class StrutturaDAO {
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
 
+            if (ps.executeUpdate() != 1)
+                throw new RuntimeException("INSERT ERROR");
+
+            ps = con.prepareStatement("select ID_Struttura from prenotazione" +
+                    " where Indirizzo = ?, Nome = ?, CF = ?");
+            ps.setString(1, s.getIndirizzo());
+            ps.setString(2, s.getNome());
+            ps.setString(3, s.getAlbergatore().getCf());
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int idStruttura = rs.getInt(1);
+
+            s.setID_Struttura(idStruttura);
             AlbergatoreDAO service = new AlbergatoreDAO();
             service.updateStruttura(s);
         }
@@ -128,14 +153,25 @@ public class StrutturaDAO {
 
     public void doDelete(Struttura s){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from struttura where CF = ?");
+            PreparedStatement ps = con.prepareStatement("select ID_Struttura from prenotazione" +
+                    " where Indirizzo = ?, Nome = ?, CF = ?");
+            ps.setString(1, s.getIndirizzo());
+            ps.setString(2, s.getNome());
+            ps.setString(3, s.getAlbergatore().getCf());
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int idStruttura = rs.getInt(1);
+
+            s.setID_Struttura(idStruttura);
+            AlbergatoreDAO service = new AlbergatoreDAO();
+            service.removeStruttura(s);
+
+            ps = con.prepareStatement("delete from struttura where CF = ?");
             ps.setInt(1, s.getID_Struttura());
 
             if (ps.executeUpdate() != 1)
-                throw new RuntimeException("UPDATE ERROR");
-
-            AlbergatoreDAO service = new AlbergatoreDAO();
-            service.removeStruttura(s);
+                throw new RuntimeException("DELETE ERROR");
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
