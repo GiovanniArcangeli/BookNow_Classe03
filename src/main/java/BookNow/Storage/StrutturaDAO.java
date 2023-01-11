@@ -13,6 +13,29 @@ import java.util.ArrayList;
 import java.util.List;
 public class StrutturaDAO {
 
+    public Struttura doRetrieveById(int id){
+        try(Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("select indirizzo, Nome, CF from struttura where ID_Struttura = ?");
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String indirizzo = rs.getString(1);
+                String nome = rs.getString(2);
+                String CF = rs.getString(3);
+
+                AlbergatoreDAO service = new AlbergatoreDAO();
+                Albergatore albergatore = (Albergatore) service.getAlbergatoreByCF(CF);
+
+                return new Struttura(id, indirizzo, nome, albergatore);
+            }
+            return null;
+        }catch(SQLException e){
+            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
+        }
+    }
+
     public List<Struttura> doRetrieveAll(){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome, CF from struttura");
