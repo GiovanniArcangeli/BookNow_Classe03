@@ -57,9 +57,9 @@ public class Cliente extends Utente{
         }
     }
 
-    public void aggiornaPrenotazione(Prenotazione p, int id){
+    public void aggiornaPrenotazione(Prenotazione p){
         for(Prenotazione pr: prenotazioni){
-            if(pr.getID_Prenotazione()==id){
+            if(pr.getID_Prenotazione()==p.getID_Prenotazione()){
                 prenotazioni.remove(pr);
                 prenotazioni.add(p);
             }
