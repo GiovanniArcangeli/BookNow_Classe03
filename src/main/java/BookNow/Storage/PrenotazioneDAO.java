@@ -41,17 +41,29 @@ public class PrenotazioneDAO {
     public void doSave(Prenotazione p){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?,?)");
-            ps.setInt(1, p.getID_Prenotazione());
-            ps.setDate(2, p.getDataIn());
-            ps.setDate(3, p.getDataOut());
-            ps.setInt(4, p.getNumOspiti());
-            ps.setString(5, p.getCliente().getCf());
-            ps.setInt(6, p.getStanza().getStruttura().getID_Struttura());
-            ps.setInt(7, p.getStanza().getNumeroStanza());
+            ps.setDate(1, p.getDataIn());
+            ps.setDate(2, p.getDataOut());
+            ps.setInt(3, p.getNumOspiti());
+            ps.setString(4, p.getCliente().getCf());
+            ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
+            ps.setInt(6, p.getStanza().getNumeroStanza());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
 
+            ps = con.prepareStatement("select idPrenotazione from prenotazione" +
+                    " where DataIn = ?, DataOut = ?, NumOspiti = ?, CF = ?, ID_Struttura = ?, NumeroStanza = ?");
+            ps.setDate(1, p.getDataIn());
+            ps.setDate(2, p.getDataOut());
+            ps.setInt(3, p.getNumOspiti());
+            ps.setString(4, p.getCliente().getCf());
+            ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
+            ps.setInt(6, p.getStanza().getNumeroStanza());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int idPrenotazione = rs.getInt(1);
+
+            p.setID_Prenotazione(idPrenotazione);
             ClienteDAO service = new ClienteDAO();
             service.addPrenotazione(p);
         }
@@ -73,6 +85,19 @@ public class PrenotazioneDAO {
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
 
+            ps = con.prepareStatement("select idPrenotazione from prenotazione" +
+                    " where DataIn = ?, DataOut = ?, NumOspiti = ?, CF = ?, ID_Struttura = ?, NumeroStanza = ?");
+            ps.setDate(1, p.getDataIn());
+            ps.setDate(2, p.getDataOut());
+            ps.setInt(3, p.getNumOspiti());
+            ps.setString(4, p.getCliente().getCf());
+            ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
+            ps.setInt(6, p.getStanza().getNumeroStanza());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int idPrenotazione = rs.getInt(1);
+
+            p.setID_Prenotazione(idPrenotazione);
             ClienteDAO service = new ClienteDAO();
             service.updatePrenotazione(p);
         }
@@ -83,14 +108,27 @@ public class PrenotazioneDAO {
 
     public void doDelete(Prenotazione p){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from prenotazione where idPrenotazione = ?");
+            PreparedStatement ps = con.prepareStatement("select idPrenotazione from prenotazione" +
+                    " where DataIn = ?, DataOut = ?, NumOspiti = ?, CF = ?, ID_Struttura = ?, NumeroStanza = ?");
+            ps.setDate(1, p.getDataIn());
+            ps.setDate(2, p.getDataOut());
+            ps.setInt(3, p.getNumOspiti());
+            ps.setString(4, p.getCliente().getCf());
+            ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
+            ps.setInt(6, p.getStanza().getNumeroStanza());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int idPrenotazione = rs.getInt(1);
+
+            p.setID_Prenotazione(idPrenotazione);
+            ClienteDAO service = new ClienteDAO();
+            service.addPrenotazione(p);
+
+            ps = con.prepareStatement("delete from prenotazione where idPrenotazione = ?");
             ps.setInt(1, p.getID_Prenotazione());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
-
-            ClienteDAO service = new ClienteDAO();
-            service.removePrenotazione(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
