@@ -1,16 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gajewski8
-  Date: 11/01/23
-  Time: 19:15
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>Modifica Prenotazione</title>
 </head>
 <body>
-
+    <form>
+        <label for="nomeStruct">Nome della Struttura</label>
+        <input id="nomeStruct" type="text" name="nomeStruct"><br>
+        <label for="indirizzo">Indirizzo</label>
+        <input id="indirizzo" type="date" name="indirizzo"><br>
+        <input type="submit" value="Modifica">
+    </form>
 </body>
 </html>

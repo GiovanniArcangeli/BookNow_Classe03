@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Modifica Prenotazione</title>
 </head>
 <body>
-<!-- Header -->
-<header id="header">
-</header>
-<!-- Container Form -->
-<div id="container">
-    <h2>Login</h2>
-
-    <!-- Form di Login -->
     <form>
-        <label for="usernameLogin">Username</label><br>
-        <input id="usernameLogin" type="text" name="usernameLogin"><br>
-        <label for="passwordLogin">Password </label><br>
-        <input id="passwordLogin" type="password" name="passwordLogin"><br>
-        <input type="submit" value="Login">
+        <label for="dataIn">Data del Check-in</label>
+        <input id="dataIn" type="date" name="dataIn"><br>
+        <label for="dataOut">Data del Check-out </label>
+        <input id="dataOut" type="date" name="dataIn"><br>
+        <label for="numOspiti">Numero di Ospiti </label>
+        <input id="numOspiti" type="number" name="numOspiti"><br>
+        <input type="submit" value="Modifica Prenotazione">
     </form>
 </div>
 </body>

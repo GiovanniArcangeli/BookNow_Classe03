@@ -5,7 +5,6 @@
 </head>
 <body>
 <h2>Login</h2>
-    <!-- Form di Login -->
     <form>
         <label for="usernameLogin">Username</label><br>
         <input id="usernameLogin" type="text" name="usernameLogin"><br>

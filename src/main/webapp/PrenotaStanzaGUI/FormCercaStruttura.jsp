@@ -1,16 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gajewski8
-  Date: 11/01/23
-  Time: 19:18
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>Cerca Strutture</title>
 </head>
 <body>
-
+<form>
+    <label for="dataIn">Data del Check-in</label>
+    <input id="dataIn" type="date" name="dataIn"><br>
+    <label for="dataOut">Data del Check-out </label>
+    <input id="dataOut" type="date" name="dataIn"><br>
+    <label for="numOspiti">Numero di Ospiti </label>
+    <input id="numOspiti" type="number" name="numOspiti"><br>
+    <input type="submit" value="Cerca Strutture">
+</form>
 </body>
 </html>

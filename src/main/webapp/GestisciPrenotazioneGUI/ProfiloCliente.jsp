@@ -1,11 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>Profilo</title>
 </head>
 <body>
-<h2>Profilo Cliente</h2>
-<a href="Prenotazioni.jsp"><h4>Le mie Prenotazioni</h4></a>
+<h3>Profilo Cliente</h3>
+<p><a href="Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="../PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a></p>
 <table>
     <tr>
         <td>Username </td>
@@ -24,8 +24,11 @@
         <td>Codice Fiscale </td>
     </tr>
     <tr>
-        <td>Username </td>
-        <td>Password </td>
+        <td>Numero Carta </td>
+        <td>Scadenza Carta </td>
+    </tr>
+    <tr>
+        <td>CVV </td>
     </tr>
 </table>
 </body>

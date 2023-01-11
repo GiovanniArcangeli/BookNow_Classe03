@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gajewski8
-  Date: 11/01/23
-  Time: 19:20
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>Riepilogo Prenotazione</title>
 </head>
 <body>
-
+    <p>Data Check-in</p>
+    <p>Data Check-out</p>
+    <p>Numero Ospiti</p>
+    <p>Nome Struttura</p>
+    <p>Numero Stanza</p>
+    <button>Conferma</button>
 </body>
 </html>
