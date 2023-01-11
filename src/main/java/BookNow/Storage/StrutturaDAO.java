@@ -1,6 +1,7 @@
 package BookNow.Storage;
 
 import BookNow.Entity.Albergatore;
+import BookNow.Entity.Prenotazione;
 import BookNow.Entity.Struttura;
 import BookNow.Entity.Utente;
 
@@ -64,6 +65,26 @@ public class StrutturaDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
+
+    public void doSave(Struttura s){
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("insert into struttura values (?,?,?,?)");
+            ps.setInt(1, s.getID_Struttura());
+            ps.setString(2, s.getIndirizzo());
+            ps.setString(3, s.getNome());
+            ps.setString(4, s.getAlbergatore().getCf());
+
+            if (ps.executeUpdate() != 1)
+                throw new RuntimeException("INSERT ERROR");
+
+            AlbergatoreDAO service = new AlbergatoreDAO();
+            service.addStruttura(s);
+        }
+        catch(SQLException e){
+            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
+        }
+    }
+
     public void doUpdate(Struttura s){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where CF = ?");
@@ -73,6 +94,25 @@ public class StrutturaDAO {
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
+
+            AlbergatoreDAO service = new AlbergatoreDAO();
+            service.updateStruttura(s);
+        }
+        catch(SQLException e){
+            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
+        }
+    }
+
+    public void doDelete(Struttura s){
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("delete from struttura where CF = ?");
+            ps.setInt(1, s.getID_Struttura());
+
+            if (ps.executeUpdate() != 1)
+                throw new RuntimeException("UPDATE ERROR");
+
+            AlbergatoreDAO service = new AlbergatoreDAO();
+            service.removeStruttura(s);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
