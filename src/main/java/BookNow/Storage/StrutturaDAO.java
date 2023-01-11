@@ -1,9 +1,6 @@
 package BookNow.Storage;
 
-import BookNow.Entity.Albergatore;
-import BookNow.Entity.Prenotazione;
-import BookNow.Entity.Struttura;
-import BookNow.Entity.Utente;
+import BookNow.Entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -176,5 +173,17 @@ public class StrutturaDAO {
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
+    }
+
+    public void addStanza(Stanza s){
+        s.getStruttura().addStanza(s);
+    }
+
+    public void removeStanza(Stanza s){
+        s.getStruttura().deleteStanza(s);
+    }
+
+    public void updateStanza(Stanza s){
+        s.getStruttura().aggiornaStanza(s);
     }
 }
