@@ -6,6 +6,7 @@ import BookNow.Entity.Cliente;
 import BookNow.Entity.Struttura;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class PrenotazioneDAO {
@@ -20,8 +21,8 @@ public class PrenotazioneDAO {
 
             while(rs.next()){
                int idPrenotazione = rs.getInt(1);
-               java.util.Date dataIn = new java.util.Date(rs.getDate(2).getTime());
-               java.util.Date dataOut = new java.util.Date(rs.getDate(3).getTime());
+               Date dataIn = rs.getDate(2);
+               Date dataOut = rs.getDate(3);
                int numOspiti = rs.getInt(4);
                int idStruttura = rs.getInt(5);
                int numeroStanza = rs.getInt(6);
@@ -48,8 +49,8 @@ public class PrenotazioneDAO {
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?,?)");
             ps.setInt(1, p.getID_Prenotazione());
-            ps.setDate(2, new java.sql.Date(p.getDataIn().getTime()));
-            ps.setDate(3, new java.sql.Date(p.getDataOut().getTime()));
+            ps.setDate(2, p.getDataIn());
+            ps.setDate(3, p.getDataOut());
             ps.setInt(4, p.getNumOspiti());
             ps.setString(5, p.getCliente().getCf());
             ps.setInt(6, p.getStanza().getStruttura().getID_Struttura());
@@ -67,8 +68,8 @@ public class PrenotazioneDAO {
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("update prenotazione set DatIn = ?, DataOut = ?, NumOspiti = ?, NumeroStanza" +
                     " where idPrenotazione = ?");
-            ps.setDate(1, new java.sql.Date(p.getDataIn().getTime()));
-            ps.setDate(2, new java.sql.Date(p.getDataOut().getTime()));
+            ps.setDate(1, p.getDataIn());
+            ps.setDate(2, p.getDataOut());
             ps.setInt(3, p.getNumOspiti());
             ps.setInt(4, p.getStanza().getNumeroStanza());
             ps.setInt(5, p.getID_Prenotazione());
