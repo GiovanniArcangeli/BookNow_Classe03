@@ -58,6 +58,9 @@ public class PrenotazioneDAO {
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
+
+            ClienteDAO service = new ClienteDAO();
+            service.addPrenotazione(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
@@ -76,6 +79,9 @@ public class PrenotazioneDAO {
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
+
+            ClienteDAO service = new ClienteDAO();
+            service.updatePrenotazione(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
@@ -89,6 +95,9 @@ public class PrenotazioneDAO {
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
+
+            ClienteDAO service = new ClienteDAO();
+            service.removePrenotazione(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");

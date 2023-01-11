@@ -1,15 +1,17 @@
 package BookNow.Entity;
 
+import BookNow.Storage.ClienteDAO;
+
 public class Post {
     private int ID_Post;
     private String testo, tags;
-    private Utente utente;
+    private Cliente cliente;
 
-    public Post(int ID_Post, String testo, String tags, Utente utente) {
+    public Post(int ID_Post, String testo, String tags, Cliente cliente) {
         this.ID_Post = ID_Post;
         this.testo = testo;
         this.tags = tags;
-        this.utente = utente;
+        this.cliente = cliente;
     }
 
     public int getID_Post() {
@@ -30,11 +32,11 @@ public class Post {
         this.tags = tags;
     }
 
-    public Utente getUtente() {
-        return utente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setUtente(Utente utente) {
-        this.utente = utente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

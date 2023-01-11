@@ -10,10 +10,13 @@ public class PostDAO {
             PreparedStatement ps = con.prepareStatement("insert into post values (?,?,?)");
             ps.setString(1, p.getTesto());
             ps.setString(2, p.getTags());
-            ps.setString(3, p.getUtente().getCf());
+            ps.setString(3, p.getCliente().getCf());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
+
+            PostDAO service = new PostDAO();
+            service.addPosts(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
@@ -27,6 +30,9 @@ public class PostDAO {
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
+
+            ClienteDAO service = new PostDAO();
+            service.removePost(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
