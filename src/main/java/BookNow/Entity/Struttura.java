@@ -11,13 +11,6 @@ public class Struttura {
         this.nome = nome;
         this.albergatore = albergatore;
     }
-
-    /* Il secondo costruttore è usato dal service di StanzaDAO quando chiama il doRetrieveById
-    * passando una struttura come argomento di cui conosce solo il campo ID */
-    public Struttura(int ID_Struttura){
-        this.ID_Struttura = ID_Struttura;
-    }
-
     public int getID_Struttura() {
         return ID_Struttura;
     }
