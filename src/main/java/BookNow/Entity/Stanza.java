@@ -1,10 +1,16 @@
 package BookNow.Entity;
 
+import BookNow.Storage.PrenotazioneDAO;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Stanza {
     private int numeroStanza, capienza;
     private String descrizione, serviziOfferti;
     private float costo;
     private Struttura struttura;
+    private List<Prenotazione> prenotazioni;
 
     public Stanza(int numeroStanza, int capienza, String descrizione, String serviziOfferti, float costo, Struttura struttura) {
         this.numeroStanza = numeroStanza;
@@ -13,6 +19,29 @@ public class Stanza {
         this.serviziOfferti = serviziOfferti;
         this.costo = costo;
         this.struttura = struttura;
+        this.prenotazioni = new ArrayList<>();
+        PrenotazioneDAO service = new PrenotazioneDAO();
+        this.prenotazioni = service.doRetrieveByStanza(this);
+    }
+
+
+    public void addPrenotazioni(Prenotazione p) {
+        prenotazioni.add(p);
+    }
+
+    public void deletePrenotazioni(Prenotazione p){
+        for(Prenotazione pr: prenotazioni){
+            if(p.getID_Prenotazione()==pr.getID_Prenotazione()) prenotazioni.remove(pr);
+        }
+    }
+
+    public void aggiornaPrenotazione(Prenotazione p){
+        for(Prenotazione pr: prenotazioni){
+            if(pr.getID_Prenotazione()==p.getID_Prenotazione()){
+                prenotazioni.remove(pr);
+                prenotazioni.add(p);
+            }
+        }
     }
 
     public int getNumeroStanza() {
@@ -61,5 +90,13 @@ public class Stanza {
 
     public void setStruttura(Struttura struttura) {
         this.struttura = struttura;
+    }
+
+    public List<Prenotazione> getPrenotazioni() {
+        return prenotazioni;
+    }
+
+    public void setPrenotazioni(List<Prenotazione> prenotazioni) {
+        this.prenotazioni = prenotazioni;
     }
 }
