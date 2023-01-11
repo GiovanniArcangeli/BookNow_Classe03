@@ -1,0 +1,23 @@
+#profiloCliente {
+    width: 100%;
+    font-size: x-large;
+    color: white;
+    text-align: center;
+    background-color: cornflowerblue;
+    padding: 1%;
+}
+
+#links {
+    width: 100%;
+    font-size: medium;
+    background-color: white;
+    color: cornflowerblue;
+}
+
+a {
+    color: cornflowerblue;
+}
+
+body {
+    background-color: darkgray;
+}

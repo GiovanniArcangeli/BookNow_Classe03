@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Profilo</title>
+    <link rel="stylesheet" type="text/css" href="ProfiloCliente.css">
 </head>
 <body>
-<h3>Profilo Cliente</h3>
-<p><a href="Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="../PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a></p>
+<h2 id="profiloCliente">Profilo Cliente</h2>
+<p id="links"><a href="Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="../PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a></p>
 <table>
     <tr>
         <td>Username </td>

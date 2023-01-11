@@ -11,6 +11,5 @@
         <input id="indirizzo" type="date" name="indirizzo"><br>
         <input type="submit" value="Modifica">
     </form>
-</div>
 </body>
 </html>
