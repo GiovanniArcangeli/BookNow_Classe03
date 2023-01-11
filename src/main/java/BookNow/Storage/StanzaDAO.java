@@ -3,6 +3,8 @@ package BookNow.Storage;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import BookNow.Entity.Prenotazione;
 import BookNow.Entity.Stanza;
 import BookNow.Entity.Struttura;
 
@@ -56,5 +58,17 @@ public class StanzaDAO {
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
+    }
+
+    public void addPrenotazione(Prenotazione p){
+        p.getStanza().addPrenotazioni(p);
+    }
+
+    public void removePrenotazione(Prenotazione p){
+        p.getStanza().deletePrenotazioni(p);
+    }
+
+    public void updatePrenotazione(Prenotazione p){
+        p.getStanza().aggiornaPrenotazione(p);
     }
 }
