@@ -5,7 +5,7 @@ import BookNow.Entity.Post;
 
 import java.sql.*;
 public class PostDAO {
-
+//prova
     public void doSave(Post p){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into post values (?,?,?)");
