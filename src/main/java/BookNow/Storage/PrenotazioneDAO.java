@@ -38,7 +38,7 @@ public class PrenotazioneDAO {
         }
     }
 
-    public void doSave(Prenotazione p){
+    public int doSave(Prenotazione p){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?)");
             ps.setDate(1, p.getDataIn());
@@ -48,24 +48,20 @@ public class PrenotazioneDAO {
             ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
             ps.setInt(6, p.getStanza().getNumeroStanza());
 
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("INSERT ERROR");
+            int idPrenotazione = -1;   //Serve per fare i controlli nei metodi chiamanti
 
-            ps = con.prepareStatement("select idPrenotazione from prenotazione" +
-                    " where DataIn = ?, DataOut = ?, NumOspiti = ?, CF = ?, ID_Struttura = ?, NumeroStanza = ?");
-            ps.setDate(1, p.getDataIn());
-            ps.setDate(2, p.getDataOut());
-            ps.setInt(3, p.getNumOspiti());
-            ps.setString(4, p.getCliente().getCf());
-            ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
-            ps.setInt(6, p.getStanza().getNumeroStanza());
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            int idPrenotazione = rs.getInt(1);
+            if (ps.executeUpdate() == 1) {
 
-            p.setID_Prenotazione(idPrenotazione);
-            ClienteDAO service = new ClienteDAO();
-            service.addPrenotazione(p);
+                //Restituisce l'ID auto-generato della prenotazione salvata
+                ResultSet rs = ps.getGeneratedKeys();
+                if(rs.next()) {
+                    idPrenotazione = rs.getInt(1);
+                    p.setID_Prenotazione(idPrenotazione);
+                    ClienteDAO service = new ClienteDAO();
+                    service.addPrenotazione(p);
+                }
+            }
+            return idPrenotazione;
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
