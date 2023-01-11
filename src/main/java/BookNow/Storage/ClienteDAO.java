@@ -45,6 +45,29 @@ public class ClienteDAO extends UtenteDAO{
         return null;
     }
 
+    public Utente getClienteByCf(String CF) {
+        /*ArrayList<Cliente> clienti = (ArrayList<Cliente>) getAllClienti();
+        for (Cliente u : clienti) {
+            if (CF.equals(u.getCf()))
+                return u;
+        }
+        return null;*/
+        Statement st;
+        ResultSet rs;
+        Cliente cli=null;
+        try (Connection con = ConPool.getConnection()) {
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM utente u, cliente c where(u.albergatore=0 AND u.CF=c.CF AND a.CF='"+CF+"');");
+            while (rs.next()) {
+                cli = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), rs.getString(11), Date.valueOf(rs.getString(12)), Integer.parseInt(rs.getString(13)));
+            }
+            con.close();
+            return cli;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void InsertCliente(Cliente cli) throws RuntimeException {
         Statement st;
         Utente u=new Utente(cli.getCf(), cli.getNome(), cli.getCognome(), cli.getRecapitoTelefonico(), cli.getPassword(), cli.getUsername(), cli.getEmail(), cli.getDataNascita(), cli.isAlbergatore());

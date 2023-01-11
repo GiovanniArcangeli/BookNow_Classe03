@@ -44,6 +44,29 @@ public class AlbergatoreDAO extends UtenteDAO{
         return null;
     }
 
+    public Utente getAlbergatoreByCF(String CF) {
+        /*ArrayList<Albergatore> albergatori = (ArrayList<Albergatore>) getAllAlbergatori();
+        for (Albergatore u : albergatori) {
+            if (CF.equals(u.getCf()))
+                return u;
+        }
+        return null;*/
+        Statement st;
+        ResultSet rs;
+        Albergatore alb=null;
+        try (Connection con = ConPool.getConnection()) {
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.CF=a.CF AND a.CF='"+CF+"');");
+            while (rs.next()) {
+                alb = new Albergatore(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), rs.getString(11));
+            }
+            con.close();
+            return alb;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void InsertAlbergatore(Albergatore alb) throws RuntimeException {
         Statement st;
         Utente u=new Utente(alb.getCf(), alb.getNome(), alb.getCognome(), alb.getRecapitoTelefonico(), alb.getPassword(), alb.getUsername(), alb.getEmail(), alb.getDataNascita(), alb.isAlbergatore());
