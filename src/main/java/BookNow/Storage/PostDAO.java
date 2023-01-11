@@ -1,5 +1,6 @@
 package BookNow.Storage;
 
+import BookNow.Entity.Cliente;
 import BookNow.Entity.Post;
 
 import java.sql.*;
@@ -15,8 +16,8 @@ public class PostDAO {
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
 
-            PostDAO service = new PostDAO();
-            service.addPosts(p);
+            ClienteDAO service = new ClienteDAO();
+            service.addPost(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
@@ -31,7 +32,7 @@ public class PostDAO {
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
 
-            ClienteDAO service = new PostDAO();
+            ClienteDAO service = new ClienteDAO();
             service.removePost(p);
         }
         catch(SQLException e){
