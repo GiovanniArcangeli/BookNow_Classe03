@@ -1,10 +1,16 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Login</title>
 </head>
 <body>
-<h2>Login</h2>
+<!-- Header -->
+<header id="header">
+</header>
+<!-- Container Form -->
+<div id="container">
+    <h2>Login</h2>
+
     <!-- Form di Login -->
     <form>
         <label for="usernameLogin">Username</label><br>
