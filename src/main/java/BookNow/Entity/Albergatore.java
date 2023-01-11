@@ -1,17 +1,22 @@
 package BookNow.Entity;
 
+import BookNow.Storage.StrutturaDAO;
+
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Albergatore extends Utente {
 
     private String p_iva;
-    private ArrayList<Struttura> strutture;
+    private List<Struttura> strutture;
 
     public Albergatore(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, String p_iva) {
         super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, 1);
         this.p_iva=p_iva;
         strutture=new ArrayList<Struttura>();
+        StrutturaDAO sd=new StrutturaDAO();
+        strutture=sd.doRetrieveByCF(this);
     }
 
     public String getP_iva() {
@@ -22,7 +27,7 @@ public class Albergatore extends Utente {
         this.p_iva = p_iva;
     }
 
-    public ArrayList<Struttura> getStrutture() {
+    public List<Struttura> getStrutture() {
         return strutture;
     }
 

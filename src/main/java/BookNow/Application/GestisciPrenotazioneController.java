@@ -7,10 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/gestione-prenotazione")
+@WebServlet("/gestisci-prenotazione")
 public class GestisciPrenotazioneController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //Il parametro idPrenotazione viene passato come campo nascosto nel form
+        int idPrenotazione = Integer.parseInt(request.getParameter("idPrenotazione"));
+
 
     }
 

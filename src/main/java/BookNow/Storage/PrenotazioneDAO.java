@@ -11,6 +11,34 @@ import java.util.*;
 
 public class PrenotazioneDAO {
 
+    public Prenotazione doRetrieveById(int id){
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("select CF, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
+                    " from prenotazione where idPrenotazione = ?");
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                String CF = rs.getString(1);
+                Date dataIn = rs.getDate(2);
+                Date dataOut = rs.getDate(3);
+                int numOspiti = rs.getInt(4);
+                int idStruttura = rs.getInt(5);
+                int numeroStanza = rs.getInt(6);
+
+                Stanza stanza = new StanzaDAO().doRetrieveById(numeroStanza, idStruttura);
+                Cliente cliente = (Cliente) new ClienteDAO().getClienteByCf(CF);
+
+                return new Prenotazione(id, dataIn, dataOut, numOspiti, stanza, cliente);
+            }
+            return null;
+        }
+        catch(SQLException e){
+            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
+        }
+    }
+
     public List<Prenotazione> doRetrieveByCF(Cliente c){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
