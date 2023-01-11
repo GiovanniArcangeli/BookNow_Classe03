@@ -9,6 +9,8 @@ public class Prenotazione {
     private Stanza stanza;
     private Cliente cliente;
 
+    public Prenotazione(){}
+
     public Prenotazione(int idPrenotazione, Date dataIn, Date dataOut, int numOspiti, Stanza stanza, Cliente cliente){
         this.ID_Prenotazione = idPrenotazione;
         this.dataIn = dataIn;

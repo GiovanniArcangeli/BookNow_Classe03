@@ -29,7 +29,7 @@ public class PrenotazioneDAO {
 
                Stanza stanza = null;
                StanzaDAO service = new StanzaDAO();
-               List<Stanza> stanze = service.doRetrieveById(new Struttura(idStruttura));
+               List<Stanza> stanze = service.doRetrieveByStruttura(new Struttura(idStruttura));
                for (Stanza s: stanze){
                    if (s.getNumeroStanza() == numeroStanza) {
                        stanza = s;
@@ -47,14 +47,13 @@ public class PrenotazioneDAO {
 
     public void doSave(Prenotazione p){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?,?)");
-            ps.setInt(1, p.getID_Prenotazione());
-            ps.setDate(2, p.getDataIn());
-            ps.setDate(3, p.getDataOut());
-            ps.setInt(4, p.getNumOspiti());
-            ps.setString(5, p.getCliente().getCf());
-            ps.setInt(6, p.getStanza().getStruttura().getID_Struttura());
-            ps.setInt(7, p.getStanza().getNumeroStanza());
+            PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?)");
+            ps.setDate(1, p.getDataIn());
+            ps.setDate(2, p.getDataOut());
+            ps.setInt(3, p.getNumOspiti());
+            ps.setString(4, p.getCliente().getCf());
+            ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
+            ps.setInt(6, p.getStanza().getNumeroStanza());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
