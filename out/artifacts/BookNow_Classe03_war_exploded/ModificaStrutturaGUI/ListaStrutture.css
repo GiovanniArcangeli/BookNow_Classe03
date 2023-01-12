@@ -1,0 +1,31 @@
+#titoloStrutture {
+    width: 100%;
+    font-size: x-large;
+    color: white;
+    text-align: center;
+    background-color: cornflowerblue;
+    padding: 1%;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.strutture {
+    width: 80%;
+    margin: 2% auto;
+    border: 2px solid cornflowerblue;
+
+}
+.prenotazione.td {
+    width: 60%
+}
+p{
+    margin-right: 2px;
+    margin-top: 2px;
+}
+button {
+    align-content: end;
+    color: white;
+    background-color: cornflowerblue;
+}
+body {
+    background-color: lightgray;
+}
