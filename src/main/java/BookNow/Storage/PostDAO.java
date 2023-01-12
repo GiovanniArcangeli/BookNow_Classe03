@@ -31,7 +31,7 @@ public class PostDAO {
         }
     }
 
-    public List<Post> doRetrieveByUsername(Cliente cliente){
+    public List<Post> doRetrieveByCliente(Cliente cliente){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Post, titolo, testo, tags from post where CF = ?");
             ps.setString(1, cliente.getCf());

@@ -38,7 +38,7 @@ public class PrenotazioneDAO {
         }
     }
 
-    public List<Prenotazione> doRetrieveByCF(Cliente c){
+    public List<Prenotazione> doRetrieveByCliente(Cliente c){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
                     " from prenotazione where CF = ?");

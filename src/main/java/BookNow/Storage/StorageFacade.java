@@ -74,4 +74,13 @@ public final class StorageFacade {
         alb.setStrutture(strutture);
         return alb;
     }
+
+    public Cliente getDatiCliente(Utente utente){
+        Cliente cliente = new ClienteDAO().getClienteByUsername(utente.getUsername());
+        ArrayList<Prenotazione> prenotazioni = (ArrayList<Prenotazione>) new PrenotazioneDAO().doRetrieveByCliente(cliente);
+        ArrayList<Post> posts = (ArrayList<Post>) new PostDAO().doRetrieveByCliente(cliente);
+        cliente.setPosts(posts);
+        cliente.setPrenotazioni(prenotazioni);
+        return cliente;
+    }
 }
