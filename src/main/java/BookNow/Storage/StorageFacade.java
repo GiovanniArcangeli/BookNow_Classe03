@@ -67,4 +67,11 @@ public final class StorageFacade {
     public ArrayList<Post> getAllPosts(){
         return (ArrayList<Post>) new PostDAO().doRetrieveAll();
     }
+
+    public Albergatore getDatiAlbergatore(Utente utente){
+        Albergatore alb = new AlbergatoreDAO().getAlbergatoreByUsername(utente.getUsername());
+        ArrayList<Struttura> strutture = (ArrayList<Struttura>) new StrutturaDAO().doRetrieveByAlbergatore(alb);
+        alb.setStrutture(strutture);
+        return alb;
+    }
 }

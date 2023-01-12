@@ -20,14 +20,17 @@ public class AutenticazioneController extends HttpServlet {
         Utente utente = StorageFacade.getInstance().controlloAccesso(username, password);
 
         //L'attributo è null se l'autenticazione fallisce
-        request.setAttribute("utente", utente);
+        request.getSession().setAttribute("utente", utente);
 
         if(utente == null)
             //Si ritorna alla pagina di login (SEGNALARE LOGIN FAIL NELLA VIEW)
             request.getRequestDispatcher("LoginPage.jsp").forward(request, response);
-        else
-            //DECIDERE PAGINA
+        else if(utente.isAlbergatore()) {
+            //L'utente è un albergatore
             request.getRequestDispatcher("").forward(request, response);
+        } else{
+            //L'utente è un cliente
+        }
 
     }
 }

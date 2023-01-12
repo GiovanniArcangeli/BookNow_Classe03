@@ -64,7 +64,7 @@ public class StrutturaDAO {
         }
     }
 
-    public List<Struttura> doRetrieveByCF(Albergatore a){
+    public List<Struttura> doRetrieveByAlbergatore(Albergatore a){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura where CF = ?");
             ps.setString(1, a.getCf());
