@@ -21,7 +21,11 @@ public final class StorageFacade {
     }
 
     public void modificaStruttura(int id, String indirizzo, String nome){
+        Struttura oldOne = new StrutturaDAO().doRetrieveById(id);
+        oldOne.setIndirizzo(indirizzo);
+        oldOne.setNome(nome);
 
+        new StrutturaDAO().doUpdate(oldOne);
     }
 
     public void pubblicazionePost(int id, String testo, String tags){
