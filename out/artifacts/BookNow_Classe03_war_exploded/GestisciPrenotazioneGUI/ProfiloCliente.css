@@ -5,8 +5,8 @@
     text-align: center;
     background-color: cornflowerblue;
     padding: 1%;
-    margin-bottom: 0px;
-    margin-top: 0px;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 #links {
     width: 100%;
@@ -14,7 +14,7 @@
     background-color: white;
     color: cornflowerblue;
     padding: 1%;
-    margin-top: 0px;
+    margin-top: 0;
 }
 #dati {
     width: 80%;
