@@ -65,7 +65,6 @@ public final class StorageFacade {
     }
 
     public ArrayList<Post> getAllPosts(){
-        ArrayList<Post> postList = new ArrayList<>();
-
+        return (ArrayList<Post>) new PostDAO().doRetrieveAll();
     }
 }
