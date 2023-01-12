@@ -6,31 +6,28 @@
 </head>
 <body>
 <h2 id="profiloCliente">Profilo Cliente</h2>
-<p id="links"><a href="Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="../PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a></p>
+<p id="links"><a href="Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="../PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a> | <a href="/forum/home">Forum</a></p>
 
 <table id="dati">
     <tr>
-        <td>Username </td>
-        <td>Password </td>
+        <td>Username ${utente.username}</td>
+        <td>E-mail ${utente.email}</td>
     </tr>
     <tr>
-        <td>Nome </td>
-        <td>Cognome </td>
+        <td>Nome ${utente.nome}</td>
+        <td>Cognome ${utente.cognome}</td>
     </tr>
     <tr>
-        <td>Recapito Telefonico </td>
-        <td>Data di nascita </td>
+        <td>Recapito Telefonico ${utente.recapitoTelefonico}</td>
+        <td>Data di nascita ${utente.dataNascita}</td>
     </tr>
     <tr>
-        <td>E-mail </td>
-        <td>Codice Fiscale </td>
+        <td>Codice Fiscale ${utente.cf}</td>
+        <td>Numero Carta ${utente.numero_carta}</td>
     </tr>
     <tr>
-        <td>Numero Carta </td>
-        <td>Scadenza Carta </td>
-    </tr>
-    <tr>
-        <td>CVV </td>
+        <td>Scadenza Carta ${utente.scadenza_carta}</td>
+        <td>CVV ${utente.cvv}</td>
     </tr>
 </table>
 </body>

@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +10,13 @@
 <h2 id="forum">Forum</h2>
 <p id="links"><a href="FormInserisciPost.jsp">Scrivi Post</a></p>
     <!-- Lista Post -->
-<div class="post">
-    <p>Titolo</p>
-    <p>Corpo</p>
-    <p>Tags</p>
-    <p>Autore</p>
-</div>
+<c:forEach var="post" items="${posts}">
+    <div class="post">
+        <p>${post.titolo}</p>
+        <p>${post.corpo}</p>
+        <p>${post.tags}</p>
+        <p>${post.autore}</p>
+    </div>
+</c:forEach>
 </body>
 </html>

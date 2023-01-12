@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,22 +8,24 @@
 <body>
 <h2 id="titoloPrenotazioni">Le mie prenotazioni</h2>
 <!-- Lista prenotazioni del cliente -->
+<c:forEach var="preno" items="${utente.prenotazioni}">
 <table class="prenotazione">
     <tr>
         <td>
-            <p>Prenotazione #ID</p>
-            <p>dataIn - dataOut</p>
-            <p>Numero ospiti: numOspiti</p>
+            <p>Prenotazione #${preno.id}</p>
+            <p>${preno.dataIn} - ${preno.dataOut}</p>
+            <p>Numero ospiti: ${preno.numOspiti}</p>
         </td>
         <td>
-            <p>Struttura.nome</p>
-            <p>Struttura.indirizzo</p>
-            <p>Stanza.nome</p>
+            <p>${preno.stanza.struttura}</p>
+            <p>${preno.stanza.struttura.indirizzo}</p>
+            <p>Stanza #${preno.stanza.numeroStanza}</p>
         </td>
         <td>
-            <button>Modifica Prenotazione</button>
+            <button onclick="location.href='gestisci-prenotazione?id=${preno.id}'">Modifica Prenotazione</button>
         </td>
     </tr>
 </table>
+</c:forEach>
 </body>
 </html>

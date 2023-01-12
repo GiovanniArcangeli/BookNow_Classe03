@@ -9,23 +9,20 @@
 <p id="links"><a href="ListaStrutture.jsp">Le mie Strutture</a></p>
 <table id="dati">
     <tr>
-        <td>Username </td>
-        <td>Password </td>
+        <td>Username ${utente.username}</td>
+        <td>Partita IVA ${utente.p_iva}</td>
     </tr>
     <tr>
-        <td>Nome </td>
-        <td>Cognome </td>
+        <td>Nome ${utente.nome}</td>
+        <td>Cognome ${utente.cognome}</td>
     </tr>
     <tr>
-        <td>Recapito Telefonico </td>
-        <td>Data di nascita </td>
+        <td>Recapito Telefonico ${utente.recapitoTelefonico}</td>
+        <td>Data di nascita ${utente.dataNascita}</td>
     </tr>
     <tr>
-        <td>E-mail </td>
-        <td>Codice Fiscale </td>
-    </tr>
-    <tr>
-        <td>Partita IVA </td>
+        <td>E-mail ${utente.email}</td>
+        <td>Codice Fiscale ${utente.cf}</td>
     </tr>
 </table>
 </body>

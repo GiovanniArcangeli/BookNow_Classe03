@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +8,22 @@
 <body>
 <h2 id="titoloStrutture">Le mie strutture</h2>
 <!-- Lista strutture dell'albergatore -->
-<table class="strutture">
-    <tr>
-        <td>
-            <p>Nome</p>
-            <p>Indirizzo</p>
-            <p>Numero Stanze: </p>
-        </td>
-        <td>
-            <button>Modifica Strutture</button>
-        </td>
-    </tr>
-</table>
+<form>
+<c:forEach var="struttura" items="${utente.strutture}">
+    <table class="strutture">
+        <tr>
+            <td>
+                <p>${struttura.nome}</p>
+                <p>${struttura.indirizzo}</p>
+                <p>${struttura.stanze.size}</p>
+            </td>
+            <td>
+                <button onclick="location.href='modifica-struttura?id=${struttura.ID_Struttura}'">Modifica Struttura</button>
+            </td>
+        </tr>
+    </table>
+</c:forEach>
+</form>
+
 </body>
 </html>
