@@ -2,11 +2,12 @@
 <html>
 <head>
     <title>Profilo</title>
+    <link rel="stylesheet" type="text/css" href="ProfiloAlbergatore.css">
 </head>
 <body>
-<h3>Profilo Albergatore</h3>
-<p><a href="ListaStrutture.jsp">Le mie Strutture</a></p>
-<table>
+<h3 id="profiloAlbergatore">Profilo Albergatore</h3>
+<p id="links"><a href="ListaStrutture.jsp">Le mie Strutture</a></p>
+<table id="dati">
     <tr>
         <td>Username </td>
         <td>Password </td>
