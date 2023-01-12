@@ -28,7 +28,7 @@ public class PostDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-    public void doSave(Post p){
+    public int doSave(Post p){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into post values (?,?,?)");
             ps.setString(1, p.getTesto());
@@ -38,19 +38,18 @@ public class PostDAO {
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
 
-            ps = con.prepareStatement("select ID_Post from post" +
-                    " where testo = ?, tags = ?, CF = ?");
-            ps.setString(1, p.getTesto());
-            ps.setString(2, p.getTags());
-            ps.setString(3, p.getCliente().getCf());
+            int idPost = -1;   //Serve per fare i controlli nei metodi chiamanti
 
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            int idPost = rs.getInt(1);
-
-            p.setID_Post(idPost);
-            ClienteDAO service = new ClienteDAO();
-            service.addPost(p);
+            if (ps.executeUpdate() == 1) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if(rs.next()) {
+                    idPost = rs.getInt(1);
+                    p.setID_Post(idPost);
+                    ClienteDAO sc = new ClienteDAO();
+                    sc.addPost(p);
+                }
+            }
+            return idPost;
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
@@ -65,19 +64,8 @@ public class PostDAO {
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
 
-            ps = con.prepareStatement("select ID_Post from post" +
-                    " where testo = ?, tags = ?, CF = ?");
-            ps.setString(1, p.getTesto());
-            ps.setString(2, p.getTags());
-            ps.setString(3, p.getCliente().getCf());
-
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            int idPost = rs.getInt(1);
-
-            p.setID_Post(idPost);
             ClienteDAO service = new ClienteDAO();
-            service.addPost(p);
+            service.removePost(p);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");

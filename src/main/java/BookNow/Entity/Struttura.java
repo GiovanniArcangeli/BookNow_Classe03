@@ -11,6 +11,7 @@ public class Struttura {
     private Albergatore albergatore;
     private List<Stanza> stanze;
 
+    public Struttura(){}
     public Struttura(int ID_Struttura, String indirizzo, String nome, Albergatore albergatore) {
         this.ID_Struttura = ID_Struttura;
         this.indirizzo = indirizzo;

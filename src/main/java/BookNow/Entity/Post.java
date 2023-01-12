@@ -7,6 +7,7 @@ public class Post {
     private String testo, tags;
     private Cliente cliente;
 
+    public Post(){}
     public Post(int ID_Post, String testo, String tags, Cliente cliente) {
         this.ID_Post = ID_Post;
         this.testo = testo;
