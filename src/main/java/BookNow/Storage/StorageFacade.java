@@ -16,8 +16,8 @@ public final class StorageFacade {
         return instance;
     }
 
-    public boolean controlloAccesso(String username, String password){
-        return false;
+    public Utente controlloAccesso(String username, String password){
+        return new AutenticazioneDAO().autenticazione(username, password);
     }
 
     public void modificaStruttura(int id, String indirizzo, String nome){
