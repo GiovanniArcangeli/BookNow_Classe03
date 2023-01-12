@@ -7,7 +7,8 @@
 <body>
 <p>Modifica i dati della prenotazione</p>
 <div id="form">
-    <form>
+    <form method="post" action="gestisci-prenotazione">
+        <input type="hidden" id="idPrenotazione" name="idPrenotazione" value="${id_prenotazione}">
         <label for="dataIn">Data del Check-in </label>
         <input id="dataIn" type="date" name="dataIn"><br>
         <label for="dataOut">Data del Check-out </label>

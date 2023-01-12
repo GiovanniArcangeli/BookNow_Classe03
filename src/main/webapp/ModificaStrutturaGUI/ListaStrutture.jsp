@@ -9,16 +9,16 @@
 <h2 id="titoloStrutture">Le mie strutture</h2>
 <!-- Lista strutture dell'albergatore -->
 <form>
-<c:forEach var="struttura" items="${utente.getStrutture()}">
+<c:forEach var="struttura" items="${utente.strutture}">
     <table class="strutture">
         <tr>
             <td>
-                <p>${struttura.getNome()}</p>
-                <p>${struttura.getIndirizzo()}</p>
-                <p>${struttura.getStanze().size}</p>
+                <p>${struttura.nome}</p>
+                <p>${struttura.indirizzo}</p>
+                <p>${struttura.stanze.size}</p>
             </td>
             <td>
-                <button onclick="location.href='modifica-struttura?id=${struttura.id}'">Modifica Struttura</button>
+                <button onclick="location.href='modifica-struttura?id=${struttura.ID_Struttura}'">Modifica Struttura</button>
             </td>
         </tr>
     </table>

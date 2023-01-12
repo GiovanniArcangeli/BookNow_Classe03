@@ -10,24 +10,24 @@
 
 <table id="dati">
     <tr>
-        <td>Username </td>
-        <td>E-mail </td>
+        <td>Username ${utente.username}</td>
+        <td>E-mail ${utente.email}</td>
     </tr>
     <tr>
-        <td>Nome </td>
-        <td>Cognome </td>
+        <td>Nome ${utente.nome}</td>
+        <td>Cognome ${utente.cognome}</td>
     </tr>
     <tr>
-        <td>Recapito Telefonico </td>
-        <td>Data di nascita </td>
+        <td>Recapito Telefonico ${utente.recapitoTelefonico}</td>
+        <td>Data di nascita ${utente.dataNascita}</td>
     </tr>
     <tr>
-        <td>Codice Fiscale</td>
-        <td>Numero Carta </td>
+        <td>Codice Fiscale ${utente.cf}</td>
+        <td>Numero Carta ${utente.numero_carta}</td>
     </tr>
     <tr>
-        <td>Scadenza Carta </td>
-        <td>CVV </td>
+        <td>Scadenza Carta ${utente.scadenza_carta}</td>
+        <td>CVV ${utente.cvv}</td>
     </tr>
 </table>
 </body>

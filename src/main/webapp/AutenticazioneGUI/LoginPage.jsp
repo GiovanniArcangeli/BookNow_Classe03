@@ -7,7 +7,7 @@
 <body>
 <h2 id="login">Login</h2>
 <div id="form">
-    <form>
+    <form method="post" action="login">
         <label for="usernameLogin">Username </label>
         <input id="usernameLogin" type="text" name="usernameLogin"><br>
         <label for="passwordLogin">Password </label>
