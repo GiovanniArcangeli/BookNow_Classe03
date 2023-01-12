@@ -12,7 +12,7 @@ public class Albergatore extends Utente {
     private List<Struttura> strutture;
 
     public Albergatore(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, String p_iva) {
-        super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, 1);
+        super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, true);
         this.p_iva=p_iva;
         strutture=new ArrayList<Struttura>();
     }

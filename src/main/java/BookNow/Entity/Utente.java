@@ -6,9 +6,9 @@ public class Utente {
 
     private String cf, nome, cognome, recapitoTelefonico, password, username, email;
     private Date dataNascita;
-    private int isAlbergatore;
+    private boolean isAlbergatore;
 
-    public Utente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, int isAlbergatore) {
+    public Utente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, boolean isAlbergatore) {
         this.cf = cf;
         this.nome = nome;
         this.cognome = cognome;
@@ -20,11 +20,11 @@ public class Utente {
         this.isAlbergatore = isAlbergatore;
     }
 
-    public int isAlbergatore() {
+    public boolean isAlbergatore() {
         return isAlbergatore;
     }
 
-    public void setAlbergatore(int albergatore) {
+    public void setAlbergatore(boolean albergatore) {
         isAlbergatore = albergatore;
     }
 

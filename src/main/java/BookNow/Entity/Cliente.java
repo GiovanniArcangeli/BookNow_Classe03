@@ -17,7 +17,7 @@ public class Cliente extends Utente{
     private List<Post> posts;
 
     public Cliente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, String numero_carta, Date scadenza_carta, int cvv) {
-        super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, 0);
+        super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, false);
         this.cvv=cvv;
         this.scadenza_carta=scadenza_carta;
         this.numero_carta=numero_carta;

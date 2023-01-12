@@ -15,7 +15,9 @@ public class UtenteDAO {
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM Utente WHERE 1=1");
             while (rs.next()) {
-                user = new Utente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), Integer.parseInt(rs.getString(9)));
+                boolean flag=false;
+                if(Boolean.getBoolean(rs.getString(9))==true) flag=true;
+                user = new Utente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), flag);
                 /*user.setUsername(rs.getString(7));
                 user.setPassword(rs.getString(6));
                 user.setNome(rs.getString(2));
