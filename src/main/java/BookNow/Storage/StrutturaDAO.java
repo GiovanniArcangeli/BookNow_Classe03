@@ -88,11 +88,10 @@ public class StrutturaDAO {
 
     public int doSave(Struttura s){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("insert into struttura values (?,?,?,?)");
-            ps.setInt(1, s.getID_Struttura());
-            ps.setString(2, s.getIndirizzo());
-            ps.setString(3, s.getNome());
-            ps.setString(4, s.getAlbergatore().getCf());
+            PreparedStatement ps = con.prepareStatement("insert into struttura values (?,?,?)");
+            ps.setString(1, s.getIndirizzo());
+            ps.setString(2, s.getNome());
+            ps.setString(3, s.getAlbergatore().getCf());
 
             int idStruttura = -1;
 
