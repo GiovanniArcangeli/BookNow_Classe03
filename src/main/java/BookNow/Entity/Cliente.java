@@ -22,11 +22,6 @@ public class Cliente extends Utente{
         this.scadenza_carta=scadenza_carta;
         this.numero_carta=numero_carta;
         prenotazioni=new ArrayList<Prenotazione>();
-        posts=new ArrayList<Post>();
-        PrenotazioneDAO pd=new PrenotazioneDAO();
-        prenotazioni=pd.doRetrieveByCF(this);
-        PostDAO ps=new PostDAO();
-        posts=ps.doRetrieveByCf(this);
     }
 
     public String getNumero_carta() {
@@ -55,6 +50,14 @@ public class Cliente extends Utente{
 
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
+    }
+
+    public void setPrenotazioni(List<Prenotazione> prenotazioni) {
+        this.prenotazioni = prenotazioni;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     public void addPrenotazioni(Prenotazione p) {

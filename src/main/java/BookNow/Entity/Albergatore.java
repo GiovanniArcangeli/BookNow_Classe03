@@ -15,8 +15,6 @@ public class Albergatore extends Utente {
         super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, 1);
         this.p_iva=p_iva;
         strutture=new ArrayList<Struttura>();
-        StrutturaDAO sd=new StrutturaDAO();
-        strutture=sd.doRetrieveByCF(this);
     }
 
     public String getP_iva() {
@@ -33,6 +31,10 @@ public class Albergatore extends Utente {
 
     public void addStrutture(Struttura s) {
         strutture.add(s);
+    }
+
+    public void setStrutture(List<Struttura> strutture) {
+        this.strutture = strutture;
     }
 
     public void deleteStruttura(Struttura s){
