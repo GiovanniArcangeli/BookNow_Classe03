@@ -34,7 +34,7 @@ public class ClienteDAO extends UtenteDAO{
         }
     }
 
-    public Utente getCliente(String user) {
+    public Cliente getCliente(String user) {
         ArrayList<Cliente> clienti = (ArrayList<Cliente>) getAllClienti();
         for (Cliente u : clienti) {
             if (user.equals(u.getUsername()))
@@ -43,7 +43,7 @@ public class ClienteDAO extends UtenteDAO{
         return null;
     }
 
-    public Utente getClienteByCf(String CF) {
+    public Cliente getClienteByCf(String CF) {
         /*ArrayList<Cliente> clienti = (ArrayList<Cliente>) getAllClienti();
         for (Cliente u : clienti) {
             if (CF.equals(u.getCf()))

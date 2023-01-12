@@ -37,7 +37,7 @@ public class AlbergatoreDAO extends UtenteDAO{
         }
     }
 
-    public Utente getAlbergatore(String user) {
+    public Albergatore getAlbergatore(String user) {
         ArrayList<Albergatore> albergatori = (ArrayList<Albergatore>) getAllAlbergatori();
         for (Albergatore u : albergatori) {
             if (user.equals(u.getUsername()))
@@ -46,7 +46,7 @@ public class AlbergatoreDAO extends UtenteDAO{
         return null;
     }
 
-    public Utente getAlbergatoreByCF(String CF) {
+    public Albergatore getAlbergatoreByCF(String CF) {
         /*ArrayList<Albergatore> albergatori = (ArrayList<Albergatore>) getAllAlbergatori();
         for (Albergatore u : albergatori) {
             if (CF.equals(u.getCf()))
