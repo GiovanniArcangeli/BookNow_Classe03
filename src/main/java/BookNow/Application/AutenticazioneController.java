@@ -1,5 +1,7 @@
 package BookNow.Application;
 
+import BookNow.Entity.Albergatore;
+import BookNow.Entity.Cliente;
 import BookNow.Entity.Utente;
 import BookNow.Storage.StorageFacade;
 import jakarta.servlet.ServletException;
@@ -20,16 +22,19 @@ public class AutenticazioneController extends HttpServlet {
         Utente utente = StorageFacade.getInstance().controlloAccesso(username, password);
 
         //L'attributo è null se l'autenticazione fallisce
-        request.getSession().setAttribute("utente", utente);
-
-        if(utente == null)
-            //Si ritorna alla pagina di login (SEGNALARE LOGIN FAIL NELLA VIEW)
+        if(utente == null) {
+            request.setAttribute("loginError", true);
             request.getRequestDispatcher("LoginPage.jsp").forward(request, response);
-        else if(utente.isAlbergatore()) {
+        } else if(utente.isAlbergatore()) {
             //L'utente è un albergatore
-            request.getRequestDispatcher("").forward(request, response);
+            Albergatore albergatore = StorageFacade.getInstance().getDatiAlbergatore(utente);
+            request.getSession().setAttribute("utente", albergatore);
+            request.getRequestDispatcher("ProfiloAlbergatore.jsp").forward(request, response);
         } else{
             //L'utente è un cliente
+            Cliente cliente = StorageFacade.getInstance().getDatiCliente(utente);
+            request.getSession().setAttribute("utente", cliente);
+            request.getRequestDispatcher("ProfiloCliente.jsp").forward(request, response);
         }
 
     }
