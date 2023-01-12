@@ -86,7 +86,7 @@ public class StrutturaDAO {
         }
     }
 
-    public void doSave(Struttura s){
+    public int doSave(Struttura s){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into struttura values (?,?,?,?)");
             ps.setInt(1, s.getID_Struttura());
@@ -94,22 +94,18 @@ public class StrutturaDAO {
             ps.setString(3, s.getNome());
             ps.setString(4, s.getAlbergatore().getCf());
 
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("INSERT ERROR");
+            int idStruttura = -1;
 
-            ps = con.prepareStatement("select ID_Struttura from prenotazione" +
-                    " where Indirizzo = ?, Nome = ?, CF = ?");
-            ps.setString(1, s.getIndirizzo());
-            ps.setString(2, s.getNome());
-            ps.setString(3, s.getAlbergatore().getCf());
-
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            int idStruttura = rs.getInt(1);
-
-            s.setID_Struttura(idStruttura);
-            AlbergatoreDAO service = new AlbergatoreDAO();
-            service.addStruttura(s);
+            if (ps.executeUpdate() == 1) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if(rs.next()) {
+                    idStruttura = rs.getInt(1);
+                    s.setID_Struttura(idStruttura);
+                    AlbergatoreDAO service = new AlbergatoreDAO();
+                    service.addStruttura(s);
+                }
+            }
+            return idStruttura;
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
@@ -129,17 +125,6 @@ public class StrutturaDAO {
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
 
-            ps = con.prepareStatement("select ID_Struttura from prenotazione" +
-                    " where Indirizzo = ?, Nome = ?, CF = ?");
-            ps.setString(1, s.getIndirizzo());
-            ps.setString(2, s.getNome());
-            ps.setString(3, s.getAlbergatore().getCf());
-
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            int idStruttura = rs.getInt(1);
-
-            s.setID_Struttura(idStruttura);
             AlbergatoreDAO service = new AlbergatoreDAO();
             service.updateStruttura(s);
         }
@@ -150,25 +135,14 @@ public class StrutturaDAO {
 
     public void doDelete(Struttura s){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("select ID_Struttura from prenotazione" +
-                    " where Indirizzo = ?, Nome = ?, CF = ?");
-            ps.setString(1, s.getIndirizzo());
-            ps.setString(2, s.getNome());
-            ps.setString(3, s.getAlbergatore().getCf());
-
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            int idStruttura = rs.getInt(1);
-
-            s.setID_Struttura(idStruttura);
-            AlbergatoreDAO service = new AlbergatoreDAO();
-            service.removeStruttura(s);
-
-            ps = con.prepareStatement("delete from struttura where CF = ?");
+            PreparedStatement ps = con.prepareStatement("delete from struttura where ID_Struttura = ?");
             ps.setInt(1, s.getID_Struttura());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("DELETE ERROR");
+
+            AlbergatoreDAO service = new AlbergatoreDAO();
+            service.removeStruttura(s);
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
