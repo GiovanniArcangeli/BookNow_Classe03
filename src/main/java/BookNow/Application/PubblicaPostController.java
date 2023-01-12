@@ -24,12 +24,6 @@ public class PubblicaPostController extends HttpServlet {
             String path = request.getPathInfo();
             switch (path) {
 
-                case "/home": {
-                    request.setAttribute("posts", StorageFacade.getInstance().getAllPosts());
-                    request.getRequestDispatcher("ForumHome.jsp").forward(request, response);
-                    break;
-                }
-
                 case "/nuovo-post": {
                     Utente utente = (Utente) request.getSession().getAttribute("utente");
                     if (utente == null) {
@@ -50,9 +44,14 @@ public class PubblicaPostController extends HttpServlet {
                         if (post.getID_Post() < 0)
                             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
-                        //SETTARE GLI ATTRIBUTI che servono alla view
-                        request.getRequestDispatcher("").forward(request, response);
+                        //Se va tutto bene, si torna alla home del forum
                     }
+                }
+
+                case "/home": {
+                    request.setAttribute("posts", StorageFacade.getInstance().getAllPosts());
+                    request.getRequestDispatcher("ForumHome.jsp").forward(request, response);
+                    break;
                 }
             }
         } catch (RuntimeException e){
