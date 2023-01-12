@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,8 @@
 </head>
 <body>
 <h2 id="struttureDisponibili">Strutture disponibili</h2>
-    <!-- Lista Strutture con !Struttura.isSoldOut(dataIn, dataOut) -->
+<!-- Lista Strutture con !Struttura.isSoldOut(dataIn, dataOut) -->
+<c:forEach var="struttura" items="${struttureDisponibili}">
     <table class="strutture">
         <tr>
             <td>
@@ -19,5 +21,6 @@
             </td>
         </tr>
     </table>
+</c:forEach>
 </body>
 </html>
