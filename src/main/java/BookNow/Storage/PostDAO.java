@@ -11,16 +11,17 @@ public class PostDAO {
 
     public List<Post> doRetrieveByCf(Cliente cliente){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("select ID_Post, testo, tags from post where CF = ?");
+            PreparedStatement ps = con.prepareStatement("select ID_Post, titolo, testo, tags from post where CF = ?");
             ps.setString(1, cliente.getCf());
 
             ResultSet rs = ps.executeQuery();
             List<Post> posts = new ArrayList<>();
             while(rs.next()){
                 int idPost = rs.getInt(1);
-                String testo = rs.getString(2);
-                String tags = rs.getString(3);
-                posts.add(new Post(idPost, testo, tags, cliente));
+                String titolo = rs.getString(2);
+                String testo = rs.getString(3);
+                String tags = rs.getString(4);
+                posts.add(new Post(idPost, titolo, testo, tags, cliente));
             }
             return posts;
         }
@@ -30,10 +31,11 @@ public class PostDAO {
     }
     public int doSave(Post p){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("insert into post values (?,?,?)");
-            ps.setString(1, p.getTesto());
-            ps.setString(2, p.getTags());
-            ps.setString(3, p.getCliente().getCf());
+            PreparedStatement ps = con.prepareStatement("insert into post values (?,?,?,?)");
+            ps.setString(1, p.getTitolo());
+            ps.setString(2, p.getTesto());
+            ps.setString(3, p.getTags());
+            ps.setString(4, p.getCliente().getCf());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
