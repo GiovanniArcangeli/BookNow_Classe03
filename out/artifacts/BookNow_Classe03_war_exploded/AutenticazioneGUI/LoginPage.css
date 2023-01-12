@@ -15,6 +15,7 @@
     display: block;
     text-align: center;
     border: 3px solid cornflowerblue;
+    background-color: white;
 }
 #form.form {
     display: inline-block;
