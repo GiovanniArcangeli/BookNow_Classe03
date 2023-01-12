@@ -5,19 +5,28 @@
     text-align: center;
     background-color: cornflowerblue;
     padding: 1%;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
-
 #links {
     width: 100%;
     font-size: medium;
     background-color: white;
     color: cornflowerblue;
+    padding: 1%;
+    margin-top: 0px;
 }
-
+#dati {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+#dati.td {
+    width: 40%
+}
 a {
     color: cornflowerblue;
 }
-
 body {
-    background-color: darkgray;
+    background-color: lightgray;
 }
