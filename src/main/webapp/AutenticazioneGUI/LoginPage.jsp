@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,9 @@
 <h2 id="login">Login</h2>
 <div id="form">
     <form method="post" action="login">
+        <c:if test="${loginError == true}">
+            <p>Username e/o password errati</p>
+        </c:if>
         <label for="usernameLogin">Username </label>
         <input id="usernameLogin" type="text" name="usernameLogin"><br>
         <label for="passwordLogin">Password </label>
