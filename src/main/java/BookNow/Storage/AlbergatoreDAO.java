@@ -50,7 +50,7 @@ public class AlbergatoreDAO extends UtenteDAO{
         Albergatore alb=null;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.CF=a.CF AND a.username='"+ username +"');");
+            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.username=a.username AND a.username='"+ username +"');");
             while (rs.next()) {
                 alb = new Albergatore(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), rs.getString(11));
             }
@@ -67,7 +67,7 @@ public class AlbergatoreDAO extends UtenteDAO{
         InsertUtente(u);
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            String q = "Insert into Albergatore values('" + alb.getCf() + "', '" + alb.getP_iva() + "')";
+            String q = "Insert into Albergatore values('" + alb.getUsername() + "', '" + alb.getP_iva() + "')";
             st.executeUpdate(q);
             con.close();
         } catch (SQLException ex) {
@@ -80,7 +80,7 @@ public class AlbergatoreDAO extends UtenteDAO{
         UpdateUtente(cf, nome, cognome, dataDiNascita, recapitoTelefonico, password, username, email);
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            String q = "Update Albergatore set P_IVA='"+p_iva+"' where(CF='"+cf+ "')";
+            String q = "Update Albergatore set P_IVA='"+p_iva+"' where(username='"+username+ "')";
             PreparedStatement preparedStmt = con.prepareStatement(q);
             preparedStmt.executeUpdate();
             con.close();

@@ -46,7 +46,7 @@ public class ClienteDAO extends UtenteDAO{
         Cliente cli=null;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.CF=a.CF AND a.username='"+ username +"');");
+            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.username=a.username AND a.username='"+ username +"');");
             while (rs.next()) {
                 cli = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), rs.getString(11), Date.valueOf(rs.getString(12)), Integer.parseInt(rs.getString(13)));
             }
@@ -63,7 +63,7 @@ public class ClienteDAO extends UtenteDAO{
         InsertUtente(u);
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            String q = "Insert into Cliente values('" + cli.getCf() + "', '" + cli.getNumero_carta() + "', '"+cli.getScadenza_carta()+"', "+cli.getCvv()+")";
+            String q = "Insert into Cliente values('" + cli.getUsername() + "', '" + cli.getNumero_carta() + "', '"+cli.getScadenza_carta()+"', "+cli.getCvv()+")";
             st.executeUpdate(q);
             con.close();
         } catch (SQLException ex) {
@@ -76,7 +76,7 @@ public class ClienteDAO extends UtenteDAO{
         UpdateUtente(cf, nome, cognome, dataDiNascita, recapitoTelefonico, password, username, email);
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            String q = "Update Cliente set NumeroCarta='"+numeroCarta+"', ScadenzaCarta='"+scadenzaCarta+"', CVV="+cvv+" where(CF='"+cf+ "')";
+            String q = "Update Cliente set NumeroCarta='"+numeroCarta+"', ScadenzaCarta='"+scadenzaCarta+"', CVV="+cvv+" where(username='"+username+ "')";
             PreparedStatement preparedStmt = con.prepareStatement(q);
             preparedStmt.executeUpdate();
             con.close();
