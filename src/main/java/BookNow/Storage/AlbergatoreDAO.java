@@ -1,7 +1,6 @@
 package BookNow.Storage;
 
 import BookNow.Entity.Albergatore;
-import BookNow.Entity.Prenotazione;
 import BookNow.Entity.Struttura;
 import BookNow.Entity.Utente;
 
@@ -37,16 +36,9 @@ public class AlbergatoreDAO extends UtenteDAO{
         }
     }
 
-    public Albergatore getAlbergatore(String user) {
-        ArrayList<Albergatore> albergatori = (ArrayList<Albergatore>) getAllAlbergatori();
-        for (Albergatore u : albergatori) {
-            if (user.equals(u.getUsername()))
-                return u;
-        }
-        return null;
-    }
 
-    public Albergatore getAlbergatoreByCF(String CF) {
+
+    public Albergatore getAlbergatoreByUsername(String username) {
         /*ArrayList<Albergatore> albergatori = (ArrayList<Albergatore>) getAllAlbergatori();
         for (Albergatore u : albergatori) {
             if (CF.equals(u.getCf()))
@@ -58,7 +50,7 @@ public class AlbergatoreDAO extends UtenteDAO{
         Albergatore alb=null;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.CF=a.CF AND a.CF='"+CF+"');");
+            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.CF=a.CF AND a.CF='"+ username +"');");
             while (rs.next()) {
                 alb = new Albergatore(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), rs.getString(11));
             }

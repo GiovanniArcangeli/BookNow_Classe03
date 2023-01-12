@@ -3,7 +3,6 @@ package BookNow.Storage;
 import BookNow.Entity.Prenotazione;
 import BookNow.Entity.Stanza;
 import BookNow.Entity.Cliente;
-import BookNow.Entity.Struttura;
 
 import java.sql.*;
 import java.sql.Date;
@@ -28,7 +27,7 @@ public class PrenotazioneDAO {
                 int numeroStanza = rs.getInt(6);
 
                 Stanza stanza = new StanzaDAO().doRetrieveById(numeroStanza, idStruttura);
-                Cliente cliente = (Cliente) new ClienteDAO().getClienteByCf(CF);
+                Cliente cliente = (Cliente) new ClienteDAO().getClienteByUsername(CF);
 
                 return new Prenotazione(id, dataIn, dataOut, numOspiti, stanza, cliente);
             }
@@ -86,7 +85,7 @@ public class PrenotazioneDAO {
                 int numeroStanza = rs.getInt(7);
 
                 ClienteDAO service = new ClienteDAO();
-                Cliente cliente = (Cliente) service.getClienteByCf(CF);
+                Cliente cliente = (Cliente) service.getClienteByUsername(CF);
                 prenotazioni.add(new Prenotazione(idPrenotazione, dataIn, dataOut, numOspiti, s, cliente));
             }
             return prenotazioni;

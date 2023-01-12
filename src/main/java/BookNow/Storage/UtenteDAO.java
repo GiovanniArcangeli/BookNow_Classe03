@@ -36,7 +36,7 @@ public class UtenteDAO {
         }
     }
 
-    public Utente getUtente(String user) {
+    public Utente getUtenteByUsername(String user) {
         ArrayList<Utente> utenti = (ArrayList<Utente>) getAllUsers();
         for (Utente u : utenti) {
             if (user.equalsIgnoreCase(u.getUsername()))

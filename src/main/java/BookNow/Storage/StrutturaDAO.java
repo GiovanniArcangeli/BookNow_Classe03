@@ -23,7 +23,7 @@ public class StrutturaDAO {
                 String CF = rs.getString(3);
 
                 AlbergatoreDAO service = new AlbergatoreDAO();
-                Albergatore albergatore = (Albergatore) service.getAlbergatoreByCF(CF);
+                Albergatore albergatore = (Albergatore) service.getAlbergatoreByUsername(CF);
 
                 return new Struttura(id, indirizzo, nome, albergatore);
             }
