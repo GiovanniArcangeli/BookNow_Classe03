@@ -18,8 +18,6 @@ public class Struttura {
         this.nome = nome;
         this.albergatore = albergatore;
         this.stanze = new ArrayList<>();
-        StanzaDAO service = new StanzaDAO();
-        this.stanze = service.doRetrieveByStruttura(this);
     }
 
     public void addStanza(Stanza s) {

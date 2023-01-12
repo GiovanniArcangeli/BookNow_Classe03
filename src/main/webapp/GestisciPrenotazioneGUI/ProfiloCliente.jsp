@@ -6,12 +6,12 @@
 </head>
 <body>
 <h2 id="profiloCliente">Profilo Cliente</h2>
-<p id="links"><a href="Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="../PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a></p>
+<p id="links"><a href="Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="../PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a> | <a href="/forum/home">Forum</a></p>
 
 <table id="dati">
     <tr>
         <td>Username </td>
-        <td>Password </td>
+        <td>E-mail </td>
     </tr>
     <tr>
         <td>Nome </td>
@@ -22,14 +22,11 @@
         <td>Data di nascita </td>
     </tr>
     <tr>
-        <td>E-mail </td>
-        <td>Codice Fiscale </td>
-    </tr>
-    <tr>
+        <td>Codice Fiscale</td>
         <td>Numero Carta </td>
-        <td>Scadenza Carta </td>
     </tr>
     <tr>
+        <td>Scadenza Carta </td>
         <td>CVV </td>
     </tr>
 </table>

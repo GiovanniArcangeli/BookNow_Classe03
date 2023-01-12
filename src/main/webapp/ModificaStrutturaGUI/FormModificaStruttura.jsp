@@ -7,7 +7,8 @@
 <body>
 <p>Modifica i dati della prenotazione</p>
 <div id="form">
-    <form>
+    <form method="post" action="/modifica-struttura">
+        <input type="hidden" id="ID_Struttura" name="ID_Struttura" value="${id_prenotazione}">
         <label for="nomeStruct">Nome della Struttura</label>
         <input id="nomeStruct" type="text" name="nomeStruct"><br>
         <label for="indirizzo">Indirizzo</label>

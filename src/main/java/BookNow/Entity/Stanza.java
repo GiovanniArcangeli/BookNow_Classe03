@@ -20,8 +20,6 @@ public class Stanza {
         this.costo = costo;
         this.struttura = struttura;
         this.prenotazioni = new ArrayList<>();
-        PrenotazioneDAO service = new PrenotazioneDAO();
-        this.prenotazioni = service.doRetrieveByStanza(this);
     }
 
 
