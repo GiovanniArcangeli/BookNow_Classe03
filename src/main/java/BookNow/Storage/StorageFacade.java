@@ -2,6 +2,7 @@ package BookNow.Storage;
 
 import BookNow.Entity.*;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public final class StorageFacade {
     private static StorageFacade instance;
@@ -61,5 +62,10 @@ public final class StorageFacade {
         int idPrenotazione = new PrenotazioneDAO().doSave(prenotazione);
         prenotazione.setID_Prenotazione(idPrenotazione);
         return prenotazione;
+    }
+
+    public ArrayList<Post> getAllPosts(){
+        ArrayList<Post> postList = new ArrayList<>();
+
     }
 }
