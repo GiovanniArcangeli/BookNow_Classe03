@@ -15,7 +15,7 @@ public class AlbergatoreDAO extends UtenteDAO{
         Albergatore alb;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.CF=a.CF);");
+            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.username=a.username);");
             while (rs.next()) {
                 alb = new Albergatore(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), rs.getString(11));
                 /*user.setUsername(rs.getString(7));
@@ -50,7 +50,7 @@ public class AlbergatoreDAO extends UtenteDAO{
         Albergatore alb=null;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM albergatore where username = " + username + ";");
+            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.CF=a.CF AND a.username='"+ username +"');");
             while (rs.next()) {
                 alb = new Albergatore(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), rs.getString(11));
             }
