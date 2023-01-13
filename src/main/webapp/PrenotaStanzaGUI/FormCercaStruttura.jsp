@@ -7,7 +7,7 @@
 <body>
 <p>Inserisci i dati della tua prenotazione</p>
 <div id="form">
-    <form>
+    <form action="/prenota/cerca" method="post">
         <label for="dataIn">Data del Check-in</label>
         <input id="dataIn" type="date" name="dataIn"><br>
         <label for="dataOut">Data del Check-out </label>

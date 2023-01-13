@@ -7,7 +7,6 @@
 </head>
 <body>
 <h2 id="struttureDisponibili">Strutture disponibili</h2>
-<!-- Lista Strutture con !Struttura.isSoldOut(dataIn, dataOut) -->
 <c:forEach var="struttura" items="${struttureDisponibili}">
     <table class="strutture">
         <tr>
@@ -17,7 +16,7 @@
                 <p>Numero Stanze: </p>
             </td>
             <td>
-                <button>Seleziona Struttura</button>
+                <button onclick="location.href='prenota/vedi-stanze?id=${struttura.ID_Struttura}'">Seleziona Struttura</button>
             </td>
         </tr>
     </table>

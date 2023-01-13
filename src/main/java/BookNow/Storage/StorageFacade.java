@@ -41,14 +41,19 @@ public final class StorageFacade {
         return post;
     }
 
-    public void modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
+    public boolean modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
         Prenotazione oldOne = new PrenotazioneDAO().doRetrieveById(id);
-        //Il controllo sulla disponibilità delle date è stato già fatto
+
+        //Controllo sulla disponibilità
+        if(!isStanzaDisponibile(oldOne.getStanza(), dataIn, dataOut, numOspiti))
+            return false;
+
         oldOne.setDataIn(dataIn);
         oldOne.setDataOut(dataOut);
         oldOne.setNumOspiti(numOspiti);
 
         new PrenotazioneDAO().doUpdate(oldOne);
+        return true;
     }
 
     public Prenotazione prenotazioneStanza(Cliente cliente, int ID_Struttura, int numeroStanza, Date dataIn, Date dataOut, int numOspiti){
@@ -86,5 +91,44 @@ public final class StorageFacade {
 
     public Struttura getDatiStruttura(int id){
         return new StrutturaDAO().doRetrieveById(id);
+    }
+
+    public ArrayList<Struttura> getStruttureDisponibili(Date dataIn, Date dataOut, int numOspiti){
+        ArrayList<Struttura> all = (ArrayList<Struttura>) new StrutturaDAO().doRetrieveAll();
+        for(Struttura s : all){
+            s.setStanze(getStanzeDisponibili(s, dataIn, dataOut, numOspiti));
+            if(s.getStanze().size() == 0)
+                all.remove(s);
+        }
+        return all;
+    }
+
+    public ArrayList<Stanza> getStanzeDisponibili(Struttura s, Date dataIn, Date dataOut, int numOspiti){
+        ArrayList<Stanza> all = (ArrayList<Stanza>) new StanzaDAO().doRetrieveByStruttura(s);
+        for(Stanza stanza : all){
+            if(!isStanzaDisponibile(stanza, dataIn, dataOut, numOspiti))
+                all.remove(stanza);
+        }
+        return all;
+    }
+
+    public boolean isStanzaDisponibile(Stanza s, Date dataIn, Date dataOut, int numOspiti){
+
+        if(numOspiti > s.getCapienza())
+            return false;
+
+        java.util.Date DataIn = new java.util.Date(dataIn.getTime());
+        java.util.Date DataOut = new java.util.Date(dataOut.getTime());
+
+        ArrayList<Prenotazione> all = (ArrayList<Prenotazione>) new PrenotazioneDAO().doRetrieveByStanza(s);
+        for(Prenotazione p : all){
+            java.util.Date DI = new java.util.Date(p.getDataIn().getTime());
+            java.util.Date DO = new java.util.Date(p.getDataOut().getTime());
+            if(DataIn.equals(DI) || DataIn.after(DI) && DataIn.before(DO))
+                return false;
+            if(DataOut.equals(DO) || DataOut.after(DI) && DataOut.before(DO))
+                return false;
+        }
+        return true;
     }
 }

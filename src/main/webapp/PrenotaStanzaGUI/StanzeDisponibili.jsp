@@ -7,19 +7,19 @@
 </head>
 <body>
 <h2 id="stanzeDisponibili">Stanze disponibili</h2>
-    <!-- Lista Stanze con Stanza.struttura = struttura && Stanza.isDisponibile(dataIn, dataOut) && Stanza.capienza > numOspiti -->
+
 <c:forEach var="stanza" items="${stanzeDisponibili}">
     <table class="stanze">
         <tr>
             <td>
-                <p>${stanza.getNumeroStanza()}</p>
-                <p>${stanza.getCosto()}</p>
-                <p>${stanza.getCapienza()}</p>
-                <p>${stanza.getDescrizione()}</p>
-                <p>${stanza.getServiziOfferti()}</p>
+                <p>${stanza.numeroStanza}</p>
+                <p>${stanza.costo}</p>
+                <p>${stanza.capienza}</p>
+                <p>${stanza.descrizione}</p>
+                <p>${stanza.serviziOfferti}</p>
             </td>
             <td>
-                <button>Prenota</button>
+                <button onclick="location.href='prenota/prenota-stanza?id=${stanza.struttura.ID_Struttura}&num=${stanza.numeroStanza}'">Prenota</button>
             </td>
         </tr>
     </table>

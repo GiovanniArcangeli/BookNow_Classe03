@@ -26,10 +26,11 @@ public class GestisciPrenotazioneController extends HttpServlet {
             Date dataOut = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataOut).getTime());
             int numOspiti = Integer.parseInt(request.getParameter("numOspiti"));
 
-            StorageFacade.getInstance().modificaPrenotazione(idPrenotazione, dataIn, dataOut, numOspiti);
+            if(StorageFacade.getInstance().modificaPrenotazione(idPrenotazione, dataIn, dataOut, numOspiti))
+                request.getRequestDispatcher("").forward(request, response);
 
-            //Da decidere
-            request.getRequestDispatcher("").forward(request, response);
+                //Decidere cosa fare se la modifica non va a buon fine
+
         } catch (RuntimeException | ParseException e) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
