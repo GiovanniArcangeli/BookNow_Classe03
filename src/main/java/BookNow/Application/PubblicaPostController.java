@@ -50,7 +50,7 @@ public class PubblicaPostController extends HttpServlet {
 
                 case "/home": {
                     request.setAttribute("posts", StorageFacade.getInstance().getAllPosts());
-                    request.getRequestDispatcher("ForumHome.jsp").forward(request, response);
+                    request.getRequestDispatcher("PubblicaPostGUI/ForumHome.jsp").forward(request, response);
                     break;
                 }
             }
