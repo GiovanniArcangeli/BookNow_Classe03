@@ -83,4 +83,8 @@ public final class StorageFacade {
         cliente.setPrenotazioni(prenotazioni);
         return cliente;
     }
+
+    public Struttura getDatiStruttura(int id){
+        return new StrutturaDAO().doRetrieveById(id);
+    }
 }

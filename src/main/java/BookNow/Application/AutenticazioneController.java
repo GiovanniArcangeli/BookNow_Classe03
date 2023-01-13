@@ -24,17 +24,17 @@ public class AutenticazioneController extends HttpServlet {
         //L'attributo è null se l'autenticazione fallisce
         if(utente == null) {
             request.setAttribute("loginError", true);
-            request.getRequestDispatcher("LoginPage.jsp").forward(request, response);
+            request.getRequestDispatcher("AutenticazioneGUI/LoginPage.jsp").forward(request, response);
         } else if(utente.isAlbergatore()) {
             //L'utente è un albergatore
             Albergatore albergatore = StorageFacade.getInstance().getDatiAlbergatore(utente);
             request.getSession().setAttribute("utente", albergatore);
-            request.getRequestDispatcher("ProfiloAlbergatore.jsp").forward(request, response);
+            request.getRequestDispatcher("ModificaStrutturaGUI/ProfiloAlbergatore.jsp").forward(request, response);
         } else{
             //L'utente è un cliente
             Cliente cliente = StorageFacade.getInstance().getDatiCliente(utente);
             request.getSession().setAttribute("utente", cliente);
-            request.getRequestDispatcher("ProfiloCliente.jsp").forward(request, response);
+            request.getRequestDispatcher("GestisciPrenotazioneGUI/ProfiloCliente.jsp").forward(request, response);
         }
 
     }
