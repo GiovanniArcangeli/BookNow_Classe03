@@ -12,7 +12,7 @@ public class StrutturaDAO {
 
     public Struttura doRetrieveById(int id){
         try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("select indirizzo, Nome, CF from struttura where ID_Struttura = ?");
+            PreparedStatement ps = con.prepareStatement("select indirizzo, Nome, username from struttura where ID_Struttura = ?");
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
@@ -20,10 +20,10 @@ public class StrutturaDAO {
             if (rs.next()) {
                 String indirizzo = rs.getString(1);
                 String nome = rs.getString(2);
-                String CF = rs.getString(3);
+                String username = rs.getString(3);
 
                 AlbergatoreDAO service = new AlbergatoreDAO();
-                Albergatore albergatore = (Albergatore) service.getAlbergatoreByUsername(CF);
+                Albergatore albergatore = (Albergatore) service.getAlbergatoreByUsername(username);
 
                 return new Struttura(id, indirizzo, nome, albergatore);
             }
@@ -35,7 +35,7 @@ public class StrutturaDAO {
 
     public List<Struttura> doRetrieveAll(){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome, CF from struttura");
+            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome, username from struttura");
 
             ResultSet rs = ps.executeQuery();
             List<Struttura> strutture = new ArrayList<>();
@@ -44,13 +44,13 @@ public class StrutturaDAO {
                 int idStruttura = rs.getInt(1);
                 String indirizzo = rs.getString(2);
                 String nome = rs.getString(3);
-                String CF = rs.getString(4);
+                String username = rs.getString(4);
 
                 Albergatore albergatore = null;
                 AlbergatoreDAO service = new AlbergatoreDAO();
                 List<Utente> utenti = service.getAllUsers();
                 for(Utente utente: utenti){
-                    if(utente.getCf().equals(CF)){
+                    if(utente.getUsername().equals(username)){
                         albergatore = (Albergatore) utente;
                         break;
                     }
@@ -66,8 +66,8 @@ public class StrutturaDAO {
 
     public List<Struttura> doRetrieveByAlbergatore(Albergatore a){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura where CF = ?");
-            ps.setString(1, a.getCf());
+            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura where username = ?");
+            ps.setString(1, a.getUsername());
 
             ResultSet rs = ps.executeQuery();
             List<Struttura> strutture = new ArrayList<>();
@@ -91,7 +91,7 @@ public class StrutturaDAO {
             PreparedStatement ps = con.prepareStatement("insert into struttura values (?,?,?)");
             ps.setString(1, s.getIndirizzo());
             ps.setString(2, s.getNome());
-            ps.setString(3, s.getAlbergatore().getCf());
+            ps.setString(3, s.getAlbergatore().getUsername());
 
             int idStruttura = -1;
 
@@ -113,10 +113,10 @@ public class StrutturaDAO {
 
     public void doUpdate(Struttura s){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where CF = ?");
+            PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where username = ?");
             ps.setString(1, s.getIndirizzo());
             ps.setString(2, s.getNome());
-            ps.setString(3, s.getAlbergatore().getCf());
+            ps.setString(3, s.getAlbergatore().getUsername());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");

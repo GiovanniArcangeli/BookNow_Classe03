@@ -49,7 +49,9 @@ public class UtenteDAO {
         Statement st;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            String q = "Insert into Utente values('" + user.getCf() + "', '" + user.getNome() + "', '" + user.getCognome() + "', '" + user.getCognome() + "', '" + user.getDataNascita() + "', '" + user.getRecapitoTelefonico() + "', '" + user.getPassword() + "', '" + user.getUsername() + "','" + user.getEmail() + "','"+user.isAlbergatore()+"')";
+            int flag=0;
+            if(user.isAlbergatore()==true) flag=1;
+            String q = "Insert into Utente values('" + user.getCf() + "', '" + user.getNome() + "', '" + user.getCognome() + "', '" + user.getDataNascita() + "', '" + user.getRecapitoTelefonico() + "', '" + user.getPassword() + "', '" + user.getUsername() + "','" + user.getEmail() + "','"+flag+"')";
             st.executeUpdate(q);
             con.close();
         } catch (SQLException ex) {

@@ -12,14 +12,14 @@ public class PrenotazioneDAO {
 
     public Prenotazione doRetrieveById(int id){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("select CF, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
+            PreparedStatement ps = con.prepareStatement("select username, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
                     " from prenotazione where idPrenotazione = ?");
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()){
-                String CF = rs.getString(1);
+                String username = rs.getString(1);
                 Date dataIn = rs.getDate(2);
                 Date dataOut = rs.getDate(3);
                 int numOspiti = rs.getInt(4);
@@ -27,7 +27,7 @@ public class PrenotazioneDAO {
                 int numeroStanza = rs.getInt(6);
 
                 Stanza stanza = new StanzaDAO().doRetrieveById(numeroStanza, idStruttura);
-                Cliente cliente = (Cliente) new ClienteDAO().getClienteByUsername(CF);
+                Cliente cliente = (Cliente) new ClienteDAO().getClienteByUsername(username);
 
                 return new Prenotazione(id, dataIn, dataOut, numOspiti, stanza, cliente);
             }
@@ -41,7 +41,8 @@ public class PrenotazioneDAO {
     public List<Prenotazione> doRetrieveByCliente(Cliente c){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
-                    " from prenotazione where CF = ?");
+                    " from prenotazione where username = ?");
+            ps.setString(1, c.getUsername());
 
             ResultSet rs = ps.executeQuery();
             List<Prenotazione> prenotazioni = new ArrayList<>();
@@ -67,7 +68,7 @@ public class PrenotazioneDAO {
 
     public List<Prenotazione> doRetrieveByStanza(Stanza s){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti, CF, ID_Struttura, NumeroStanza" +
+            PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti, username, ID_Struttura, NumeroStanza" +
                     " from prenotazione p, stanza s, struttura S" +
                     " where s.ID_Struttura = S.ID_Struttura and p.ID_Struttura = S.ID_Struttura and s.NumeroStanza = ?");
             ps.setInt(1, s.getNumeroStanza());
@@ -80,12 +81,12 @@ public class PrenotazioneDAO {
                 Date dataIn = rs.getDate(2);
                 Date dataOut = rs.getDate(3);
                 int numOspiti = rs.getInt(4);
-                String CF = rs.getString(5);
+                String username = rs.getString(5);
                 int idStruttura = rs.getInt(6);
                 int numeroStanza = rs.getInt(7);
 
                 ClienteDAO service = new ClienteDAO();
-                Cliente cliente = (Cliente) service.getClienteByUsername(CF);
+                Cliente cliente = (Cliente) service.getClienteByUsername(username);
                 prenotazioni.add(new Prenotazione(idPrenotazione, dataIn, dataOut, numOspiti, s, cliente));
             }
             return prenotazioni;
@@ -101,7 +102,7 @@ public class PrenotazioneDAO {
             ps.setDate(1, p.getDataIn());
             ps.setDate(2, p.getDataOut());
             ps.setInt(3, p.getNumOspiti());
-            ps.setString(4, p.getCliente().getCf());
+            ps.setString(4, p.getCliente().getUsername());
             ps.setInt(5, p.getStanza().getStruttura().getID_Struttura());
             ps.setInt(6, p.getStanza().getNumeroStanza());
 
