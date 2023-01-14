@@ -14,11 +14,11 @@
         <tr>
             <td>
                 <p>${struttura.nome}</p>
+                <p>${struttura.ID_Struttura}</p>
                 <p>${struttura.indirizzo}</p>
-                <p>${struttura.stanze.size}</p>
             </td>
             <td>
-                <button onclick="location.href='modifica-struttura?id=${struttura.ID_Struttura}'">Modifica Struttura</button>
+                <button type="button" onclick="location.href='${pageContext.request.contextPath}/modifica-struttura?id=${struttura.ID_Struttura}'">Modifica Struttura</button>
             </td>
         </tr>
     </table>

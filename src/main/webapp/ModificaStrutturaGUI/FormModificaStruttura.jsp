@@ -5,14 +5,14 @@
     <link rel="stylesheet" type="text/css" href="FormModificaStruttura.css">
 </head>
 <body>
-<p>Modifica i dati della prenotazione</p>
+<p>Modifica i dati della struttura</p>
 <div id="form">
-    <form method="post" action="/modifica-struttura">
+    <form method="post" action="modifica-struttura">
         <input type="hidden" id="ID_Struttura" name="ID_Struttura" value="${struttura.ID_Struttura}">
         <label for="nomeStruct">Nome della Struttura</label>
-        <input id="nomeStruct" type="text" name="nomeStruct">${struttura.nome}<br>
+        <input id="nomeStruct" type="text" name="nomeStruct" value="${struttura.nome}"><br>
         <label for="indirizzo">Indirizzo</label>
-        <input id="indirizzo" type="text" name="indirizzo">${struttura.indirizzo}<br>
+        <input id="indirizzo" type="text" name="indirizzo" value="${struttura.indirizzo}"><br>
         <input type="submit" value="Modifica">
     </form>
 </div>

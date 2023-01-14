@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3 id="profiloAlbergatore">Profilo Albergatore</h3>
-<p id="links"><a href="ListaStrutture.jsp">Le mie Strutture</a></p>
+<p id="links"><a href="ModificaStrutturaGUI/ListaStrutture.jsp">Le mie Strutture</a></p>
 <table id="dati">
     <tr>
         <td>Username ${utente.username}</td>
