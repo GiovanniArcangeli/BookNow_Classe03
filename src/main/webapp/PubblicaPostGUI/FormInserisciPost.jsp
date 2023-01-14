@@ -7,7 +7,7 @@
 <body>
 <p>Scrivi il post</p>
 <div id="form">
-    <form method="post" action="forum/nuovo-post">
+    <form method="post" action="${pageContext.request.contextPath}/forum">
         <label for="titolo">Titolo</label>
         <input id="titolo" type="text" name="titolo"><br>
         <label for="corpo">Testo</label><br>

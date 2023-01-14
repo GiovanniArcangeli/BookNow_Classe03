@@ -15,21 +15,23 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-@WebServlet("/forum/*")
+@WebServlet("/forum")
 public class PubblicaPostController extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("posts", StorageFacade.getInstance().getAllPosts());
+        request.getRequestDispatcher("PubblicaPostGUI/ForumHome.jsp").forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String path = request.getPathInfo();
-            switch (path) {
-
-                case "/nuovo-post": {
                     Utente utente = (Utente) request.getSession().getAttribute("utente");
                     if (utente == null) {
                         //Utente non loggato
                         //Viene mostrata la pagina di login
-                        request.getRequestDispatcher("LoginPage.jsp").forward(request, response);
+                        request.getRequestDispatcher("AutenticazioneGUI/LoginPage.jsp").forward(request, response);
                     } else if (utente.isAlbergatore()) {
                         //Decidere quale errore inviare
                     } else {
@@ -45,15 +47,8 @@ public class PubblicaPostController extends HttpServlet {
                             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
                         //Se va tutto bene, si torna alla home del forum
+                        request.getRequestDispatcher("PubblicaPostGUI/FormInserisciPost.jsp").forward(request, response);
                     }
-                }
-
-                case "/home": {
-                    request.setAttribute("posts", StorageFacade.getInstance().getAllPosts());
-                    request.getRequestDispatcher("PubblicaPostGUI/ForumHome.jsp").forward(request, response);
-                    break;
-                }
-            }
         } catch (RuntimeException e){
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }

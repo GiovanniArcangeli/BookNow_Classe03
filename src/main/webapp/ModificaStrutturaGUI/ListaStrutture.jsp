@@ -24,6 +24,6 @@
     </table>
 </c:forEach>
 </form>
-
+<p id="links"><a href="${pageContext.request.contextPath}/ModificaStrutturaGUI/ProfiloAlbergatore.jsp">Torna al profilo</a></p>
 </body>
 </html>

@@ -8,14 +8,14 @@
 </head>
 <body>
 <h2 id="forum">Forum</h2>
-<p id="links"><a href="FormInserisciPost.jsp">Scrivi Post</a></p>
+<p id="links"><a href="${pageContext.request.contextPath}/PubblicaPostGUI/FormInserisciPost.jsp">Scrivi Post</a></p>
     <!-- Lista Post -->
 <c:forEach var="post" items="${posts}">
     <div class="post">
         <p>${post.titolo}</p>
-        <p>${post.corpo}</p>
+        <p>${post.testo}</p>
         <p>${post.tags}</p>
-        <p>${post.autore}</p>
+        <p>${post.cliente}</p>
     </div>
 </c:forEach>
 </body>
