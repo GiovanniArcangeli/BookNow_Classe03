@@ -12,10 +12,10 @@
         <c:if test="${loginError == true}">
             <p>Username e/o password errati</p>
         </c:if>
-        <label for="usernameLogin">Username </label>
-        <input id="usernameLogin" type="text" name="usernameLogin"><br>
-        <label for="passwordLogin">Password </label>
-        <input id="passwordLogin" type="password" name="passwordLogin"><br>
+        <label for="username">Username </label>
+        <input id="username" type="text" name="username"><br>
+        <label for="password">Password </label>
+        <input id="password" type="password" name="password"><br>
         <input type="submit" value="Login">
     </form>
 </div>

@@ -8,6 +8,8 @@ public class Utente {
     private Date dataNascita;
     private boolean isAlbergatore;
 
+    public Utente(){}
+
     public Utente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, boolean isAlbergatore) {
         this.cf = cf;
         this.nome = nome;
