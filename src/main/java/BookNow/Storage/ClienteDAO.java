@@ -13,7 +13,7 @@ public class ClienteDAO extends UtenteDAO{
         Cliente cli;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM utente u, albergatore a where(u.albergatore=1 AND u.username=a.username);");
+            rs = st.executeQuery("SELECT * FROM utente u, cliente c where(u.albergatore=0 AND u.username=c.username);");
             while (rs.next()) {
                 cli = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Date.valueOf(rs.getString(4)), rs.getString(11), Date.valueOf(rs.getString(12)), Integer.parseInt(rs.getString(13)));
                 /*user.setUsername(rs.getString(7));
