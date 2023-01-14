@@ -64,6 +64,9 @@ public final class StorageFacade {
         prenotazione.setNumOspiti(numOspiti);
         prenotazione.setStanza(new StanzaDAO().doRetrieveById(numeroStanza, ID_Struttura));
 
+        if(!isStanzaDisponibile(prenotazione.getStanza(), prenotazione.getDataIn(), prenotazione.getDataOut(), prenotazione.getNumOspiti()))
+            return null;
+
         int idPrenotazione = new PrenotazioneDAO().doSave(prenotazione);
         prenotazione.setID_Prenotazione(idPrenotazione);
         return prenotazione;
