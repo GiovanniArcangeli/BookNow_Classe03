@@ -113,10 +113,10 @@ public class StrutturaDAO {
 
     public void doUpdate(Struttura s){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where username = ?");
+            PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where ID_Struttura = ?");
             ps.setString(1, s.getIndirizzo());
             ps.setString(2, s.getNome());
-            ps.setString(3, s.getAlbergatore().getUsername());
+            ps.setInt(3, s.getID_Struttura());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("UPDATE ERROR");
