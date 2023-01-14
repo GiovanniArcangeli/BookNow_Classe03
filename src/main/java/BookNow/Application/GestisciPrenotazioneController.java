@@ -1,5 +1,7 @@
 package BookNow.Application;
 
+import BookNow.Entity.Cliente;
+import BookNow.Entity.Prenotazione;
 import BookNow.Storage.StorageFacade;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,6 +17,14 @@ import java.text.SimpleDateFormat;
 public class GestisciPrenotazioneController extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idPrenotazione = Integer.parseInt(request.getParameter("id"));
+        Prenotazione prenotazione = StorageFacade.getInstance().getDatiPrenotazione(idPrenotazione);
+        request.setAttribute("prenotazione", prenotazione);
+        request.getRequestDispatcher("GestisciPrenotazioneGUI/FormModificaPrenotazione.jsp").forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             //Il parametro idPrenotazione viene passato come campo nascosto nel form
@@ -26,10 +36,18 @@ public class GestisciPrenotazioneController extends HttpServlet {
             Date dataOut = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataOut).getTime());
             int numOspiti = Integer.parseInt(request.getParameter("numOspiti"));
 
-            if(StorageFacade.getInstance().modificaPrenotazione(idPrenotazione, dataIn, dataOut, numOspiti))
-                request.getRequestDispatcher("").forward(request, response);
-
-                //Decidere cosa fare se la modifica non va a buon fine
+            Prenotazione newOne = StorageFacade.getInstance().modificaPrenotazione(idPrenotazione, dataIn, dataOut, numOspiti);
+            if(newOne != null) {
+                //La modifica è avvenuta correttamente
+                Cliente cliente = (Cliente) request.getSession().getAttribute("utente");
+                cliente.aggiornaPrenotazione(newOne);
+                request.getSession().setAttribute("utente", cliente);
+                request.getRequestDispatcher("GestisciPrenotazioneGUI/Prenotazioni.jsp").forward(request, response);
+            }  else{
+                //La stanza non è disponibile, si torna al form per cambiare i parametri
+                request.setAttribute("retry", true);
+                doGet(request, response);
+            }
 
         } catch (RuntimeException | ParseException e) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

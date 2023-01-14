@@ -41,19 +41,19 @@ public final class StorageFacade {
         return post;
     }
 
-    public boolean modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
-        Prenotazione oldOne = new PrenotazioneDAO().doRetrieveById(id);
+    public Prenotazione modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
+        PrenotazioneDAO service = new PrenotazioneDAO();
+        Prenotazione oldOne = service.doRetrieveById(id);
 
         //Controllo sulla disponibilità
         if(!isStanzaDisponibile(oldOne.getStanza(), dataIn, dataOut, numOspiti))
-            return false;
+            return null;
 
         oldOne.setDataIn(dataIn);
         oldOne.setDataOut(dataOut);
         oldOne.setNumOspiti(numOspiti);
-
-        new PrenotazioneDAO().doUpdate(oldOne);
-        return true;
+        service.doUpdate(oldOne);
+        return service.doRetrieveById(id);
     }
 
     public Prenotazione prenotazioneStanza(Cliente cliente, int ID_Struttura, int numeroStanza, Date dataIn, Date dataOut, int numOspiti){
@@ -91,6 +91,8 @@ public final class StorageFacade {
         cliente.setPrenotazioni(prenotazioni);
         return cliente;
     }
+
+    public Prenotazione getDatiPrenotazione(int id){ return  new PrenotazioneDAO().doRetrieveById(id); }
 
     public Struttura getDatiStruttura(int id){
         return new StrutturaDAO().doRetrieveById(id);

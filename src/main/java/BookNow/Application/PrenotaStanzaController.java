@@ -73,6 +73,7 @@ public class PrenotaStanzaController extends HttpServlet {
                             //La prenotazione è stata salvata con successo, viene mostrata la pagina delle prenotazioni
                             request.removeAttribute("retry");
                             utente.addPrenotazioni(prenotazione);
+                            request.getSession().setAttribute("utente", utente);
                             request.getRequestDispatcher("GestisciPrenotazioneGUI/Prenotazioni.jsp").forward(request, response);
                         }
                     }
