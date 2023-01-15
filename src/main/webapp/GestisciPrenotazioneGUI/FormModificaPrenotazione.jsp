@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Modifica Prenotazione</title>
-    <link rel="stylesheet" type="text/css" href="./FormModificaPrenotazione.css">
-    <script src="../jquery.js"></script>
-    <script src="./FormModificaPrenotazione.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/FormModificaPrenotazione.css">
+    <script src="${pageContext.request.contextPath}/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/FormModificaPrenotazione.js"></script>
 </head>
 <body>
 <p>Modifica i dati della prenotazione</p>

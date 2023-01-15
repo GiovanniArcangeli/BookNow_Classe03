@@ -3,9 +3,9 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="./LoginPage.css">
-    <script src="../jquery.js"></script>
-    <script src="./LoginPage.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/AutenticazioneGUI/LoginPage.css">
+    <script src="${pageContext.request.contextPath}/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/AutenticazioneGUI/LoginPage.js"></script>
 </head>
 <body>
 <h2 id="login">Login</h2>

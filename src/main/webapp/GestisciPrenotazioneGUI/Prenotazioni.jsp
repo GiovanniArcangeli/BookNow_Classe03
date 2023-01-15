@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Le mie prenotazioni</title>
-    <link rel="stylesheet" type="text/css" href="Prenotazioni.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/Prenotazioni.css">
 </head>
 <body>
 <h2 id="titoloPrenotazioni">Le mie prenotazioni</h2>
