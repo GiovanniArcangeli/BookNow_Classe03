@@ -19,7 +19,7 @@
                 <p>${stanza.serviziOfferti}</p>
             </td>
             <td>
-                <button onclick="location.href='prenota/prenota-stanza?id=${stanza.struttura.ID_Struttura}&num=${stanza.numeroStanza}'">Prenota</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/prenota/prenota-stanza?id=${stanza.struttura.ID_Struttura}&num=${stanza.numeroStanza}'">Prenota</button>
             </td>
         </tr>
     </table>

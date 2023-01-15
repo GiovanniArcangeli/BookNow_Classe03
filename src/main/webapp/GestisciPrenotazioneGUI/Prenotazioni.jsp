@@ -22,7 +22,7 @@
             <p>Stanza #${preno.stanza.numeroStanza}</p>
         </td>
         <td>
-            <button onclick="location.href='../gestisci-prenotazione?id=${preno.ID_Prenotazione}'">Modifica Prenotazione</button>
+            <button onclick="location.href='${pageContext.request.contextPath}/gestisci-prenotazione?id=${preno.ID_Prenotazione}'">Modifica Prenotazione</button>
         </td>
     </tr>
 </table>

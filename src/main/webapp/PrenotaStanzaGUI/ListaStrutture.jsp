@@ -16,7 +16,7 @@
                 <p>Numero Stanze: </p>
             </td>
             <td>
-                <button onclick="location.href='prenota/vedi-stanze?id=${struttura.ID_Struttura}'">Seleziona Struttura</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/prenota/vedi-stanze?id=${struttura.ID_Struttura}'">Seleziona Struttura</button>
             </td>
         </tr>
     </table>

@@ -10,7 +10,7 @@
 <body>
 <h2 id="login">Login</h2>
 <div id="form">
-    <form id="loginForm" method="post" action="../login">
+    <form id="loginForm" method="post" action="${pageContext.request.contextPath}/login">
         <c:if test="${loginError == true}">
             <p>Username e/o password errati</p>
         </c:if>
