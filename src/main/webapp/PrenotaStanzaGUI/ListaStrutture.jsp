@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Strutture Disponibili</title>
-    <link rel="stylesheet" type="text/css" href="ListaStrutture.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/PrenotaStanzaGUI/ListaStrutture.css">
 </head>
 <body>
 <h2 id="struttureDisponibili">Strutture disponibili</h2>
@@ -16,7 +16,7 @@
                 <p>Numero Stanze: </p>
             </td>
             <td>
-                <button onclick="location.href='prenota/vedi-stanze?id=${struttura.ID_Struttura}'">Seleziona Struttura</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/prenota/vedi-stanze?id=${struttura.ID_Struttura}'">Seleziona Struttura</button>
             </td>
         </tr>
     </table>

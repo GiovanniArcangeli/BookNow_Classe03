@@ -119,9 +119,6 @@ public class StrutturaDAO {
             ps.setInt(3, s.getID_Struttura());
 
             if (ps.executeUpdate() != 1)
-                throw new RuntimeException("UPDATE ERROR");
-
-            if (ps.executeUpdate() != 1)
                 throw new RuntimeException("INSERT ERROR");
 
             AlbergatoreDAO service = new AlbergatoreDAO();

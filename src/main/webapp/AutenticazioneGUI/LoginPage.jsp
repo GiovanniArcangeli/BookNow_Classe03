@@ -3,12 +3,14 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="LoginPage.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/AutenticazioneGUI/LoginPage.css">
+    <script src="${pageContext.request.contextPath}/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/AutenticazioneGUI/LoginPage.js"></script>
 </head>
 <body>
 <h2 id="login">Login</h2>
 <div id="form">
-    <form method="post" action="login">
+    <form id="loginForm" method="post" action="${pageContext.request.contextPath}/login">
         <c:if test="${loginError == true}">
             <p>Username e/o password errati</p>
         </c:if>
@@ -16,7 +18,7 @@
         <input id="username" type="text" name="username"><br>
         <label for="password">Password </label>
         <input id="password" type="password" name="password"><br>
-        <input type="submit" value="Login">
+        <input type="button" value="Login" onclick="LoginPage()">
     </form>
 </div>
 </body>

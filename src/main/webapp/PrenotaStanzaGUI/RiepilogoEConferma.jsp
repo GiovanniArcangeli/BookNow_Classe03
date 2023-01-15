@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Riepilogo Prenotazione</title>
-    <link rel="stylesheet" type="text/css" href="RiepilogoEConferma.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/PrenotaStanzaGUI/RiepilogoEConferma.css">
 </head>
 <body>
 <p>Riepilogo prenotazione</p>
@@ -12,7 +12,7 @@
     <p>Numero Ospiti: ${prenotazione.numOspiti}</p>
     <p>Nome Struttura: ${struttura.nome}</p>
     <p>Numero Stanza: ${numeroStanza}</p>
-    <button onclick="location.href='prenota/conferma?id=${struttura.ID_Struttura}&num=${numeroStanza}'">Conferma</button>
+    <button onclick="location.href='${pageContext.request.contextPath}/prenota/conferma?id=${struttura.ID_Struttura}&num=${numeroStanza}'">Conferma</button>
 </div>
 </body>
 </html>

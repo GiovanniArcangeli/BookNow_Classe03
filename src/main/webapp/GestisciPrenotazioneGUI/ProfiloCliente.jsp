@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Profilo</title>
-    <link rel="stylesheet" type="text/css" href="ProfiloCliente.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/ProfiloCliente.css">
 </head>
 <body>
 <h2 id="profiloCliente">Profilo Cliente</h2>

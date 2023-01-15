@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Forum</title>
-    <link rel="stylesheet" type="text/css" href="ForumHome.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/PubblicaPostGUI/ForumHome.css">
 </head>
 <body>
 <h2 id="forum">Forum</h2>
@@ -15,7 +15,7 @@
         <p>${post.titolo}</p>
         <p>${post.testo}</p>
         <p>${post.tags}</p>
-        <p>${post.cliente}</p>
+        <p>${post.cliente.username}</p>
     </div>
 </c:forEach>
 </body>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Pubblica Post</title>
-    <link rel="stylesheet" type="text/css" href="FormInserisciPost.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/PubblicaPostGUI/FormInserisciPost.css">
 </head>
 <body>
 <p>Scrivi il post</p>
