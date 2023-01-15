@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Stanze Disponibili</title>
-    <link rel="stylesheet" type="text/css" href="StanzeDisponibili.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/PrenotaStanzaGUI/StanzeDisponibili.css">
 </head>
 <body>
 <h2 id="stanzeDisponibili">Stanze disponibili</h2>

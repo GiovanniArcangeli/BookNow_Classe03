@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Riepilogo Prenotazione</title>
-    <link rel="stylesheet" type="text/css" href="RiepilogoEConferma.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/PrenotaStanzaGUI/RiepilogoEConferma.css">
 </head>
 <body>
 <p>Riepilogo prenotazione</p>

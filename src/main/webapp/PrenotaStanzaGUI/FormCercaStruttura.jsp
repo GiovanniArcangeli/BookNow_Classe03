@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Cerca Strutture</title>
-    <link rel="stylesheet" type="text/css" href="FormCercaStruttura.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/PrenotaStanzaGUI/FormCercaStruttura.css">
     <script src="../jquery.js"></script>
     <script src="./FormCercaStruttura.js"></script>
 </head>

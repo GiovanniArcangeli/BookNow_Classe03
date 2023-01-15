@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Modifica Prenotazione</title>
-    <link rel="stylesheet" type="text/css" href="FormModificaStruttura.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/ModificaStrutturaGUI/FormModificaStruttura.css">
 </head>
 <body>
 <p>Modifica i dati della struttura</p>

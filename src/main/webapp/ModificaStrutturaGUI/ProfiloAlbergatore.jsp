@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Profilo</title>
-    <link rel="stylesheet" type="text/css" href="ProfiloAlbergatore.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/ModificaStrutturaGUI/ProfiloAlbergatore.css">
 </head>
 <body>
 <h3 id="profiloAlbergatore">Profilo Albergatore</h3>

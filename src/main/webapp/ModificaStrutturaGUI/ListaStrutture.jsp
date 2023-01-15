@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Le mie strutture</title>
-    <link rel="stylesheet" type="text/css" href="ListaStrutture.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/ModificaStrutturaGUI/ListaStrutture.css">
 </head>
 <body>
 <h2 id="titoloStrutture">Le mie strutture</h2>
