@@ -3,12 +3,14 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="LoginPage.css">
+    <link rel="stylesheet" type="text/css" href="./LoginPage.css">
+    <script src="../jquery.js"></script>
+    <script src="./LoginPage.js"></script>
 </head>
 <body>
 <h2 id="login">Login</h2>
 <div id="form">
-    <form method="post" action="login">
+    <form id="loginForm" method="post" action="../login">
         <c:if test="${loginError == true}">
             <p>Username e/o password errati</p>
         </c:if>
@@ -16,7 +18,7 @@
         <input id="username" type="text" name="username"><br>
         <label for="password">Password </label>
         <input id="password" type="password" name="password"><br>
-        <input type="submit" value="Login">
+        <input type="button" value="Login" onclick="LoginPage()">
     </form>
 </div>
 </body>
