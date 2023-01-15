@@ -25,11 +25,11 @@ function FormCercaStruttura() {
         alert("La data di check-out deve essere successiva alla data di check-in.");
         $("#dataOut").focus();
         return false;
-    } else if (Date.parse(dataIn) - Date.now() > 0) {
+    } else if (Date.parse(dataIn) - Date.now() < 0) {
         alert("La data di check-in deve essere futura.");
         $("#dataIn").focus();
         return false;
-    } else if (Date.parse(dataOut) - Date.now() > 0) {
+    } else if (Date.parse(dataOut) - Date.now() < 0) {
         alert("La data di check-out deve essere futura.");
         $("#dataOut").focus();
         return false;

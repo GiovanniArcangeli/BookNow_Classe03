@@ -12,17 +12,17 @@
 <table class="prenotazione">
     <tr>
         <td>
-            <p>Prenotazione #${preno.id}</p>
+            <p>Prenotazione #${preno.ID_Prenotazione}</p>
             <p>${preno.dataIn} - ${preno.dataOut}</p>
             <p>Numero ospiti: ${preno.numOspiti}</p>
         </td>
         <td>
-            <p>${preno.stanza.struttura}</p>
+            <p>${preno.stanza.struttura.nome}</p>
             <p>${preno.stanza.struttura.indirizzo}</p>
             <p>Stanza #${preno.stanza.numeroStanza}</p>
         </td>
         <td>
-            <button onclick="location.href='gestisci-prenotazione?id=${preno.id}'">Modifica Prenotazione</button>
+            <button onclick="location.href='../gestisci-prenotazione?id=${preno.ID_Prenotazione}'">Modifica Prenotazione</button>
         </td>
     </tr>
 </table>

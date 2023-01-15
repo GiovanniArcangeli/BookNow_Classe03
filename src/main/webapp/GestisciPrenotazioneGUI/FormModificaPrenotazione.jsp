@@ -9,7 +9,7 @@
 <body>
 <p>Modifica i dati della prenotazione</p>
 <div id="form">
-    <form id="prenotazioneForm" method="post" action="../gestisci-prenotazione">
+    <form id="prenotazioneForm" method="post" action="gestisci-prenotazione">
         <input type="hidden" id="id" name="id" >
 
         <label for="dataIn">Data del Check-in </label>
