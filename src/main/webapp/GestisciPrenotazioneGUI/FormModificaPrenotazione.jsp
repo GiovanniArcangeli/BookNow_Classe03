@@ -10,7 +10,7 @@
 <p>Modifica i dati della prenotazione</p>
 <div id="form">
     <form id="prenotazioneForm" method="post" action="${pageContext.request.contextPath}/gestisci-prenotazione">
-        <input type="hidden" id="id" name="id" >
+        <input type="hidden" id="id" name="id" value="${prenotazione}">
 
         <label for="dataIn">Data del Check-in </label>
         <input id="dataIn" type="text" name="dataIn" ><br>
