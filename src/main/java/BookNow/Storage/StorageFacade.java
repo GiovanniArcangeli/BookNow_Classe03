@@ -29,16 +29,13 @@ public final class StorageFacade {
         new StrutturaDAO().doUpdate(oldOne);
     }
 
-    public Post pubblicazionePost(Cliente autore, String titolo, String testo, String tags){
+    public void pubblicazionePost(Cliente autore, String titolo, String testo, String tags){
         Post post = new Post();
         post.setCliente(autore);
         post.setTitolo(titolo);
         post.setTesto(testo);
         post.setTags(tags);
-
-        int idPost = new PostDAO().doSave(post);
-        post.setID_Post(idPost);
-        return post;
+        new PostDAO().doSave(post);
     }
 
     public Prenotazione modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){

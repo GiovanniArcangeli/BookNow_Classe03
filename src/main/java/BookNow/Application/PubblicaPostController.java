@@ -41,13 +41,9 @@ public class PubblicaPostController extends HttpServlet {
                         String tags = request.getParameter("tags");
                         Cliente autore = (Cliente) utente;
 
-                        Post post = StorageFacade.getInstance().pubblicazionePost(autore, titolo, corpo, tags);
-
-                        if (post.getID_Post() < 0)
-                            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-
-                        //Se va tutto bene, si torna alla home del forum
-                        request.getRequestDispatcher("PubblicaPostGUI/FormInserisciPost.jsp").forward(request, response);
+                        StorageFacade.getInstance().pubblicazionePost(autore, titolo, corpo, tags);
+                        request.setAttribute("posts", StorageFacade.getInstance().getAllPosts());
+                        request.getRequestDispatcher("PubblicaPostGUI/ForumHome.jsp").forward(request, response);
                     }
         } catch (RuntimeException e){
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

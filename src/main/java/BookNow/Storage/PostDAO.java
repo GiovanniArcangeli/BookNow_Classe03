@@ -51,29 +51,17 @@ public class PostDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-    public int doSave(Post p){
+    public void doSave(Post p){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("insert into post values (?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into post(titolo, testo, tags, username) values (?,?,?,?)");
             ps.setString(1, p.getTitolo());
             ps.setString(2, p.getTesto());
             ps.setString(3, p.getTags());
             ps.setString(4, p.getCliente().getUsername());
 
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("INSERT ERROR");
+            if(ps.executeUpdate() != 1)
+                throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
 
-            int idPost = -1;   //Serve per fare i controlli nei metodi chiamanti
-
-            if (ps.executeUpdate() == 1) {
-                ResultSet rs = ps.getGeneratedKeys();
-                if(rs.next()) {
-                    idPost = rs.getInt(1);
-                    p.setID_Post(idPost);
-                    ClienteDAO sc = new ClienteDAO();
-                    sc.addPost(p);
-                }
-            }
-            return idPost;
         }
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
