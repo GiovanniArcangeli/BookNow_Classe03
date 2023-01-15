@@ -28,7 +28,7 @@ public class GestisciPrenotazioneController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             //Il parametro idPrenotazione viene passato come campo nascosto nel form
-            int idPrenotazione = Integer.parseInt(request.getParameter("idPrenotazione"));
+            int idPrenotazione = Integer.parseInt(request.getParameter("id"));
 
             String sDataIn = request.getParameter("dataIn");
             Date dataIn = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataIn).getTime());
