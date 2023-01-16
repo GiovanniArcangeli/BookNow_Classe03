@@ -24,14 +24,6 @@ public class AlbergatoreDAO{
         }
     }
 
-    public void addStruttura(Struttura s){
-        s.getAlbergatore().addStrutture(s);
-    }
-
-    public void removeStruttura(Struttura s){
-       s.getAlbergatore().deleteStruttura(s);
-    }
-
     public void updateStruttura(Struttura s){
         s.getAlbergatore().aggiornaStrutture(s);
     }

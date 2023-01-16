@@ -1,7 +1,6 @@
 package BookNow.Storage;
 
 import BookNow.Entity.*;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +22,7 @@ public class StrutturaDAO {
                 String username = rs.getString(3);
 
                 AlbergatoreDAO service = new AlbergatoreDAO();
-                Albergatore albergatore = (Albergatore) service.getAlbergatoreByUsername(username);
+                Albergatore albergatore = service.getAlbergatoreByUsername(username);
 
                 return new Struttura(id, indirizzo, nome, albergatore);
             }

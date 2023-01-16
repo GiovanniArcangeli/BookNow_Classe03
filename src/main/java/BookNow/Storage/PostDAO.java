@@ -2,7 +2,6 @@ package BookNow.Storage;
 
 import BookNow.Entity.Cliente;
 import BookNow.Entity.Post;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +56,7 @@ public class PostDAO {
             ps.setString(1, p.getTitolo());
             ps.setString(2, p.getTesto());
             ps.setString(3, p.getTags());
-            ps.setString(4, p.getCliente().getUsername());
+            ps.setString(4, p.getAutore().getUsername());
 
             if(ps.executeUpdate() != 1)
                 throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
