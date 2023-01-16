@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2 id="forum">Forum</h2>
-<p id="links"><a href="${pageContext.request.contextPath}/PubblicaPostGUI/FormInserisciPost.jsp">Scrivi Post</a></p>
+<p id="links"><a href="${pageContext.request.contextPath}/PubblicaPostGUI/FormInserisciPost.jsp">Scrivi Post</a> | <a href="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/ProfiloCliente.jsp">Torna al profilo</a></p>
     <!-- Lista Post -->
 <c:forEach var="post" items="${posts}">
     <div class="post">
