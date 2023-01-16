@@ -41,6 +41,12 @@ public class Albergatore extends Utente {
         this.strutture = strutture;
     }
 
+    /**
+     * Aggiorna una prenotazione presente nel campo Prenotazioni del cliente.
+     * @param s la struttura da aggiornare
+     * @pre s != null
+     * @pre strutture.contains(s)
+     */
     public void aggiornaStrutture(Struttura s){
         if(s == null) {
             throw new IllegalArgumentException("La struttura è nulla");

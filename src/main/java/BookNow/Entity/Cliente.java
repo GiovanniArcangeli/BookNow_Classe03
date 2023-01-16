@@ -80,16 +80,31 @@ public class Cliente extends Utente{
     public List<Post> getPosts() {
         return posts;
     }
+    /**
+     * @param posts la lista dei post da settare
+     */
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
 
+    /**
+     * Aggiunge una prenotazione nel campo Prenotazioni del cliente.
+     * @param p la prenotazione da aggiungere
+     * @pre p != null
+     */
     public void addPrenotazioni(Prenotazione p) {
         if(p == null) {
             throw new IllegalArgumentException("La prenotazione è nulla");
         }
         prenotazioni.add(p);
     }
+
+    /**
+     * Aggiorna una prenotazione presente nel campo Prenotazioni del cliente.
+     * @param p la prenotazione da aggiornare
+     * @pre p != null
+     * @pre prenotazioni.contains(p)
+     */
     public void aggiornaPrenotazione(Prenotazione p) {
         if(p == null) {
             throw new IllegalArgumentException("La prenotazione è nulla");
