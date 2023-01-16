@@ -27,7 +27,7 @@ public final class StorageFacade {
      * @pre password!= null
      */
     public Utente controlloAccesso(String username, String password){
-        if(username != null || password != null){
+        if(username == null || password == null){
             throw new IllegalArgumentException("Parametri errati");
         }
         return new AutenticazioneDAO().autenticazione(username, password);
@@ -79,7 +79,7 @@ public final class StorageFacade {
      * @pre PrenotazioneDAO.doRetrieveById(id) != null
      */
     public Prenotazione modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
-        if(id <= 0 || new PrenotazioneDAO().doRetrieveById(id) != null){
+        if(id <= 0 || new PrenotazioneDAO().doRetrieveById(id) == null){
             throw new IllegalArgumentException("Parametri errati");
         }
         PrenotazioneDAO service = new PrenotazioneDAO();
