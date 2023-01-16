@@ -24,6 +24,10 @@ public class Struttura {
     public int getID_Struttura() {
         return ID_Struttura;
     }
+
+    /**
+     * @param ID_Struttura l'id da settare
+     */
     public void setID_Struttura(int ID_Struttura) {
         this.ID_Struttura = ID_Struttura;
     }
@@ -33,6 +37,10 @@ public class Struttura {
     public String getIndirizzo() {
         return indirizzo;
     }
+
+    /**
+     * @param indirizzo l'indirizzo da settare
+     */
     public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
     }
@@ -42,6 +50,10 @@ public class Struttura {
     public String getNome() {
         return nome;
     }
+
+    /**
+     * @param nome il nome da settare
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -51,6 +63,10 @@ public class Struttura {
     public Albergatore getAlbergatore() {
         return albergatore;
     }
+
+    /**
+     * @param albergatore l'albergatore da settare
+     */
     public void setAlbergatore(Albergatore albergatore) {
         this.albergatore = albergatore;
     }
@@ -60,6 +76,10 @@ public class Struttura {
     public List<Stanza> getStanze() {
         return stanze;
     }
+
+    /**
+     * @param stanze la lista delle stanze da settare
+     */
     public void setStanze(List<Stanza> stanze) {
         this.stanze = stanze;
     }

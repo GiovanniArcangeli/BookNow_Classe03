@@ -27,6 +27,10 @@ public class Utente {
     public String getCf() {
         return cf;
     }
+
+    /**
+     * @param cf il cf da settare
+     */
     public void setCf(String cf) {
         this.cf = cf;
     }
@@ -36,6 +40,10 @@ public class Utente {
     public String getNome() {
         return nome;
     }
+
+    /**
+     * @param nome il nome da settare
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -45,6 +53,10 @@ public class Utente {
     public String getCognome() {
         return cognome;
     }
+
+    /**
+     * @param cognome il cognome da settare
+     */
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
@@ -54,6 +66,10 @@ public class Utente {
     public String getRecapitoTelefonico() {
         return recapitoTelefonico;
     }
+
+    /**
+     * @param recapitoTelefonico il recapitoTelefonico da settare
+     */
     public void setRecapitoTelefonico(String recapitoTelefonico) {
         this.recapitoTelefonico = recapitoTelefonico;
     }
@@ -63,6 +79,10 @@ public class Utente {
     public String getPassword() {
         return password;
     }
+
+    /**
+     * @param password la password da settare
+     */
     public void setPassword(String password) {
         this.password = password;
     }
@@ -72,6 +92,10 @@ public class Utente {
     public String getUsername() {
         return username;
     }
+
+    /**
+     * @param username l'username da settare
+     */
     public void setUsername(String username) {
         this.username = username;
     }
@@ -81,6 +105,10 @@ public class Utente {
     public String getEmail() {
         return email;
     }
+
+    /**
+     * @param email l'email da settare
+     */
     public void setEmail(String email) {
         this.email = email;
     }
@@ -90,6 +118,10 @@ public class Utente {
     public Date getDataNascita() {
         return dataNascita;
     }
+
+    /**
+     * @param dataNascita la dataNascita da settare
+     */
     public void setDataNascita(Date dataNascita) {
         this.dataNascita = dataNascita;
     }

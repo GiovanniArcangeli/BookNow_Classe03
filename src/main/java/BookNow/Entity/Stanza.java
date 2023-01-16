@@ -27,6 +27,10 @@ public class Stanza {
     public int getNumeroStanza() {
         return numeroStanza;
     }
+
+    /**
+     * @param numeroStanza il numeroStanza da settare
+     */
     public void setNumeroStanza(int numeroStanza) {
         this.numeroStanza = numeroStanza;
     }
@@ -36,6 +40,10 @@ public class Stanza {
     public int getCapienza() {
         return capienza;
     }
+
+    /**
+     * @param capienza la capienza da settare
+     */
     public void setCapienza(int capienza) {
         this.capienza = capienza;
     }
@@ -45,6 +53,10 @@ public class Stanza {
     public String getDescrizione() {
         return descrizione;
     }
+
+    /**
+     * @param descrizione la descrizione da settare
+     */
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
@@ -54,6 +66,10 @@ public class Stanza {
     public String getServiziOfferti() {
         return serviziOfferti;
     }
+
+    /**
+     * @param serviziOfferti i servizi da settare
+     */
     public void setServiziOfferti(String serviziOfferti) {
         this.serviziOfferti = serviziOfferti;
     }
@@ -63,6 +79,10 @@ public class Stanza {
     public float getCosto() {
         return costo;
     }
+
+    /**
+     * @param costo il costo da settare
+     */
     public void setCosto(float costo) {
         this.costo = costo;
     }
@@ -72,6 +92,10 @@ public class Stanza {
     public Struttura getStruttura() {
         return struttura;
     }
+
+    /**
+     * @param struttura la struttura da settare
+     */
     public void setStruttura(Struttura struttura) {
         this.struttura = struttura;
     }
@@ -81,6 +105,10 @@ public class Stanza {
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
+
+    /**
+     * @param prenotazioni la lista delle prenotazini da settare
+     */
     public void setPrenotazioni(List<Prenotazione> prenotazioni) {
         this.prenotazioni = prenotazioni;
     }

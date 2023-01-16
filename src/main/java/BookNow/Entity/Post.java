@@ -19,6 +19,10 @@ public class Post {
     public int getID_Post() {
         return ID_Post;
     }
+
+    /**
+     * @param ID_Post l'id da settare
+     */
     public void setID_Post(int ID_Post) {
         this.ID_Post = ID_Post;
     }
@@ -28,6 +32,10 @@ public class Post {
     public String getTitolo() {
         return titolo;
     }
+
+    /**
+     * @param titolo il titolo da settare
+     */
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
@@ -35,6 +43,10 @@ public class Post {
      * @return il testo
      */
     public String getTesto(){return testo;}
+
+    /**
+     * @param testo il test da settare
+     */
     public void setTesto(String testo){this.testo = testo;}
     /**
      * @return i tags
@@ -42,6 +54,10 @@ public class Post {
     public String getTags() {
         return tags;
     }
+
+    /**
+     * @param tags i tag da settare
+     */
     public void setTags(String tags) {
         this.tags = tags;
     }
@@ -51,6 +67,10 @@ public class Post {
     public Cliente getAutore() {
         return autore;
     }
+
+    /**
+     * @param autore l'autore da settare
+     */
     public void setAutore(Cliente autore) {
         this.autore = autore;
     }

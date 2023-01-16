@@ -28,6 +28,10 @@ public class Cliente extends Utente{
     public String getNumero_carta() {
         return numero_carta;
     }
+
+    /**
+     * @param numero_carta il numero_carta da settare
+     */
     public void setNumero_carta(String numero_carta) {
         this.numero_carta = numero_carta;
     }
@@ -37,6 +41,10 @@ public class Cliente extends Utente{
     public Date getScadenza_carta() {
         return scadenza_carta;
     }
+
+    /**
+     * @param scadenza_carta la scandenza_carta da settare
+     */
     public void setScadenza_carta(Date scadenza_carta) {
         this.scadenza_carta = scadenza_carta;
     }
@@ -46,6 +54,10 @@ public class Cliente extends Utente{
     public int getCvv() {
         return cvv;
     }
+
+    /**
+     * @param cvv il cc da settare
+     */
     public void setCvv(int cvv) {
         this.cvv = cvv;
     }
@@ -55,6 +67,10 @@ public class Cliente extends Utente{
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
+
+    /**
+     * @param prenotazioni la lista delle prenotazioni da settare
+     */
     public void setPrenotazioni(List<Prenotazione> prenotazioni) {
         this.prenotazioni = prenotazioni;
     }

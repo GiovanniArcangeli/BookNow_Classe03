@@ -20,6 +20,10 @@ public class Albergatore extends Utente {
     public String getP_iva() {
         return p_iva;
     }
+
+    /**
+     * @param p_iva la p_iva da settare
+     */
     public void setP_iva(String p_iva) {
         this.p_iva = p_iva;
     }
@@ -29,6 +33,10 @@ public class Albergatore extends Utente {
     public List<Struttura> getStrutture() {
         return strutture;
     }
+
+    /**
+     * @param strutture la lista delle strutture da settare
+     */
     public void setStrutture(List<Struttura> strutture) {
         this.strutture = strutture;
     }
