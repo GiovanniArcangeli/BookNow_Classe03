@@ -32,7 +32,7 @@ public class AutenticazioneController extends HttpServlet {
         if(utente == null) {
             request.setAttribute("loginError", true);
             request.getRequestDispatcher("AutenticazioneGUI/LoginPage.jsp").forward(request, response);
-        } else if(utente.isAlbergatore()) {
+        } else if(utente.getIsAlbergatore()) {
             //L'utente è un albergatore
             Albergatore albergatore = StorageFacade.getInstance().getDatiAlbergatore(utente);
             request.getSession().setAttribute("utente", albergatore);

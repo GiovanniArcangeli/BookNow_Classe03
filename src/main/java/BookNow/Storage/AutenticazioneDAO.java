@@ -28,7 +28,7 @@ public class AutenticazioneDAO {
                     u.setPassword(pass);
                     u.setUsername(username);
                     u.setEmail(rs.getString("Email"));
-                    u.setAlbergatore(rs.getInt("Albergatore")==1);
+                    u.setIsAlbergatore(rs.getInt("Albergatore")==1);
                     return u;
                 }
             }

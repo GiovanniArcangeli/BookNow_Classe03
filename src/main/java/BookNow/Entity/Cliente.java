@@ -13,6 +13,8 @@ public class Cliente extends Utente{
     private List<Prenotazione> prenotazioni;
     private List<Post> posts;
 
+    public Cliente(){}
+
     public Cliente(String cf, String nome, String cognome, String recapitoTelefonico, String password, String username, String email, Date dataNascita, String numero_carta, Date scadenza_carta, int cvv) {
         super(cf, nome, cognome, recapitoTelefonico, password, username, email, dataNascita, false);
         this.cvv=cvv;

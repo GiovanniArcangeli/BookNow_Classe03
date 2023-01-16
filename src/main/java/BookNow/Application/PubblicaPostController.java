@@ -1,8 +1,6 @@
 package BookNow.Application;
 
 import BookNow.Entity.Cliente;
-import BookNow.Entity.Post;
-import BookNow.Entity.Prenotazione;
 import BookNow.Entity.Utente;
 import BookNow.Storage.StorageFacade;
 import jakarta.servlet.ServletException;
@@ -11,9 +9,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 @WebServlet("/forum")
 public class PubblicaPostController extends HttpServlet {
@@ -32,7 +27,7 @@ public class PubblicaPostController extends HttpServlet {
                         //Utente non loggato
                         //Viene mostrata la pagina di login
                         request.getRequestDispatcher("AutenticazioneGUI/LoginPage.jsp").forward(request, response);
-                    } else if (utente.isAlbergatore()) {
+                    } else if (utente.getIsAlbergatore()) {
                         //Decidere quale errore inviare
                     } else {
 
