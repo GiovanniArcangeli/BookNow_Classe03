@@ -12,11 +12,11 @@
     <table class="stanze">
         <tr>
             <td>
-                <p>${stanza.numeroStanza}</p>
-                <p>${stanza.costo}</p>
-                <p>${stanza.capienza}</p>
-                <p>${stanza.descrizione}</p>
-                <p>${stanza.serviziOfferti}</p>
+                <p>Numero stanza: ${stanza.numeroStanza}</p>
+                <p>Costo: ${stanza.costo}€</p>
+                <p>Capienza: ${stanza.capienza}</p>
+                <p>Descrizione: ${stanza.descrizione}</p>
+                <p>Servizi: ${stanza.serviziOfferti}</p>
             </td>
             <td>
                 <button onclick="location.href='${pageContext.request.contextPath}/prenota?path=prenota-stanza&id=${stanza.struttura.ID_Struttura}&num=${stanza.numeroStanza}'">Prenota</button>
