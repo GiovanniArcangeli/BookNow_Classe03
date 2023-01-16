@@ -5,7 +5,7 @@ function formInserisciPost() {
 
     var rxAlphanumericPattern = /^[\w,!.?#\-\s]+$/;
 
-    if (titolo.length > 100 || titolo.match(rxAlphanumericPattern)) {
+    if (titolo.length > 100 || !titolo.match(rxAlphanumericPattern)) {
         alert("Il campo Titolo presenta un formato errato.");
         $("#titolo").focus();
         return false;
@@ -13,7 +13,7 @@ function formInserisciPost() {
         alert("Il campo Titolo è obbligatorio.");
         $("#titolo").focus();
         return false;
-    } else if (corpo.length > 150 || titolo.match(rxAlphanumericPattern)) {
+    } else if (corpo.length > 150 || !corpo.match(rxAlphanumericPattern)) {
         alert("Il campo Corpo presenta un formato errato.");
         $("#corpo").focus();
         return false;
@@ -21,7 +21,7 @@ function formInserisciPost() {
         alert("Il campo Corpo è obbligatorio.");
         $("#corpo").focus();
         return false;
-    } else if (tags.length > 100 || titolo.match(rxAlphanumericPattern)) {
+    } else if (tags.length > 100 || !tags.match(rxAlphanumericPattern)) {
         alert("Il campo Tags presenta un formato errato.");
         $("#titolo").focus();
         return false;
