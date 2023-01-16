@@ -7,6 +7,7 @@
 <body>
 <h3 id="profiloAlbergatore">Profilo Albergatore</h3>
 <p id="links"><a href="${pageContext.request.contextPath}/ModificaStrutturaGUI/ListaStrutture.jsp">Le mie Strutture</a></p>
+<button onclick="location.href='${pageContext.request.contextPath}/login'"> Logout </button>
 <table id="dati">
     <tr>
         <td>Username ${utente.username}</td>

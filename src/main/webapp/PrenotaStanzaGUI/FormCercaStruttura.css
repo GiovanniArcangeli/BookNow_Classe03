@@ -13,7 +13,14 @@
     margin-right: auto;
     text-align: center;
 }
-
+#links {
+    width: 100%;
+    font-size: medium;
+    background-color: white;
+    color: cornflowerblue;
+    padding: 1%;
+    margin-top: 0;
+}
 input{
     width: 50%;
     margin: 6pt auto;

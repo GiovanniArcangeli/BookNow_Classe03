@@ -8,6 +8,14 @@
     margin-bottom: 0;
     margin-top: 0;
 }
+#links {
+    width: 100%;
+    font-size: medium;
+    background-color: white;
+    color: cornflowerblue;
+    padding: 1%;
+    margin-top: 0;
+}
 .prenotazione {
     width: 80%;
     margin: 2% auto;

@@ -7,6 +7,7 @@
 </head>
 <body>
 <h2 id="titoloStrutture">Le mie strutture</h2>
+<p id="links"><a href="${pageContext.request.contextPath}/ModificaStrutturaGUI/ProfiloAlbergatore.jsp">Torna al profilo</a></p>
 <!-- Lista strutture dell'albergatore -->
 <form>
 <c:forEach var="struttura" items="${utente.strutture}">
@@ -24,6 +25,5 @@
     </table>
 </c:forEach>
 </form>
-<p id="links"><a href="${pageContext.request.contextPath}/ModificaStrutturaGUI/ProfiloAlbergatore.jsp">Torna al profilo</a></p>
 </body>
 </html>

@@ -7,8 +7,9 @@
     <script src="./FormCercaStruttura.js"></script>
 </head>
 <body>
-<p>Inserisci i dati della tua prenotazione</p>
+<p id="links"><a href="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/ProfiloCliente.jsp">Torna al profilo</a></p>
 <div id="form">
+    <p>Inserisci i dati della tua prenotazione</p>
     <form id="prenotaStrutturaForm" action="${pageContext.request.contextPath}/prenota" method="post">
 
         <label for="dataIn">Data del Check-in</label>

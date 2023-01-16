@@ -7,6 +7,7 @@
 </head>
 <body>
 <h2 id="titoloPrenotazioni">Le mie prenotazioni</h2>
+<p id="links"><a href="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/ProfiloCliente.jsp">Torna al profilo</a></p>
 <!-- Lista prenotazioni del cliente -->
 <c:forEach var="preno" items="${utente.prenotazioni}">
 <table class="prenotazione">

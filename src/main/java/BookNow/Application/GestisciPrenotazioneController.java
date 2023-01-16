@@ -46,7 +46,7 @@ public class GestisciPrenotazioneController extends HttpServlet {
             }  else{
                 //La stanza non è disponibile, si torna al form per cambiare i parametri
                 request.setAttribute("retry", true);
-                doGet(request, response);
+                this.doGet(request, response);
             }
 
         } catch (RuntimeException | ParseException e) {
