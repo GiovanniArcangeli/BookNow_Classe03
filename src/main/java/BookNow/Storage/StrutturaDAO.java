@@ -59,7 +59,7 @@ public class StrutturaDAO {
     }
 
     public List<Struttura> doRetrieveByAlbergatore(Albergatore a){
-        if(a==null || a.isAlbergatore()!=true) throw new IllegalArgumentException("Albergatore non valido");
+        if(a==null || a.getIsAlbergatore()!=true) throw new IllegalArgumentException("Albergatore non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura where username = ?");
             ps.setString(1, a.getUsername());

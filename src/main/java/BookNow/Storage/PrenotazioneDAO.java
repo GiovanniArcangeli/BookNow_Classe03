@@ -40,7 +40,7 @@ public class PrenotazioneDAO {
     }
 
     public List<Prenotazione> doRetrieveByCliente(Cliente c){
-        if(c==null && c.isAlbergatore()!=false) throw new IllegalArgumentException("Cliente non valido");
+        if(c==null && c.getIsAlbergatore()) throw new IllegalArgumentException("Cliente non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
                     " from prenotazione where username = ?");

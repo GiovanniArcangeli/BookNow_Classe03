@@ -31,7 +31,7 @@ public class PostDAO {
     }
 
     public List<Post> doRetrieveByCliente(Cliente cliente){
-        if(cliente==null && cliente.isAlbergatore()!=false) throw new IllegalArgumentException("Cliente non valido");
+        if(cliente==null && cliente.getIsAlbergatore()!=false) throw new IllegalArgumentException("Cliente non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Post, titolo, testo, tags from post where username = ?");
             ps.setString(1, cliente.getUsername());
