@@ -35,7 +35,7 @@ public class StrutturaDAO {
 
     public List<Struttura> doRetrieveAll(){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome, username from struttura");
+            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura");
 
             ResultSet rs = ps.executeQuery();
             List<Struttura> strutture = new ArrayList<>();
@@ -44,18 +44,12 @@ public class StrutturaDAO {
                 int idStruttura = rs.getInt(1);
                 String indirizzo = rs.getString(2);
                 String nome = rs.getString(3);
-                String username = rs.getString(4);
 
-                Albergatore albergatore = null;
-                AlbergatoreDAO service = new AlbergatoreDAO();
-                List<Utente> utenti = service.getAllUsers();
-                for(Utente utente: utenti){
-                    if(utente.getUsername().equals(username)){
-                        albergatore = (Albergatore) utente;
-                        break;
-                    }
-                }
-                strutture.add(new Struttura(idStruttura, indirizzo, nome, albergatore));
+                Struttura s = new Struttura();
+                s.setID_Struttura(idStruttura);
+                s.setNome(nome);
+                s.setIndirizzo(indirizzo);
+                strutture.add(s);
             }
             return strutture;
         }

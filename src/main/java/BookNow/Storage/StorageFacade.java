@@ -3,6 +3,7 @@ package BookNow.Storage;
 import BookNow.Entity.*;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public final class StorageFacade {
     private static StorageFacade instance;
@@ -97,19 +98,22 @@ public final class StorageFacade {
 
     public ArrayList<Struttura> getStruttureDisponibili(Date dataIn, Date dataOut, int numOspiti){
         ArrayList<Struttura> all = (ArrayList<Struttura>) new StrutturaDAO().doRetrieveAll();
-        for(Struttura s : all){
-            s.setStanze(getStanzeDisponibili(s, dataIn, dataOut, numOspiti));
-            if(s.getStanze().size() == 0)
-                all.remove(s);
+        for (Iterator<Struttura> iterator = all.iterator(); iterator.hasNext(); ) {
+            Struttura struttura = iterator.next();
+            struttura.setStanze((getStanzeDisponibili(struttura, dataIn, dataOut, numOspiti)));
+            if (struttura.getStanze().size() == 0)
+                iterator.remove();
         }
         return all;
     }
 
     public ArrayList<Stanza> getStanzeDisponibili(Struttura s, Date dataIn, Date dataOut, int numOspiti){
         ArrayList<Stanza> all = (ArrayList<Stanza>) new StanzaDAO().doRetrieveByStruttura(s);
-        for(Stanza stanza : all){
-            if(!isStanzaDisponibile(stanza, dataIn, dataOut, numOspiti))
-                all.remove(stanza);
+
+        for (Iterator<Stanza> iterator = all.iterator(); iterator.hasNext(); ) {
+            Stanza stanza = iterator.next();
+            if (!isStanzaDisponibile(stanza, dataIn, dataOut, numOspiti))
+                iterator.remove();
         }
         return all;
     }

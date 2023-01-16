@@ -13,7 +13,7 @@ public class UtenteDAO {
         Utente user;
         try (Connection con = ConPool.getConnection()) {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM Utente WHERE 1=1");
+            rs = st.executeQuery("SELECT * FROM utente WHERE 1=1");
             while (rs.next()) {
                 boolean flag=false;
                 if(Boolean.getBoolean(rs.getString(9))==true) flag=true;

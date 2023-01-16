@@ -18,9 +18,9 @@ public class PrenotaStanzaController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String path = request.getPathInfo();
+        String path = request.getParameter("path");
         int idStruttura = Integer.parseInt(request.getParameter("id"));
-        ArrayList<Struttura> strutture = (ArrayList<Struttura>) request.getSession().getAttribute("struttureDisponbili");
+        ArrayList<Struttura> strutture = (ArrayList<Struttura>) request.getSession().getAttribute("struttureDisponibili");
         //Trova la struttura scelta tra quelle disponibili
         Struttura struttura = null;
         for(Struttura s : strutture){
@@ -29,14 +29,14 @@ public class PrenotaStanzaController extends HttpServlet {
         }
         if(struttura != null) {
             switch (path) {
-                case "/vedi-stanze": {
+                case "vedi-stanze": {
                     ArrayList<Stanza> stanze = (ArrayList<Stanza>) struttura.getStanze();
                     request.setAttribute("stanzeDisponibili", stanze);
                     request.getRequestDispatcher("PrenotaStanzaGUI/StanzeDisponibili.jsp").forward(request, response);
                     break;
                 }
 
-                case "/prenota-stanza": {
+                case "prenota-stanza": {
                     int numeroStanza = Integer.parseInt(request.getParameter("num"));
                     Prenotazione filtri = (Prenotazione) request.getSession().getAttribute("prenotazione");
 
@@ -49,7 +49,7 @@ public class PrenotaStanzaController extends HttpServlet {
                     break;
                 }
 
-                case "/conferma": {
+                case "conferma": {
                     int numeroStanza = Integer.parseInt(request.getParameter("num"));
                     Cliente utente = (Cliente) request.getSession().getAttribute("utente");
                     if(utente == null) {
@@ -93,28 +93,20 @@ public class PrenotaStanzaController extends HttpServlet {
                 //Viene mostrata la pagina di login
                 request.getRequestDispatcher("LoginPage.jsp").forward(request, response);
             } else {
+                String sDataIn = request.getParameter("dataIn");
+                Date dataIn = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataIn).getTime());
+                String sDataOut = request.getParameter("dataOut");
+                Date dataOut = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataOut).getTime());
+                int numOspiti = Integer.parseInt(request.getParameter("numOspiti"));
 
-                String path = request.getPathInfo();
-                switch (path) {
-
-                    case "/cerca" : {
-                        String sDataIn = request.getParameter("dataIn");
-                        Date dataIn = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataIn).getTime());
-                        String sDataOut = request.getParameter("dataOut");
-                        Date dataOut = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataOut).getTime());
-                        int numOspiti = Integer.parseInt(request.getParameter("numOspiti"));
-
-                        ArrayList<Struttura> disponibili = StorageFacade.getInstance().getStruttureDisponibili(dataIn, dataOut, numOspiti);
-                        request.getSession().setAttribute("struttureDisponibili", disponibili);
-                        Prenotazione filtri = new Prenotazione();
-                        filtri.setDataIn(dataIn);
-                        filtri.setDataOut(dataOut);
-                        filtri.setNumOspiti(numOspiti);
-                        request.getSession().setAttribute("prenotazione", filtri);
-                        request.getRequestDispatcher("PrenotaStanzaGUI/ListaStrutture.jsp").forward(request, response);
-                        break;
-                    }
-                }
+                ArrayList<Struttura> disponibili = StorageFacade.getInstance().getStruttureDisponibili(dataIn, dataOut, numOspiti);
+                request.getSession().setAttribute("struttureDisponibili", disponibili);
+                Prenotazione filtri = new Prenotazione();
+                filtri.setDataIn(dataIn);
+                filtri.setDataOut(dataOut);
+                filtri.setNumOspiti(numOspiti);
+                request.getSession().setAttribute("prenotazione", filtri);
+                request.getRequestDispatcher("PrenotaStanzaGUI/ListaStrutture.jsp").forward(request, response);
             }
         } catch (RuntimeException | ParseException e){
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

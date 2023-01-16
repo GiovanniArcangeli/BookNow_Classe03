@@ -98,7 +98,7 @@ public class PrenotazioneDAO {
 
     public int doSave(Prenotazione p){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("insert into prenotazione values (?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into prenotazione (DataIn, DataOut, NumOspiti, username, ID_Struttura, NumeroStanza) values (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, p.getDataIn());
             ps.setDate(2, p.getDataOut());
             ps.setInt(3, p.getNumOspiti());
