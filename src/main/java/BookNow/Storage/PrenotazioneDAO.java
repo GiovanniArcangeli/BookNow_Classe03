@@ -11,6 +11,7 @@ import java.util.*;
 public class PrenotazioneDAO {
 
     public Prenotazione doRetrieveById(int id){
+        if(id<=0) throw new IllegalArgumentException("id minore di 0");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select username, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
                     " from prenotazione where idPrenotazione = ?");
@@ -39,6 +40,7 @@ public class PrenotazioneDAO {
     }
 
     public List<Prenotazione> doRetrieveByCliente(Cliente c){
+        if(c==null && c.isAlbergatore()!=false) throw new IllegalArgumentException("Cliente non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
                     " from prenotazione where username = ?");
@@ -67,6 +69,7 @@ public class PrenotazioneDAO {
     }
 
     public List<Prenotazione> doRetrieveByStanza(Stanza s){
+        if(s==null) throw new IllegalArgumentException("Stanza non valida");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select p.idPrenotazione, p.DataIn, p.DataOut, p.NumOspiti, p.username, p.ID_Struttura, s.NumeroStanza" +
                     " from prenotazione p, stanza s, struttura S" +
@@ -97,6 +100,7 @@ public class PrenotazioneDAO {
     }
 
     public int doSave(Prenotazione p){
+        if(p==null) throw new IllegalArgumentException("Prenotazione non valida");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into prenotazione (DataIn, DataOut, NumOspiti, username, ID_Struttura, NumeroStanza) values (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, p.getDataIn());
@@ -129,6 +133,7 @@ public class PrenotazioneDAO {
     }
 
     public void doUpdate(Prenotazione p) {
+        if(p==null) throw new IllegalArgumentException("Prenotazione non valida");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("update prenotazione set DataIn = ?, DataOut = ?, NumOspiti = ?" +
                     " where idPrenotazione = ?");

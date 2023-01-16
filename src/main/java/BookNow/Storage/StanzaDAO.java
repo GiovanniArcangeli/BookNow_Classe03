@@ -11,6 +11,7 @@ import BookNow.Entity.Struttura;
 public class StanzaDAO {
 
     public Stanza doRetrieveById(int numeroStanza, int idStruttura){
+        if(idStruttura<=0 && numeroStanza<=0) throw new IllegalArgumentException("idStruttura e/o numero di stanza minore di 0");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select Capienza, costo, serviziOfferti, Descrizione" +
                     " from stanza where ID_Struttura = ? and NumeroStanza = ?");
@@ -36,6 +37,7 @@ public class StanzaDAO {
     }
 
     public List<Stanza> doRetrieveByStruttura(Struttura s){
+        if(s==null) throw new IllegalArgumentException("Struttura non valida");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select NumeroStanza, Capienza, costo, serviziOfferti, Descrizione" +
                     " from stanza where ID_Struttura = ?");
@@ -61,9 +63,11 @@ public class StanzaDAO {
     }
 
     public void addPrenotazione(Prenotazione p){
+        if(p==null) throw new IllegalArgumentException("Prenotazione non valida");
         p.getStanza().addPrenotazioni(p);
     }
     public void updatePrenotazione(Prenotazione p){
+        if(p==null) throw new IllegalArgumentException("Prenotazione non valida");
         p.getStanza().aggiornaPrenotazione(p);
     }
 }
