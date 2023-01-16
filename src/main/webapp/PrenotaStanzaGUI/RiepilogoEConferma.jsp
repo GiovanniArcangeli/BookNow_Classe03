@@ -12,7 +12,7 @@
     <p>Numero Ospiti: ${prenotazione.numOspiti}</p>
     <p>Nome Struttura: ${struttura.nome}</p>
     <p>Numero Stanza: ${numeroStanza}</p>
-    <button onclick="location.href='${pageContext.request.contextPath}/prenota/conferma?id=${struttura.ID_Struttura}&num=${numeroStanza}'">Conferma</button>
+    <button onclick="location.href='${pageContext.request.contextPath}/prenota?path=conferma&id=${struttura.ID_Struttura}&num=${numeroStanza}'">Conferma</button>
 </div>
 </body>
 </html>

@@ -11,12 +11,11 @@
     <table class="strutture">
         <tr>
             <td>
-                <p>Nome</p>
-                <p>Indirizzo</p>
-                <p>Numero Stanze: </p>
+                <p>Nome ${struttura.nome}</p>
+                <p>Indirizzo ${struttura.indirizzo}</p>
             </td>
             <td>
-                <button onclick="location.href='${pageContext.request.contextPath}/prenota/vedi-stanze?id=${struttura.ID_Struttura}'">Seleziona Struttura</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/prenota?path=vedi-stanze&id=${struttura.ID_Struttura}'">Seleziona Struttura</button>
             </td>
         </tr>
     </table>
