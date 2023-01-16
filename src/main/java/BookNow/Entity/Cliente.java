@@ -2,6 +2,7 @@ package BookNow.Entity;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.List;
 
 public class Cliente extends Utente{
@@ -63,11 +64,13 @@ public class Cliente extends Utente{
             if(p.getID_Prenotazione()==pr.getID_Prenotazione()) prenotazioni.remove(pr);
         }
     }
-    public void aggiornaPrenotazione(Prenotazione p){
-        for(Prenotazione pr: prenotazioni){
-            if(pr.getID_Prenotazione()==p.getID_Prenotazione()){
-                prenotazioni.remove(pr);
-                prenotazioni.add(p);
+    public void aggiornaPrenotazione(Prenotazione p) {
+
+        for (ListIterator<Prenotazione> iterator = prenotazioni.listIterator(); iterator.hasNext(); ) {
+            Prenotazione prenotazione = iterator.next();
+            if (prenotazione.getID_Prenotazione() == p.getID_Prenotazione()) {
+                iterator.remove();
+                iterator.add(p);
             }
         }
     }

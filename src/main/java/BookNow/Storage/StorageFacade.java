@@ -32,7 +32,7 @@ public final class StorageFacade {
 
     public void pubblicazionePost(Cliente autore, String titolo, String testo, String tags){
         Post post = new Post();
-        post.setCliente(autore);
+        post.setAutore(autore);
         post.setTitolo(titolo);
         post.setTesto(testo);
         post.setTags(tags);
