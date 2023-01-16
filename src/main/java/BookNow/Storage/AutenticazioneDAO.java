@@ -6,19 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class AutenticazioneDAO {
 
     public Utente autenticazione(String username, String password){
-       /* UtenteDAO u=new UtenteDAO();
-        ArrayList<Utente> utenti=u.getAllUsers();
-        for(Utente ut: utenti){
-            if(ut.getPassword().equals(password) && ut.getUsername().equals(username))
-                    return ut;
-                }
-        return null;*/
-
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("select * from utente where username = ?");
             ps.setString(1, username);
