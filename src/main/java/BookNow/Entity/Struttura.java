@@ -1,7 +1,5 @@
 package BookNow.Entity;
 
-import BookNow.Storage.StanzaDAO;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,29 +18,10 @@ public class Struttura {
         this.stanze = new ArrayList<>();
     }
 
-    public void addStanza(Stanza s) {
-        this.stanze.add(s);
-    }
 
-    public void deleteStanza(Stanza s){
-        for(Stanza stanza: this.stanze)
-            if(stanza.getStruttura().getID_Struttura() == s.getStruttura().getID_Struttura()
-            && stanza.getNumeroStanza() == s.getNumeroStanza())
-                this.stanze.remove(s);
-    }
-
-    public void aggiornaStanza(Stanza s){
-        for(Stanza stanza: this.stanze)
-            if(stanza.getStruttura().getID_Struttura() == s.getStruttura().getID_Struttura()
-                    && stanza.getNumeroStanza() == s.getNumeroStanza()) {
-                this.stanze.remove(s);
-                this.stanze.add(s);
-            }
-    }
     public int getID_Struttura() {
         return ID_Struttura;
     }
-
     public void setID_Struttura(int ID_Struttura) {
         this.ID_Struttura = ID_Struttura;
     }
@@ -50,7 +29,6 @@ public class Struttura {
     public String getIndirizzo() {
         return indirizzo;
     }
-
     public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
     }
@@ -58,7 +36,6 @@ public class Struttura {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -66,7 +43,6 @@ public class Struttura {
     public Albergatore getAlbergatore() {
         return albergatore;
     }
-
     public void setAlbergatore(Albergatore albergatore) {
         this.albergatore = albergatore;
     }
@@ -74,8 +50,26 @@ public class Struttura {
     public List<Stanza> getStanze() {
         return stanze;
     }
-
     public void setStanze(List<Stanza> stanze) {
         this.stanze = stanze;
+    }
+
+
+    public void addStanza(Stanza s) {
+        this.stanze.add(s);
+    }
+    public void deleteStanza(Stanza s){
+        for(Stanza stanza: this.stanze)
+            if(stanza.getStruttura().getID_Struttura() == s.getStruttura().getID_Struttura()
+                    && stanza.getNumeroStanza() == s.getNumeroStanza())
+                this.stanze.remove(s);
+    }
+    public void aggiornaStanza(Stanza s){
+        for(Stanza stanza: this.stanze)
+            if(stanza.getStruttura().getID_Struttura() == s.getStruttura().getID_Struttura()
+                    && stanza.getNumeroStanza() == s.getNumeroStanza()) {
+                this.stanze.remove(s);
+                this.stanze.add(s);
+            }
     }
 }

@@ -1,7 +1,5 @@
 package BookNow.Entity;
 
-import BookNow.Storage.StrutturaDAO;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,6 @@ public class Albergatore extends Utente {
     public String getP_iva() {
         return p_iva;
     }
-
     public void setP_iva(String p_iva) {
         this.p_iva = p_iva;
     }
@@ -28,21 +25,18 @@ public class Albergatore extends Utente {
     public List<Struttura> getStrutture() {
         return strutture;
     }
-
-    public void addStrutture(Struttura s) {
-        strutture.add(s);
-    }
-
     public void setStrutture(List<Struttura> strutture) {
         this.strutture = strutture;
     }
 
+    public void addStrutture(Struttura s) {
+        strutture.add(s);
+    }
     public void deleteStruttura(Struttura s){
         for(Struttura st: strutture){
             if(s.getID_Struttura()==st.getID_Struttura()) strutture.remove(st);
         }
     }
-
     public void aggiornaStrutture(Struttura s){
         for(Struttura st: strutture){
             if(s.getID_Struttura()==st.getID_Struttura()){

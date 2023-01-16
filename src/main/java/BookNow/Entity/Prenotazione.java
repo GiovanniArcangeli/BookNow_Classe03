@@ -23,7 +23,6 @@ public class Prenotazione {
     public int getID_Prenotazione() {
         return ID_Prenotazione;
     }
-
     public void setID_Prenotazione(int ID_Prenotazione) {
         this.ID_Prenotazione = ID_Prenotazione;
     }
@@ -31,7 +30,6 @@ public class Prenotazione {
     public int getNumOspiti() {
         return numOspiti;
     }
-
     public void setNumOspiti(int numOspiti) {
         this.numOspiti = numOspiti;
     }
@@ -39,7 +37,6 @@ public class Prenotazione {
     public Date getDataIn() {
         return dataIn;
     }
-
     public void setDataIn(Date dataIn) {
         this.dataIn = dataIn;
     }
@@ -47,7 +44,6 @@ public class Prenotazione {
     public Date getDataOut() {
         return dataOut;
     }
-
     public void setDataOut(Date dataOut) {
         this.dataOut = dataOut;
     }
@@ -55,7 +51,6 @@ public class Prenotazione {
     public Stanza getStanza() {
         return stanza;
     }
-
     public void setStanza(Stanza stanza) {
         this.stanza = stanza;
     }
@@ -63,7 +58,6 @@ public class Prenotazione {
     public Cliente getCliente() {
         return cliente;
     }
-
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }

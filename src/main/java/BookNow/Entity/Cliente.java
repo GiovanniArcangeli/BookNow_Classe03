@@ -1,11 +1,7 @@
 package BookNow.Entity;
 
-import BookNow.Storage.PostDAO;
-import BookNow.Storage.PrenotazioneDAO;
-
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Cliente extends Utente{
@@ -27,7 +23,6 @@ public class Cliente extends Utente{
     public String getNumero_carta() {
         return numero_carta;
     }
-
     public void setNumero_carta(String numero_carta) {
         this.numero_carta = numero_carta;
     }
@@ -35,7 +30,6 @@ public class Cliente extends Utente{
     public Date getScadenza_carta() {
         return scadenza_carta;
     }
-
     public void setScadenza_carta(Date scadenza_carta) {
         this.scadenza_carta = scadenza_carta;
     }
@@ -43,7 +37,6 @@ public class Cliente extends Utente{
     public int getCvv() {
         return cvv;
     }
-
     public void setCvv(int cvv) {
         this.cvv = cvv;
     }
@@ -51,11 +44,13 @@ public class Cliente extends Utente{
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
-
     public void setPrenotazioni(List<Prenotazione> prenotazioni) {
         this.prenotazioni = prenotazioni;
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
@@ -63,13 +58,11 @@ public class Cliente extends Utente{
     public void addPrenotazioni(Prenotazione p) {
         prenotazioni.add(p);
     }
-
     public void deletePrenotazioni(Prenotazione p){
         for(Prenotazione pr: prenotazioni){
             if(p.getID_Prenotazione()==pr.getID_Prenotazione()) prenotazioni.remove(pr);
         }
     }
-
     public void aggiornaPrenotazione(Prenotazione p){
         for(Prenotazione pr: prenotazioni){
             if(pr.getID_Prenotazione()==p.getID_Prenotazione()){
@@ -79,26 +72,7 @@ public class Cliente extends Utente{
         }
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
     public void aggiungiPost(Post p) {
         posts.add(p);
     }
-
-    public void deletePost(Post p){
-        for(Post ps: posts){
-            if(p.getID_Post()==ps.getID_Post()) posts.remove(ps);
-        }
-    }
-/*
-    public void aggiornaPost(Post p){
-        for(Post ps: posts){
-            if(p.getID_Post()==ps.getID_Post()){
-                posts.remove(ps);
-                posts.add(p);
-            }
-        }
-    }*/
 }
