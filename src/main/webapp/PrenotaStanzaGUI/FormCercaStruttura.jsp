@@ -11,9 +11,6 @@
 <div id="form">
     <form id="prenotaStrutturaForm" action="${pageContext.request.contextPath}/prenota/cerca" method="post">
 
-        <label for="dataIn">Città</label>
-        <input id="citta" type="text" name="citt&agrave;"><br>
-
         <label for="dataIn">Data del Check-in</label>
         <input id="dataIn" type="text" name="dataIn"><br>
 

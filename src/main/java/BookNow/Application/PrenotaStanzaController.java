@@ -98,14 +98,13 @@ public class PrenotaStanzaController extends HttpServlet {
                 switch (path) {
 
                     case "/cerca" : {
-                        String citta = request.getParameter("citta");
                         String sDataIn = request.getParameter("dataIn");
                         Date dataIn = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataIn).getTime());
                         String sDataOut = request.getParameter("dataOut");
                         Date dataOut = new Date(new SimpleDateFormat("yyyy/MM/dd").parse(sDataOut).getTime());
                         int numOspiti = Integer.parseInt(request.getParameter("numOspiti"));
 
-                        ArrayList<Struttura> disponibili = StorageFacade.getInstance().getStruttureDisponibili(citta, dataIn, dataOut, numOspiti);
+                        ArrayList<Struttura> disponibili = StorageFacade.getInstance().getStruttureDisponibili(dataIn, dataOut, numOspiti);
                         request.getSession().setAttribute("struttureDisponibili", disponibili);
                         Prenotazione filtri = new Prenotazione();
                         filtri.setDataIn(dataIn);
