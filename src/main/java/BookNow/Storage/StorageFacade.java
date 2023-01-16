@@ -18,12 +18,31 @@ public final class StorageFacade {
         return instance;
     }
 
+    /**
+     * Modifica i dati di una prenotazione effettuata
+     * @param username username dell'utente
+     * @param password password dell'utente
+     * @return l'utente con le credenziali corrispondenti, null se non esiste
+     * @pre username != null
+     * @pre password!= null
+     */
     public Utente controlloAccesso(String username, String password){
+        if(username != null || password != null){
+            throw new IllegalArgumentException("Parametri errati");
+        }
         return new AutenticazioneDAO().autenticazione(username, password);
     }
 
+    /**
+     * Modifica i dati di una struttura nel sistema
+     * @param id id della struttura da modificare
+     * @param indirizzo nuovo indirizzo della struttura
+     * @param nome nuovo nome della struttura
+     * @pre id > 0
+     * @pre StrutturaDAO.doRetrieveById(id) != null
+     */
     public void modificaStruttura(int id, String indirizzo, String nome){
-        if(id<= 0){
+        if(id<= 0 || new StrutturaDAO().doRetrieveById(id) == null){
             throw new IllegalArgumentException("ID Negativo");
         }
         Struttura oldOne = new StrutturaDAO().doRetrieveById(id);
@@ -33,6 +52,13 @@ public final class StorageFacade {
         new StrutturaDAO().doUpdate(oldOne);
     }
 
+    /**
+     * Pubblica un post sul forum
+     * @param autore l'autore del post
+     * @param titolo il titolo del post
+     * @param testo il testo del post
+     * @param tags i tag del post
+     */
     public void pubblicazionePost(Cliente autore, String titolo, String testo, String tags){
         Post post = new Post();
         post.setAutore(autore);
@@ -52,10 +78,9 @@ public final class StorageFacade {
      * @pre id > 0
      * @pre PrenotazioneDAO.doRetrieveById(id) != null
      */
-
     public Prenotazione modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
-        if(id<= 0){
-            throw new IllegalArgumentException("ID Negativo");
+        if(id <= 0 || new PrenotazioneDAO().doRetrieveById(id) != null){
+            throw new IllegalArgumentException("Parametri errati");
         }
         PrenotazioneDAO service = new PrenotazioneDAO();
         Prenotazione oldOne = service.doRetrieveById(id);
@@ -71,7 +96,24 @@ public final class StorageFacade {
         return service.doRetrieveById(id);
     }
 
+    /**
+     * Effettua una nuova prenotazione
+     * @param cliente il Cliente che effettua la prenotazione
+     * @param ID_Struttura identificativo della struttura
+     * @param numeroStanza identificativo della stanza
+     * @param dataIn data di check-in
+     * @param dataOut data di check-out
+     * @param numOspiti numero degli ospiti
+     * @return la prenotazione appena effettuata, null se non è stata effettuata.
+     * @pre id > 0
+     * @pre dataIn > Date(System.currentTimeMillis())
+     * @pre dataOut > dataIn
+     * @pre numOspiti > 0
+     */
     public Prenotazione prenotazioneStanza(Cliente cliente, int ID_Struttura, int numeroStanza, Date dataIn, Date dataOut, int numOspiti){
+        if(dataIn.before(new Date(System.currentTimeMillis())) ||dataIn.after(dataOut) || numOspiti <= 0){
+            throw new IllegalArgumentException("Parametri errati");
+        }
         Prenotazione prenotazione = new Prenotazione();
         prenotazione.setCliente(cliente);
         prenotazione.setDataIn(dataIn);
@@ -87,10 +129,21 @@ public final class StorageFacade {
         return prenotazione;
     }
 
+    /**
+     * Cerca tutti i post pubblicati nel sistema
+     * @return la lista di tutti i post
+     */
     public ArrayList<Post> getAllPosts(){
         return (ArrayList<Post>) new PostDAO().doRetrieveAll();
     }
 
+    /**
+     * Trova l'Albergatore corrispondente all'utente
+     * @param utente Utente da trasformare in Albergatore
+     * @return l'Albergatore corrispondente
+     * @pre utente != null
+     * @pre utente.getIsAlbergatore()
+     */
     public Albergatore getDatiAlbergatore(Utente utente){
         if(utente == null || !utente.getIsAlbergatore()){
             throw new IllegalArgumentException("Utente non è un albergatore");
@@ -101,6 +154,13 @@ public final class StorageFacade {
         return alb;
     }
 
+    /**
+     * Trova il Cliente corrispondente all'utente
+     * @param utente Utente da trasformare in Cliente
+     * @return il Cliente corrispondente
+     * @pre utente != null
+     * @pre !utente.getIsAlbergatore()
+     */
     public Cliente getDatiCliente(Utente utente){
         if(utente == null || utente.getIsAlbergatore()){
             throw new IllegalArgumentException("Utente non è un cliente");
@@ -113,22 +173,46 @@ public final class StorageFacade {
         return cliente;
     }
 
+    /**
+     * Trova i dati di una Prenotazione partendo dall'id
+     * @param id id della prenotazione da cercare
+     * @return la Prenotazione corrispondante
+     * @pre id > 0
+     * @pre PrenotazioneDAO.doRetrieveById(id) != null
+     */
     public Prenotazione getDatiPrenotazione(int id){
-        if(id<= 0){
+        if(id<= 0 || new PrenotazioneDAO().doRetrieveById(id) == null){
             throw new IllegalArgumentException("ID Negativo");
         }
         return  new PrenotazioneDAO().doRetrieveById(id);
     }
 
+    /**
+     * Trova i dati di una Struttura partendo dall'id
+     * @param id id della struttura da cercare
+     * @return la Struttura corrispondante
+     * @pre id > 0
+     * @pre StrutturaDAO.doRetrieveById(id) != null
+     */
     public Struttura getDatiStruttura(int id){
-        if(id<= 0){
+        if(id<= 0 || new StrutturaDAO().doRetrieveById(id) == null){
             throw new IllegalArgumentException("ID Negativo");
         }
         return new StrutturaDAO().doRetrieveById(id);
     }
 
+    /**
+     * Verifica quali sono le strutture disponibili nei giorni specificati
+     * @param dataIn data del check-in
+     * @param dataOut data del check-out
+     * @param numOspiti numero di ospiti
+     * @return la lista di strutture disponibili
+     * @pre dataIn > Date(System.currentTimeMillis()
+     * @pre dataOut > dataIn
+     * @pre numOspiti > 0
+     */
     public ArrayList<Struttura> getStruttureDisponibili(Date dataIn, Date dataOut, int numOspiti){
-        if(dataIn.after(dataOut) || numOspiti <= 0){
+        if(dataIn.before(new Date(System.currentTimeMillis())) || dataIn.after(dataOut) || numOspiti <= 0){
             throw new IllegalArgumentException("Parametri errati");
         }
         ArrayList<Struttura> all = (ArrayList<Struttura>) new StrutturaDAO().doRetrieveAll();
@@ -140,9 +224,20 @@ public final class StorageFacade {
         }
         return all;
     }
-
+    /**
+     * Verifica quali sono le stanza disponibili nei giorni specificati
+     * @param s struttura dove cercare le stanze
+     * @param dataIn data del check-in
+     * @param dataOut data del check-out
+     * @param numOspiti numero di ospiti
+     * @return la lista delle stanze disponibili
+     * @pre dataIn > Date(System.currentTimeMillis())
+     * @pre dataOut > dataIn
+     * @pre numOspiti > 0
+     * @pre s!=null
+     */
     public ArrayList<Stanza> getStanzeDisponibili(Struttura s, Date dataIn, Date dataOut, int numOspiti){
-        if(dataIn.after(dataOut) || numOspiti <= 0 || s==null){
+        if(dataIn.before(new Date(System.currentTimeMillis())) ||dataIn.after(dataOut) || numOspiti <= 0 || s==null){
             throw new IllegalArgumentException("Parametri errati");
         }
         ArrayList<Stanza> all = (ArrayList<Stanza>) new StanzaDAO().doRetrieveByStruttura(s);
@@ -162,11 +257,13 @@ public final class StorageFacade {
      * @param dataOut data del check-out
      * @param numOspiti numero di ospiti
      * @return true se disponibile, false altrimenti
-     * @pre dataIn > Date.now() && dataOut > dataIn && numOspiti > 0 && s!=null
+     * @pre dataIn > Date(System.currentTimeMillis())
+     * @pre dataOut > dataIn
+     * @pre numOspiti > 0
+     * @pre s!=null
      */
-
     public boolean isStanzaDisponibile(Stanza s, Date dataIn, Date dataOut, int numOspiti){
-        if(dataIn.after(dataOut) || numOspiti <= 0 || s==null){
+        if(dataIn.before(new Date(System.currentTimeMillis())) ||dataIn.after(dataOut) || numOspiti <= 0 || s==null){
             throw new IllegalArgumentException("Parametri errati");
         }
         if(numOspiti > s.getCapienza())
