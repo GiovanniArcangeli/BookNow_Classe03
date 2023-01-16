@@ -2,9 +2,7 @@ function LoginPage() {
     var username = $("#username").val();
     var password = $("#password").val();
 
-    var rxAlphanumericPattern = /^[\w,!.?#\-\s]+$/;
-
-    if (username.length > 45 || !username.match(rxAlphanumericPattern)) {
+    if (username.length > 45) {
         alert("Il campo Username presenta caratteri non consentiti");
         $("#username").focus();
         return false;
@@ -13,7 +11,7 @@ function LoginPage() {
         $("#username").focus();
         return false;
     }
-    if (password.length > 45 || !password.match(rxAlphanumericPattern)) {
+    if (password.length > 45) {
         alert("Il campo Password presenta caratteri non consentiti\"");
         $("#password").focus();
         return false;
