@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,9 @@
 <p>Modifica i dati della prenotazione</p>
 <div id="form">
     <form id="prenotazioneForm" method="post" action="${pageContext.request.contextPath}/gestisci-prenotazione">
+        <c:if test="${retry == true}">
+            <p>Stanza non disponibile nelle date selezionate</p>
+        </c:if>
         <input type="hidden" id="id" name="id" value="${prenotazione.ID_Prenotazione}">
 
         <label for="dataIn">Data del Check-in </label>
