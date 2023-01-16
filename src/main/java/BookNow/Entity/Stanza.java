@@ -70,9 +70,15 @@ public class Stanza {
     }
 
     public void addPrenotazioni(Prenotazione p) {
+        if(p == null) {
+            throw new IllegalArgumentException("La prenotazione è nulla");
+        }
         prenotazioni.add(p);
     }
     public void aggiornaPrenotazione(Prenotazione p){
+        if(p == null) {
+            throw new IllegalArgumentException("La prenotazione è nulla");
+        }
         for(Prenotazione pr: prenotazioni){
             if(pr.getID_Prenotazione()==p.getID_Prenotazione()){
                 prenotazioni.remove(pr);

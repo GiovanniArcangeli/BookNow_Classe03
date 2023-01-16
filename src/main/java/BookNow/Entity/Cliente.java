@@ -57,10 +57,15 @@ public class Cliente extends Utente{
     }
 
     public void addPrenotazioni(Prenotazione p) {
+        if(p == null) {
+            throw new IllegalArgumentException("La prenotazione è nulla");
+        }
         prenotazioni.add(p);
     }
     public void aggiornaPrenotazione(Prenotazione p) {
-
+        if(p == null) {
+            throw new IllegalArgumentException("La prenotazione è nulla");
+        }
         for (ListIterator<Prenotazione> iterator = prenotazioni.listIterator(); iterator.hasNext(); ) {
             Prenotazione prenotazione = iterator.next();
             if (prenotazione.getID_Prenotazione() == p.getID_Prenotazione()) {

@@ -7,6 +7,9 @@ import java.sql.*;
 public class ClienteDAO{
 
     public Cliente getClienteByUsername(String username) {
+        if(username == null) {
+            throw new IllegalArgumentException("L'username è nullo");
+        }
         Statement st;
         ResultSet rs;
         Cliente cli=null;
@@ -24,10 +27,16 @@ public class ClienteDAO{
     }
 
     public void addPrenotazione(Prenotazione p){
+        if(p == null) {
+            throw new IllegalArgumentException("La prenotazione è nulla");
+        }
         p.getCliente().addPrenotazioni(p);
     }
 
     public void updatePrenotazione(Prenotazione p){
+        if(p == null) {
+            throw new IllegalArgumentException("La prenotazione è nulla");
+        }
         p.getCliente().aggiornaPrenotazione(p);
     }
 

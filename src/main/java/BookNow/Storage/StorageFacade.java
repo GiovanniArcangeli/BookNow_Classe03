@@ -23,6 +23,9 @@ public final class StorageFacade {
     }
 
     public void modificaStruttura(int id, String indirizzo, String nome){
+        if(id<= 0){
+            throw new IllegalArgumentException("ID Negativo");
+        }
         Struttura oldOne = new StrutturaDAO().doRetrieveById(id);
         oldOne.setIndirizzo(indirizzo);
         oldOne.setNome(nome);
@@ -40,6 +43,9 @@ public final class StorageFacade {
     }
 
     public Prenotazione modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
+        if(id<= 0){
+            throw new IllegalArgumentException("ID Negativo");
+        }
         PrenotazioneDAO service = new PrenotazioneDAO();
         Prenotazione oldOne = service.doRetrieveById(id);
 
@@ -75,6 +81,9 @@ public final class StorageFacade {
     }
 
     public Albergatore getDatiAlbergatore(Utente utente){
+        if(utente == null || !utente.getIsAlbergatore()){
+            throw new IllegalArgumentException("Utente non è un albergatore");
+        }
         Albergatore alb = new AlbergatoreDAO().getAlbergatoreByUsername(utente.getUsername());
         ArrayList<Struttura> strutture = (ArrayList<Struttura>) new StrutturaDAO().doRetrieveByAlbergatore(alb);
         alb.setStrutture(strutture);
@@ -82,6 +91,9 @@ public final class StorageFacade {
     }
 
     public Cliente getDatiCliente(Utente utente){
+        if(utente == null || utente.getIsAlbergatore()){
+            throw new IllegalArgumentException("Utente non è un cliente");
+        }
         Cliente cliente = new ClienteDAO().getClienteByUsername(utente.getUsername());
         ArrayList<Prenotazione> prenotazioni = (ArrayList<Prenotazione>) new PrenotazioneDAO().doRetrieveByCliente(cliente);
         ArrayList<Post> posts = (ArrayList<Post>) new PostDAO().doRetrieveByCliente(cliente);
@@ -90,13 +102,24 @@ public final class StorageFacade {
         return cliente;
     }
 
-    public Prenotazione getDatiPrenotazione(int id){ return  new PrenotazioneDAO().doRetrieveById(id); }
+    public Prenotazione getDatiPrenotazione(int id){
+        if(id<= 0){
+            throw new IllegalArgumentException("ID Negativo");
+        }
+        return  new PrenotazioneDAO().doRetrieveById(id);
+    }
 
     public Struttura getDatiStruttura(int id){
+        if(id<= 0){
+            throw new IllegalArgumentException("ID Negativo");
+        }
         return new StrutturaDAO().doRetrieveById(id);
     }
 
     public ArrayList<Struttura> getStruttureDisponibili(Date dataIn, Date dataOut, int numOspiti){
+        if(dataIn.after(dataOut) || numOspiti <= 0){
+            throw new IllegalArgumentException("Parametri errati");
+        }
         ArrayList<Struttura> all = (ArrayList<Struttura>) new StrutturaDAO().doRetrieveAll();
         for (Iterator<Struttura> iterator = all.iterator(); iterator.hasNext(); ) {
             Struttura struttura = iterator.next();
@@ -108,6 +131,9 @@ public final class StorageFacade {
     }
 
     public ArrayList<Stanza> getStanzeDisponibili(Struttura s, Date dataIn, Date dataOut, int numOspiti){
+        if(dataIn.after(dataOut) || numOspiti <= 0 || s==null){
+            throw new IllegalArgumentException("Parametri errati");
+        }
         ArrayList<Stanza> all = (ArrayList<Stanza>) new StanzaDAO().doRetrieveByStruttura(s);
 
         for (Iterator<Stanza> iterator = all.iterator(); iterator.hasNext(); ) {
@@ -119,7 +145,9 @@ public final class StorageFacade {
     }
 
     public boolean isStanzaDisponibile(Stanza s, Date dataIn, Date dataOut, int numOspiti){
-
+        if(dataIn.after(dataOut) || numOspiti <= 0 || s==null){
+            throw new IllegalArgumentException("Parametri errati");
+        }
         if(numOspiti > s.getCapienza())
             return false;
 

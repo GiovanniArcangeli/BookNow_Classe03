@@ -8,6 +8,9 @@ import java.sql.*;
 public class AlbergatoreDAO{
 
     public Albergatore getAlbergatoreByUsername(String username) {
+        if(username == null) {
+            throw new IllegalArgumentException("L'username è nullo");
+        }
         Statement st;
         ResultSet rs;
         Albergatore alb=null;
@@ -25,6 +28,9 @@ public class AlbergatoreDAO{
     }
 
     public void updateStruttura(Struttura s){
+        if(s == null) {
+            throw new IllegalArgumentException("La struttura è nulla");
+        }
         s.getAlbergatore().aggiornaStrutture(s);
     }
 }

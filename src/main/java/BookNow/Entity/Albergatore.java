@@ -30,6 +30,9 @@ public class Albergatore extends Utente {
     }
 
     public void aggiornaStrutture(Struttura s){
+        if(s == null) {
+            throw new IllegalArgumentException("La struttura è nulla");
+        }
         for(Struttura st: strutture){
             if(s.getID_Struttura()==st.getID_Struttura()){
                 strutture.remove(st);
