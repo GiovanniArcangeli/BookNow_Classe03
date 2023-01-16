@@ -13,7 +13,7 @@ function LoginPage() {
         $("#username").focus();
         return false;
     }
-    if (password.length > 45 || !username.match(rxAlphanumericPattern)) {
+    if (password.length > 45 || !password.match(rxAlphanumericPattern)) {
         alert("Il campo Password presenta caratteri non consentiti\"");
         $("#password").focus();
         return false;
