@@ -27,16 +27,9 @@ public class ClienteDAO{
         p.getCliente().addPrenotazioni(p);
     }
 
-    public void removePrenotazione(Prenotazione p){
-        p.getCliente().deletePrenotazioni(p);
-    }
-
     public void updatePrenotazione(Prenotazione p){
         p.getCliente().aggiornaPrenotazione(p);
     }
 
-    public void removePost(Post p){
-        p.getCliente().deletePost(p);
-    }
 
 }
