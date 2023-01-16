@@ -9,7 +9,12 @@ import java.sql.Date;
 import java.util.*;
 
 public class PrenotazioneDAO {
-
+    /**
+     * Restituisce la Prenotazione, ricercandola per id
+     * @param id l'id della prenotazione da ricercare
+     * @return la Prenotazione se la trova, altrimenti null
+     * @pre id>0
+     */
     public Prenotazione doRetrieveById(int id){
         if(id<=0) throw new IllegalArgumentException("id minore di 0");
         try(Connection con = ConPool.getConnection()){
@@ -38,9 +43,15 @@ public class PrenotazioneDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
+    /**
+     * Restituisce le prenotazioni effettuate da un Cliente specifico
+     * @param c il Cliente
+     * @return la lista delle prenotazioni effettuate dal Cliente
+     * @pre c!=null
+     * @pre c.getIsAlbergatore()==false
+     */
     public List<Prenotazione> doRetrieveByCliente(Cliente c){
-        if(c==null && c.getIsAlbergatore()) throw new IllegalArgumentException("Cliente non valido");
+        if(c==null || c.getIsAlbergatore()) throw new IllegalArgumentException("Cliente non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select idPrenotazione, DataIn, DataOut, NumOspiti, ID_Struttura, NumeroStanza" +
                     " from prenotazione where username = ?");
@@ -67,7 +78,12 @@ public class PrenotazioneDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
+    /**
+     * Restituisce una lista di tutte le prenotazioni effettuate su una stanza specifica
+     * @param s la Stanza
+     * @return la lista delle prenotazioni effettuate su quella stanza
+     * @pre s!=null
+     */
     public List<Prenotazione> doRetrieveByStanza(Stanza s){
         if(s==null) throw new IllegalArgumentException("Stanza non valida");
         try(Connection con = ConPool.getConnection()){
@@ -98,7 +114,12 @@ public class PrenotazioneDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
+    /**
+     * Aggiunge una nuova Prenotazione ritornandone l'id
+     * @param p la Prenotazione
+     * @return l'id della nuova Prenotazione
+     * @pre p!=null
+     */
     public int doSave(Prenotazione p){
         if(p==null) throw new IllegalArgumentException("Prenotazione non valida");
         try(Connection con = ConPool.getConnection()){
@@ -131,7 +152,11 @@ public class PrenotazioneDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
+    /**
+     * Aggiorna le info di una Prenotazione già registrata
+     * @param p la prenotazione aggiornata
+     * @pre p!=null
+     */
     public void doUpdate(Prenotazione p) {
         if(p==null) throw new IllegalArgumentException("Prenotazione non valida");
         try(Connection con = ConPool.getConnection()){

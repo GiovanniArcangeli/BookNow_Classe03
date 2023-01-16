@@ -5,7 +5,12 @@ import BookNow.Entity.*;
 import java.sql.*;
 
 public class ClienteDAO{
-
+    /**
+     * Restituisce il Cliente, ricercandolo per Username
+     * @param username l'username
+     * @return Il Cliente se lo trova, null altrimenti
+     * @pre username!=null
+     */
     public Cliente getClienteByUsername(String username) {
         if(username == null) {
             throw new IllegalArgumentException("L'username è nullo");
@@ -25,14 +30,22 @@ public class ClienteDAO{
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Aggiunge una nuova prenotazione
+     * @param p la nuova prenotazione
+     * @pre p!=null
+     */
     public void addPrenotazione(Prenotazione p){
         if(p == null) {
             throw new IllegalArgumentException("La prenotazione è nulla");
         }
         p.getCliente().addPrenotazioni(p);
     }
-
+    /**
+     * Aggiorna i dati di una prenotazione già effettuata
+     * @param p la Prenotazione aggiornata
+     * @pre p!=null
+     */
     public void updatePrenotazione(Prenotazione p){
         if(p == null) {
             throw new IllegalArgumentException("La prenotazione è nulla");

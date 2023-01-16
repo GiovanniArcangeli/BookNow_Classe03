@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostDAO {
-
+    /**
+     * Restituisce tutti i post all'interno del forum
+     * @return La lista dei post pubblicati
+     */
     public List<Post> doRetrieveAll(){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select * from post");
@@ -29,9 +32,15 @@ public class PostDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
+    /**
+     * Restituisce i post pubblicati da un Cliente specifico
+     * @param cliente Il cliente
+     * @return la lista con i post pubblicati dal cliente
+     * @pre cliente!=null
+     * @pre cliente.getIsAlbergatore()==false
+     */
     public List<Post> doRetrieveByCliente(Cliente cliente){
-        if(cliente==null && cliente.getIsAlbergatore()!=false) throw new IllegalArgumentException("Cliente non valido");
+        if(cliente==null || cliente.getIsAlbergatore()!=false) throw new IllegalArgumentException("Cliente non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Post, titolo, testo, tags from post where username = ?");
             ps.setString(1, cliente.getUsername());
@@ -51,6 +60,11 @@ public class PostDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
+    /**
+     * Pubblica un nuovo post
+     * @param p Il nuovo post
+     * @pre p!=null
+     */
     public void doSave(Post p){
         if(p==null) throw new IllegalArgumentException("Post non valido");
         try(Connection con = ConPool.getConnection()){

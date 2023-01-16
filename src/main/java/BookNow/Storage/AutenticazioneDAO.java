@@ -8,7 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AutenticazioneDAO {
-
+    /**
+     * Controlla se le credenziali di accesso(username e password) sono corrette
+     * @param username l'username
+     * @param password password
+     * @return L'Utente se le credenziali sono corrette, null altrimenti
+     * @pre username!=null
+     * @pre password!=null
+     */
     public Utente autenticazione(String username, String password){
         if(username==null || password==null)
             throw new IllegalArgumentException("Username e/o password nulli");

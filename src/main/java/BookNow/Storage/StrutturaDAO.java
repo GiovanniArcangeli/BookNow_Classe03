@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 public class StrutturaDAO {
 
+    /**
+     * Restituisce la Struttura, ricercandola per id
+     * @param id l'id della struttura da ricercare
+     * @return la Struttura se la trova, altrimenti null
+     * @pre id>0
+     */
     public Struttura doRetrieveById(int id){
         if(id<=0) throw new IllegalArgumentException("id minore di 0");
         try(Connection con = ConPool.getConnection()) {
@@ -32,7 +38,10 @@ public class StrutturaDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
+    /**
+     * Restituisce tutte le strutture registrate
+     * @return la lista delle strutture
+     */
     public List<Struttura> doRetrieveAll(){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura");
@@ -57,7 +66,13 @@ public class StrutturaDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
+    /**
+     * Restituisce tutte le strutture di un Albergatore specifico
+     * @param a l'Albergatore
+     * @return la lista delle strutture dell'albergatore
+     * @pre a!=null
+     * @pre a.getIsAlbergatore()==true
+     */
     public List<Struttura> doRetrieveByAlbergatore(Albergatore a){
         if(a==null || a.getIsAlbergatore()!=true) throw new IllegalArgumentException("Albergatore non valido");
         try(Connection con = ConPool.getConnection()){
@@ -80,7 +95,11 @@ public class StrutturaDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
+    /**
+     * Aggiorna una struttura già esistente
+     * @param s la Strutturae
+     * @pre doRetrieveAll().contains(s)
+     */
     public void doUpdate(Struttura s){
         if(!doRetrieveAll().contains(s)) throw new IllegalArgumentException("Struttura non presente");
         try(Connection con = ConPool.getConnection()){

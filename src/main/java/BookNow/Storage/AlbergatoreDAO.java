@@ -6,7 +6,12 @@ import java.sql.*;
 
 
 public class AlbergatoreDAO{
-
+    /**
+     * Restituisce l'Albergatore, ricercandolo per Username
+     * @param username l'username
+     * @return L'Albergatore se lo trova, null altrimenti
+     * @pre username!=null
+     */
     public Albergatore getAlbergatoreByUsername(String username) {
         if(username == null) {
             throw new IllegalArgumentException("L'username è nullo");
@@ -26,7 +31,11 @@ public class AlbergatoreDAO{
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Aggiorna i dati di una struttura già registrata
+     * @param s la Struttura aggiornata
+     * @pre s!=null
+     */
     public void updateStruttura(Struttura s){
         if(s == null) {
             throw new IllegalArgumentException("La struttura è nulla");
