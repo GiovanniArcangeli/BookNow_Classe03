@@ -14,14 +14,18 @@ public class Albergatore extends Utente {
         this.p_iva=p_iva;
         strutture=new ArrayList<Struttura>();
     }
-
+    /**
+     * @return la partita iva
+     */
     public String getP_iva() {
         return p_iva;
     }
     public void setP_iva(String p_iva) {
         this.p_iva = p_iva;
     }
-
+    /**
+     * @return La lista delle strutture dell'albergatore
+     */
     public List<Struttura> getStrutture() {
         return strutture;
     }

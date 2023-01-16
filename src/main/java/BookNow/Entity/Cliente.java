@@ -22,35 +22,45 @@ public class Cliente extends Utente{
         this.numero_carta=numero_carta;
         prenotazioni=new ArrayList<Prenotazione>();
     }
-
+    /**
+     * @return il numero di carta
+     */
     public String getNumero_carta() {
         return numero_carta;
     }
     public void setNumero_carta(String numero_carta) {
         this.numero_carta = numero_carta;
     }
-
+    /**
+     * @return la data di scadenza della carta
+     */
     public Date getScadenza_carta() {
         return scadenza_carta;
     }
     public void setScadenza_carta(Date scadenza_carta) {
         this.scadenza_carta = scadenza_carta;
     }
-
+    /**
+     * @return il cvv
+     */
     public int getCvv() {
         return cvv;
     }
     public void setCvv(int cvv) {
         this.cvv = cvv;
     }
-
+    /**
+     * @return la lista di prenotazioni associate al Cliente
+     */
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
     public void setPrenotazioni(List<Prenotazione> prenotazioni) {
         this.prenotazioni = prenotazioni;
     }
-
+    /**
+     * @return i post pubblicati dal Cliente
+     */
     public List<Post> getPosts() {
         return posts;
     }

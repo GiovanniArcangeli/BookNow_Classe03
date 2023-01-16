@@ -19,42 +19,54 @@ public class Prenotazione {
         this.stanza = stanza;
         this.cliente = cliente;
     }
-
+    /**
+     * @return l'id
+     */
     public int getID_Prenotazione() {
         return ID_Prenotazione;
     }
     public void setID_Prenotazione(int ID_Prenotazione) {
         this.ID_Prenotazione = ID_Prenotazione;
     }
-
+    /**
+     * @return il numero di ospiti
+     */
     public int getNumOspiti() {
         return numOspiti;
     }
     public void setNumOspiti(int numOspiti) {
         this.numOspiti = numOspiti;
     }
-
+    /**
+     * @return la data di check-in
+     */
     public Date getDataIn() {
         return dataIn;
     }
     public void setDataIn(Date dataIn) {
         this.dataIn = dataIn;
     }
-
+    /**
+     * @return la data di check-out
+     */
     public Date getDataOut() {
         return dataOut;
     }
     public void setDataOut(Date dataOut) {
         this.dataOut = dataOut;
     }
-
+    /**
+     * @return la stanza prenotata
+     */
     public Stanza getStanza() {
         return stanza;
     }
     public void setStanza(Stanza stanza) {
         this.stanza = stanza;
     }
-
+    /**
+     * @return il Cliente che ha effettuato la prenotazione
+     */
     public Cliente getCliente() {
         return cliente;
     }

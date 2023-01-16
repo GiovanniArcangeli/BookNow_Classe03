@@ -21,49 +21,63 @@ public class Stanza {
         this.struttura = struttura;
         this.prenotazioni = new ArrayList<>();
     }
-
+    /**
+     * @return Il numero
+     */
     public int getNumeroStanza() {
         return numeroStanza;
     }
     public void setNumeroStanza(int numeroStanza) {
         this.numeroStanza = numeroStanza;
     }
-
+    /**
+     * @return la capienza
+     */
     public int getCapienza() {
         return capienza;
     }
     public void setCapienza(int capienza) {
         this.capienza = capienza;
     }
-
+    /**
+     * @return la descrizione
+     */
     public String getDescrizione() {
         return descrizione;
     }
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
-
+    /**
+     * @return i servizi offerti
+     */
     public String getServiziOfferti() {
         return serviziOfferti;
     }
     public void setServiziOfferti(String serviziOfferti) {
         this.serviziOfferti = serviziOfferti;
     }
-
+    /**
+     * @return il costo
+     */
     public float getCosto() {
         return costo;
     }
     public void setCosto(float costo) {
         this.costo = costo;
     }
-
+    /**
+     * @return la struttura a cui appartiene la stanza
+     */
     public Struttura getStruttura() {
         return struttura;
     }
     public void setStruttura(Struttura struttura) {
         this.struttura = struttura;
     }
-
+    /**
+     * @return la lista di prenotazioni effettuate sulla stanza
+     */
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
