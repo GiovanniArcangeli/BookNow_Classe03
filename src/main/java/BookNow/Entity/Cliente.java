@@ -59,11 +59,6 @@ public class Cliente extends Utente{
     public void addPrenotazioni(Prenotazione p) {
         prenotazioni.add(p);
     }
-    public void deletePrenotazioni(Prenotazione p){
-        for(Prenotazione pr: prenotazioni){
-            if(p.getID_Prenotazione()==pr.getID_Prenotazione()) prenotazioni.remove(pr);
-        }
-    }
     public void aggiornaPrenotazione(Prenotazione p) {
 
         for (ListIterator<Prenotazione> iterator = prenotazioni.listIterator(); iterator.hasNext(); ) {
@@ -73,9 +68,5 @@ public class Cliente extends Utente{
                 iterator.add(p);
             }
         }
-    }
-
-    public void aggiungiPost(Post p) {
-        posts.add(p);
     }
 }

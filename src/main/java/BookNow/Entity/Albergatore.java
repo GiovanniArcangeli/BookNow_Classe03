@@ -29,14 +29,6 @@ public class Albergatore extends Utente {
         this.strutture = strutture;
     }
 
-    public void addStrutture(Struttura s) {
-        strutture.add(s);
-    }
-    public void deleteStruttura(Struttura s){
-        for(Struttura st: strutture){
-            if(s.getID_Struttura()==st.getID_Struttura()) strutture.remove(st);
-        }
-    }
     public void aggiornaStrutture(Struttura s){
         for(Struttura st: strutture){
             if(s.getID_Struttura()==st.getID_Struttura()){

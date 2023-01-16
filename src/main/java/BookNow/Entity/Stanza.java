@@ -72,11 +72,6 @@ public class Stanza {
     public void addPrenotazioni(Prenotazione p) {
         prenotazioni.add(p);
     }
-    public void deletePrenotazioni(Prenotazione p){
-        for(Prenotazione pr: prenotazioni){
-            if(p.getID_Prenotazione()==pr.getID_Prenotazione()) prenotazioni.remove(pr);
-        }
-    }
     public void aggiornaPrenotazione(Prenotazione p){
         for(Prenotazione pr: prenotazioni){
             if(pr.getID_Prenotazione()==p.getID_Prenotazione()){

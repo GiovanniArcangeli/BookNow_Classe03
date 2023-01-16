@@ -53,23 +53,4 @@ public class Struttura {
     public void setStanze(List<Stanza> stanze) {
         this.stanze = stanze;
     }
-
-
-    public void addStanza(Stanza s) {
-        this.stanze.add(s);
-    }
-    public void deleteStanza(Stanza s){
-        for(Stanza stanza: this.stanze)
-            if(stanza.getStruttura().getID_Struttura() == s.getStruttura().getID_Struttura()
-                    && stanza.getNumeroStanza() == s.getNumeroStanza())
-                this.stanze.remove(s);
-    }
-    public void aggiornaStanza(Stanza s){
-        for(Stanza stanza: this.stanze)
-            if(stanza.getStruttura().getID_Struttura() == s.getStruttura().getID_Struttura()
-                    && stanza.getNumeroStanza() == s.getNumeroStanza()) {
-                this.stanze.remove(s);
-                this.stanze.add(s);
-            }
-    }
 }
