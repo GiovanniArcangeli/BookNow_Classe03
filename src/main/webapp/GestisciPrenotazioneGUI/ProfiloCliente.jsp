@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2 id="profiloCliente">Profilo Cliente</h2>
-<p id="links"><a href="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="${pageContext.request.contextPath}/PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a> | <a href="forum">Forum</a></p>
+<p id="links"><a href="${pageContext.request.contextPath}/GestisciPrenotazioneGUI/Prenotazioni.jsp">Le mie Prenotazioni</a> | <a href="${pageContext.request.contextPath}/PrenotaStanzaGUI/FormCercaStruttura.jsp">Effettua Prenotazione</a> | <a href="${pageContext.request.contextPath}/forum">Forum</a></p>
 <button onclick="location.href='${pageContext.request.contextPath}/login'"> Logout </button>
 <table id="dati">
     <tr>
