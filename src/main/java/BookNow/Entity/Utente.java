@@ -78,10 +78,10 @@ public class Utente {
         this.dataNascita = dataNascita;
     }
 
-    public boolean isAlbergatore() {
+    public boolean getIsAlbergatore() {
         return isAlbergatore;
     }
-    public void setAlbergatore(boolean albergatore) {
+    public void setIsAlbergatore(boolean albergatore) {
         isAlbergatore = albergatore;
     }
 }
