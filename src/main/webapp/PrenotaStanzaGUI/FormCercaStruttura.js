@@ -5,8 +5,8 @@ function FormCercaStruttura() {
 
     var rxDatePattern = /^(\d{4})(\/)(\d{1,2})(\/)(\d{1,2})$/;
 
-    if (isNaN(numOspiti)) {
-        alert("Il campo Numero di Ospiti deve essere numerico.");
+    if (isNaN(numOspiti) || numOspiti <= 0) {
+        alert("Il campo Numero di Ospiti deve essere un numero positivo.");
         $("#numOspiti").focus();
         return false;
     } else if (numOspiti == "" || numOspiti == "undefined"){
@@ -18,7 +18,7 @@ function FormCercaStruttura() {
         $("#dataIn").focus();
         return false;
     } else if (!dataOut.match(rxDatePattern) || dataOut.substring(5,7) > 12 || dataOut.substring(8,10) > 31) {
-        alert("La data di check-ouy deve essere nel formato aaaa/mm/dd.");
+        alert("La data di check-out deve essere nel formato aaaa/mm/dd.");
         $("#dataOut").focus();
         return false;
     } else if (Date.parse(dataIn) - Date.parse(dataOut) > 0) {

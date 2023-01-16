@@ -3,24 +3,26 @@ function formInserisciPost() {
     var corpo = $("#corpo").val();
     var tags = $("#tags").val();
 
-    if (titolo.length > 100) {
-        alert("Il campo Titolo può contenere massimo 100 caratteri.");
+    var rxAlphanumericPattern = /^[\w,!.?#\-\s]+$/;
+
+    if (titolo.length > 100 || titolo.match(rxAlphanumericPattern)) {
+        alert("Il campo Titolo presenta un formato errato.");
         $("#titolo").focus();
         return false;
     } else if ((titolo == "") || (titolo == "undefined")) {
         alert("Il campo Titolo è obbligatorio.");
         $("#titolo").focus();
         return false;
-    } else if (corpo.length > 150) {
-        alert("Il campo Corpo può contenere massimo 150 caratteri.");
+    } else if (corpo.length > 150 || titolo.match(rxAlphanumericPattern)) {
+        alert("Il campo Corpo presenta un formato errato.");
         $("#corpo").focus();
         return false;
     } else if ((corpo == "") || (corpo == "undefined")) {
         alert("Il campo Corpo è obbligatorio.");
         $("#corpo").focus();
         return false;
-    } else if (tags.length > 100) {
-        alert("Il campo Tags può contenere massimo 100 caratteri.");
+    } else if (tags.length > 100 || titolo.match(rxAlphanumericPattern)) {
+        alert("Il campo Tags presenta un formato errato.");
         $("#titolo").focus();
         return false;
     } else if ((tags == "") || (tags == "undefined")) {
