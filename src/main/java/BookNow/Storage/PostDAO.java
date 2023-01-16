@@ -31,6 +31,7 @@ public class PostDAO {
     }
 
     public List<Post> doRetrieveByCliente(Cliente cliente){
+        if(cliente==null && cliente.getIsAlbergatore()!=false) throw new IllegalArgumentException("Cliente non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Post, titolo, testo, tags from post where username = ?");
             ps.setString(1, cliente.getUsername());
@@ -51,6 +52,7 @@ public class PostDAO {
         }
     }
     public void doSave(Post p){
+        if(p==null) throw new IllegalArgumentException("Post non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into post(titolo, testo, tags, username) values (?,?,?,?)");
             ps.setString(1, p.getTitolo());

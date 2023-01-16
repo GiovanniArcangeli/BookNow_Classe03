@@ -42,6 +42,17 @@ public final class StorageFacade {
         new PostDAO().doSave(post);
     }
 
+    /**
+     * Modifica i dati di una prenotazione effettuata
+     * @param id identificativo della prenotazione
+     * @param dataIn nuova data di check-in
+     * @param dataOut nuova data di check-out
+     * @param numOspiti numero aggiornato degli ospiti
+     * @return la prenotazione con i dati aggiornati (id, cliente e stanza invariati)
+     * @pre id > 0
+     * @pre PrenotazioneDAO.doRetrieveById(id) != null
+     */
+
     public Prenotazione modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
         if(id<= 0){
             throw new IllegalArgumentException("ID Negativo");
@@ -144,6 +155,16 @@ public final class StorageFacade {
         return all;
     }
 
+    /**
+     * Verifica se la stanza è disponibile nei giorni specificati
+     * @param s stanza
+     * @param dataIn data del check-in
+     * @param dataOut data del check-out
+     * @param numOspiti numero di ospiti
+     * @return true se disponibile, false altrimenti
+     * @pre dataIn > Date.now() && dataOut > dataIn && numOspiti > 0 && s!=null
+     */
+
     public boolean isStanzaDisponibile(Stanza s, Date dataIn, Date dataOut, int numOspiti){
         if(dataIn.after(dataOut) || numOspiti <= 0 || s==null){
             throw new IllegalArgumentException("Parametri errati");
@@ -155,6 +176,26 @@ public final class StorageFacade {
         java.util.Date DataOut = new java.util.Date(dataOut.getTime());
 
         ArrayList<Prenotazione> all = (ArrayList<Prenotazione>) new PrenotazioneDAO().doRetrieveByStanza(s);
+        for(Prenotazione p : all){
+            java.util.Date DI = new java.util.Date(p.getDataIn().getTime());
+            java.util.Date DO = new java.util.Date(p.getDataOut().getTime());
+            if(DataIn.equals(DI) || DataIn.after(DI) && DataIn.before(DO))
+                return false;
+            if(DataOut.equals(DO) || DataOut.after(DI) && DataOut.before(DO))
+                return false;
+        }
+        return true;
+    }
+
+    public boolean isStanzaDisponibile(Stanza s, Date dataIn, Date dataOut, int numOspiti, PrenotazioneDAO dao){
+
+        if(numOspiti > s.getCapienza())
+            return false;
+
+        java.util.Date DataIn = new java.util.Date(dataIn.getTime());
+        java.util.Date DataOut = new java.util.Date(dataOut.getTime());
+
+        ArrayList<Prenotazione> all = (ArrayList<Prenotazione>) dao.doRetrieveByStanza(s);
         for(Prenotazione p : all){
             java.util.Date DI = new java.util.Date(p.getDataIn().getTime());
             java.util.Date DO = new java.util.Date(p.getDataOut().getTime());

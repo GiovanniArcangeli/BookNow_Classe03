@@ -10,6 +10,8 @@ import java.sql.SQLException;
 public class AutenticazioneDAO {
 
     public Utente autenticazione(String username, String password){
+        if(username==null || password==null)
+            throw new IllegalArgumentException("Username e/o password nulli");
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("select * from utente where username = ?");
             ps.setString(1, username);

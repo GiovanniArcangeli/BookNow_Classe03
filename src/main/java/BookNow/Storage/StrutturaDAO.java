@@ -10,6 +10,7 @@ import java.util.List;
 public class StrutturaDAO {
 
     public Struttura doRetrieveById(int id){
+        if(id<=0) throw new IllegalArgumentException("id minore di 0");
         try(Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("select indirizzo, Nome, username from struttura where ID_Struttura = ?");
             ps.setInt(1, id);
@@ -58,6 +59,7 @@ public class StrutturaDAO {
     }
 
     public List<Struttura> doRetrieveByAlbergatore(Albergatore a){
+        if(a==null || a.getIsAlbergatore()!=true) throw new IllegalArgumentException("Albergatore non valido");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome from struttura where username = ?");
             ps.setString(1, a.getUsername());
@@ -80,6 +82,7 @@ public class StrutturaDAO {
     }
 
     public void doUpdate(Struttura s){
+        if(!doRetrieveAll().contains(s)) throw new IllegalArgumentException("Struttura non presente");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where ID_Struttura = ?");
             ps.setString(1, s.getIndirizzo());

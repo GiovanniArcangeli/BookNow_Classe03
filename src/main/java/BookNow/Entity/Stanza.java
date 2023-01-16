@@ -10,6 +10,8 @@ public class Stanza {
     private Struttura struttura;
     private List<Prenotazione> prenotazioni;
 
+    public Stanza(){}
+
     public Stanza(int numeroStanza, int capienza, String descrizione, String serviziOfferti, float costo, Struttura struttura) {
         this.numeroStanza = numeroStanza;
         this.capienza = capienza;
