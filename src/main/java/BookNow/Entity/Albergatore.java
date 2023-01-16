@@ -49,7 +49,6 @@ public class Albergatore extends Utente {
      * Aggiorna una prenotazione presente nel campo Prenotazioni del cliente.
      * @param s la struttura da aggiornare
      * @pre s != null
-     * @pre strutture.contains(s)
      */
     public void aggiornaStrutture(Struttura s){
         if(s == null) {

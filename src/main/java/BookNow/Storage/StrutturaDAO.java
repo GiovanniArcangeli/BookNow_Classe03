@@ -98,10 +98,8 @@ public class StrutturaDAO {
     /**
      * Aggiorna una struttura già esistente
      * @param s la Strutturae
-     * @pre doRetrieveAll().contains(s)
      */
     public void doUpdate(Struttura s){
-        if(!doRetrieveAll().contains(s)) throw new IllegalArgumentException("Struttura non presente");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where ID_Struttura = ?");
             ps.setString(1, s.getIndirizzo());

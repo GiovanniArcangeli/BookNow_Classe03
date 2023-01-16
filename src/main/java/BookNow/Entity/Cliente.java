@@ -109,7 +109,6 @@ public class Cliente extends Utente{
      * Aggiorna una prenotazione presente nel campo Prenotazioni del cliente.
      * @param p la prenotazione da aggiornare
      * @pre p != null
-     * @pre prenotazioni.contains(p)
      */
     public void aggiornaPrenotazione(Prenotazione p) {
         if(p == null) {
