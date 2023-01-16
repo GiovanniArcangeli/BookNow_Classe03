@@ -95,8 +95,8 @@ public final class StorageFacade {
         return new StrutturaDAO().doRetrieveById(id);
     }
 
-    public ArrayList<Struttura> getStruttureDisponibili(Date dataIn, Date dataOut, int numOspiti){
-        ArrayList<Struttura> all = (ArrayList<Struttura>) new StrutturaDAO().doRetrieveAll();
+    public ArrayList<Struttura> getStruttureDisponibili(String citta, Date dataIn, Date dataOut, int numOspiti){
+        ArrayList<Struttura> all = (ArrayList<Struttura>) new StrutturaDAO().doRetrieveByCitta(citta);
         for(Struttura s : all){
             s.setStanze(getStanzeDisponibili(s, dataIn, dataOut, numOspiti));
             if(s.getStanze().size() == 0)

@@ -86,6 +86,31 @@ public class StrutturaDAO {
         }
     }
 
+    public List<Struttura> doRetrieveByCitta(String citta){
+        try(Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("select ID_Struttura, indirizzo, Nome, username from struttura where citta = ?");
+            ps.setString(1, citta);
+
+            ResultSet rs = ps.executeQuery();
+            List<Struttura> strutture = new ArrayList<>();
+
+            while(rs.next()){
+                int idStruttura = rs.getInt(1);
+                String indirizzo = rs.getString(2);
+                String nome = rs.getString(3);
+                String username = rs.getString(4);
+
+                AlbergatoreDAO service = new AlbergatoreDAO();
+                Albergatore albergatore = (Albergatore) service.getAlbergatoreByUsername(username);
+
+                strutture.add(new Struttura(idStruttura, indirizzo, nome, albergatore));
+            }
+            return strutture;
+        }catch(SQLException e){
+            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
+        }
+    }
+
     public int doSave(Struttura s){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("insert into struttura values (?,?,?)");
