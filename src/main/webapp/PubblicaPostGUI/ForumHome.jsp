@@ -15,7 +15,7 @@
         <p>${post.titolo}</p>
         <p>${post.testo}</p>
         <p>${post.tags}</p>
-        <p>${post.cliente.username}</p>
+        <p>${post.autore.username}</p>
     </div>
 </c:forEach>
 </body>
