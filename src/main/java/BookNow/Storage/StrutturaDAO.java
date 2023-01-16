@@ -80,31 +80,6 @@ public class StrutturaDAO {
         }
     }
 
-    public int doSave(Struttura s){
-        try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("insert into struttura values (?,?,?)");
-            ps.setString(1, s.getIndirizzo());
-            ps.setString(2, s.getNome());
-            ps.setString(3, s.getAlbergatore().getUsername());
-
-            int idStruttura = -1;
-
-            if (ps.executeUpdate() == 1) {
-                ResultSet rs = ps.getGeneratedKeys();
-                if(rs.next()) {
-                    idStruttura = rs.getInt(1);
-                    s.setID_Struttura(idStruttura);
-                    AlbergatoreDAO service = new AlbergatoreDAO();
-                    service.addStruttura(s);
-                }
-            }
-            return idStruttura;
-        }
-        catch(SQLException e){
-            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
-        }
-    }
-
     public void doUpdate(Struttura s){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("update struttura set indirizzo = ?, Nome = ? where ID_Struttura = ?");
@@ -121,33 +96,5 @@ public class StrutturaDAO {
         catch(SQLException e){
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
-    }
-
-    public void doDelete(Struttura s){
-        try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from struttura where ID_Struttura = ?");
-            ps.setInt(1, s.getID_Struttura());
-
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("DELETE ERROR");
-
-            AlbergatoreDAO service = new AlbergatoreDAO();
-            service.removeStruttura(s);
-        }
-        catch(SQLException e){
-            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
-        }
-    }
-
-    public void addStanza(Stanza s){
-        s.getStruttura().addStanza(s);
-    }
-
-    public void removeStanza(Stanza s){
-        s.getStruttura().deleteStanza(s);
-    }
-
-    public void updateStanza(Stanza s){
-        s.getStruttura().aggiornaStanza(s);
     }
 }

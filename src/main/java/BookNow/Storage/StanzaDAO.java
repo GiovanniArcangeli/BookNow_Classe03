@@ -60,67 +60,9 @@ public class StanzaDAO {
         }
     }
 
-    public void doSave(Stanza s){
-        try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("insert into stanza values (Capienza = ?, costo = ?, serviziOfferti = ?, Descrizione = ?, ID_Struttura = ?)");
-            ps.setInt(1, s.getCapienza());
-            ps.setFloat(2, s.getCosto());
-            ps.setString(3, s.getServiziOfferti());
-            ps.setString(4, s.getDescrizione());
-            ps.setInt(5, s.getStruttura().getID_Struttura());
-
-           if(ps.executeUpdate() != 1)
-               throw new RuntimeException("INSERT ERROR");
-
-           new StrutturaDAO().addStanza(s);
-        }
-        catch (SQLException e){
-            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
-        }
-    }
-
-    public void doUpdate(Stanza s){
-        try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("update stanza set Capienza = ?, costo = ?, serviziOfferti = ?, Descrizione = ?");
-            ps.setInt(1, s.getCapienza());
-            ps.setFloat(2, s.getCosto());
-            ps.setString(3, s.getServiziOfferti());
-            ps.setString(4, s.getDescrizione());
-
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("UPDATE ERROR");
-
-            new StrutturaDAO().updateStanza(s);
-        }
-        catch (SQLException e){
-            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
-        }
-    }
-
-    public void doDelete(Stanza s){
-        try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from stanza where NumeroStanza = ? and ID_Struttura = ?");
-            ps.setInt(1, s.getNumeroStanza());
-            ps.setInt(2, s.getStruttura().getID_Struttura());
-
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("DELETE ERROR");
-
-            new StrutturaDAO().removeStanza(s);
-        }
-        catch (SQLException e){
-            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
-        }
-    }
-
     public void addPrenotazione(Prenotazione p){
         p.getStanza().addPrenotazioni(p);
     }
-
-    public void removePrenotazione(Prenotazione p){
-        p.getStanza().deletePrenotazioni(p);
-    }
-
     public void updatePrenotazione(Prenotazione p){
         p.getStanza().aggiornaPrenotazione(p);
     }

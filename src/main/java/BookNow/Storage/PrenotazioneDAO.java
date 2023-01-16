@@ -149,23 +149,4 @@ public class PrenotazioneDAO {
             throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
         }
     }
-
-    public void doDelete(Prenotazione p){
-        try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from prenotazione where idPrenotazione = ?");
-            ps.setInt(1, p.getID_Prenotazione());
-
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("UPDATE ERROR");
-
-            ClienteDAO service = new ClienteDAO();
-            service.removePrenotazione(p);
-            StanzaDAO ss = new StanzaDAO();
-            ss.removePrenotazione(p);
-        }
-        catch(SQLException e){
-            throw new RuntimeException("UNABLE TO CONNECT TO DATABASE");
-        }
-    }
-
 }
