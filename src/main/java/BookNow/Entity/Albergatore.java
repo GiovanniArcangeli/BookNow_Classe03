@@ -3,7 +3,11 @@ package BookNow.Entity;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ Un oggetto Albergatore rappresenta un Utente di tipo Albergatore
+ e ha tutte le proprietà dell'oggetto Utente e in più
+ la partitaIVA e una lista di strutture a lui associate
+ */
 public class Albergatore extends Utente {
 
     private String p_iva;

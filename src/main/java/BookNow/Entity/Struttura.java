@@ -2,7 +2,12 @@ package BookNow.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ Una Struttura è una classe contenente tutte le informazioni
+ inerenti ad una Struttura e ha un ID, un indirizzo, un nome,
+ un Albergatore di riferimento ed una lista delle stanze
+ presenti in struttura
+ */
 public class Struttura {
     private int ID_Struttura;
     private String indirizzo, nome;

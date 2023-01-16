@@ -1,7 +1,12 @@
 package BookNow.Entity;
 
 import java.sql.Date;
-
+/**
+ Un oggetto Prenotazione rappresenta una prenotazione di una Stanza
+ da parte di un Utente. In quanto tale, presenta un ID univoco, il
+ numero di ospiti, le date di Check-in e Check-out, la Stanza prenotata
+ ed il Cliente che ha effettuato la prenotazione
+ */
 public class Prenotazione {
 
     private int ID_Prenotazione, numOspiti;

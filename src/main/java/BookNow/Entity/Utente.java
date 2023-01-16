@@ -1,7 +1,13 @@
 package BookNow.Entity;
 
 import java.sql.Date;
-
+/**
+ Un oggetto Utente rappresenta una persona fisica, che sia
+ Albergatore o Cliente. Come proprietà ha un CF, un nome,
+ un cognome, un recapito telefonico, una password, un'username,
+ un'email, una data di nascita e un campo che ci fà capire se è
+ Albergatore o Cliente.
+ */
 public class Utente {
 
     private String cf, nome, cognome, recapitoTelefonico, password, username, email;

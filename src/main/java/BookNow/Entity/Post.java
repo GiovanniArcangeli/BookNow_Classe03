@@ -1,5 +1,9 @@
 package BookNow.Entity;
-
+/**
+ Un oggetto Post rappresenta una pubblicazione sul forum, effettuata da un Cliente
+ e ha un ID univoco, un titolo, un testo, dei tag ed ovviamente l'autore,
+ ovvero il Cliente che l'ha pubblicato
+ */
 public class Post {
     private int ID_Post;
     private String titolo, testo, tags;

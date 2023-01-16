@@ -4,7 +4,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.List;
-
+/**
+ Un oggetto Cliente rappresenta un Utente di tipo Cliente
+ e ha tutte le proprietà dell'oggetto Utente e in più
+ le info relative al metodo di pagamento(numero, scadenza e cvv della carta di credito).
+ Inoltre presenta anche una lista per le prenotazioni a lui associate
+ e una per i post da lui pubblicati
+ */
 public class Cliente extends Utente{
 
     private String numero_carta;

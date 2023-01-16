@@ -2,7 +2,12 @@ package BookNow.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ Un oggetto Stanza rappresenta una Stanza appartenente ad una Struttura
+ e ha un numero, una capienza, una descrizione, dei servizi, un costo,
+ una struttura a cui è collegata ed una lista delle prenotazioni
+ a lei associate.
+ */
 public class Stanza {
     private int numeroStanza, capienza;
     private String descrizione, serviziOfferti;
