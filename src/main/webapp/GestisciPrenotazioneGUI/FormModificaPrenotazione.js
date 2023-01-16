@@ -3,7 +3,7 @@ function FormModificaPrenotazione() {
     var dataOut = $("#dataOut").val();
     var numOspiti = $("#numOspiti").val();
 
-    var rxDatePattern = /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/;
+    var rxDatePattern = /^(\d{4})(\/)(\d{1,2})(\/)(\d{1,2})$/;
 
     if (isNaN(numOspiti)) {
         alert("Il campo Numero di Ospiti deve essere numerico.");
@@ -14,11 +14,11 @@ function FormModificaPrenotazione() {
         $("#numOspiti").focus();
         return false;
     } else if (!dataIn.match(rxDatePattern) || dataIn.substring(5,7) > 12 || dataIn.substring(8,10) > 31) {
-        alert("La data di check-in deve essere nel formato aaaa-mm-dd.");
+        alert("La data di check-in deve essere nel formato aaaa/mm/dd.");
         $("#dataIn").focus();
         return false;
     } else if (!dataOut.match(rxDatePattern) || dataOut.substring(5,7) > 12 || dataOut.substring(8,10) > 31) {
-        alert("La data di check-ouy deve essere nel formato aaaa-mm-dd.");
+        alert("La data di check-ouy deve essere nel formato aaaa/mm/dd.");
         $("#dataOut").focus();
         return false;
     } else if (Date.parse(dataIn) - Date.parse(dataOut) > 0) {
