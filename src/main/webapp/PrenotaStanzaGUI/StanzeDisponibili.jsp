@@ -13,7 +13,7 @@
         <tr>
             <td>
                 <p>Numero stanza: ${stanza.numeroStanza}</p>
-                <p>Costo: ${stanza.costo}€</p>
+                <p>Costo: &euro;${stanza.costo}</p>
                 <p>Capienza: ${stanza.capienza}</p>
                 <p>Descrizione: ${stanza.descrizione}</p>
                 <p>Servizi: ${stanza.serviziOfferti}</p>

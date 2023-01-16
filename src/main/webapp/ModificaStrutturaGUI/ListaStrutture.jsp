@@ -15,7 +15,6 @@
         <tr>
             <td>
                 <p>${struttura.nome}</p>
-                <p>${struttura.ID_Struttura}</p>
                 <p>${struttura.indirizzo}</p>
             </td>
             <td>
