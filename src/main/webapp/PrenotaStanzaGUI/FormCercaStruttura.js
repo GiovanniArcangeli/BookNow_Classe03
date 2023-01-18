@@ -4,6 +4,12 @@ function FormCercaStruttura() {
     var numOspiti = $("#numOspiti").val();
 
     var rxDatePattern = /^(\d{4})(\/)(\d{1,2})(\/)(\d{1,2})$/;
+    var annoIn = dataIn.substring(0,4);
+    var meseIn = dataIn.substring(5,7);
+    var giornoIn = dataIn.substring(8,10);
+    var annoOut = dataIn.substring(0,4);
+    var meseOut = dataIn.substring(5,7);
+    var giornoOut = dataIn.substring(8,10);
 
     if (isNaN(numOspiti) || numOspiti <= 0) {
         alert("Il campo Numero di Ospiti deve essere un numero positivo.");
@@ -30,7 +36,7 @@ function FormCercaStruttura() {
     } else if(((meseOut == 1 || meseOut == 3 || meseOut == 5 || meseOut == 7 || meseOut == 8 || meseOut == 10 || meseOut == 12) && giornoOut > 31) ||
             ((meseOut == 4 || meseOut == 6 || meseOut == 9 || meseOut== 11) & giornoOut > 30) ||
             (annoOut%4 != 0 && meseOut == 2 && giornoOut > 28) || (annoOut%4 == 0 && meseOut == 2 && giornoOut > 29)) {
-            alert("La data di check-out deve essere nel formato aaaa/mm/dd.");
+            alert("La data di check-out deve essere valida.");
             $("#dataOut").focus();
             return false;
     } else if (Date.parse(dataIn) - Date.parse(dataOut) > 0) {
