@@ -19,15 +19,14 @@ public class ControlloAccessoTest {
     @Test
     public void usernameErrato() throws NoSuchFieldException, IllegalAccessException {
 
-        String username="CarmineRen", password="Carmine4";
 
         AutenticazioneDAO ad= Mockito.mock(AutenticazioneDAO.class);
-        Mockito.when(ad.autenticazione(username, password)).thenReturn(null);
+        Mockito.when(ad.autenticazione(Mockito.anyString(), Mockito.anyString())).thenReturn(null);
 
         Field field = StorageFacade.class.getDeclaredField("autenticazioneDAO");
         field.setAccessible(true);
         field.set(mock, ad);
-        Utente utente = mock.controlloAccesso(username, password);
+        Utente utente = mock.controlloAccesso(Mockito.anyString(), Mockito.anyString());
         assertNull(utente);
     }
 
