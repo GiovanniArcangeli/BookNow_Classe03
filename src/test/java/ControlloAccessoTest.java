@@ -17,9 +17,7 @@ public class ControlloAccessoTest {
     StorageFacade mock = StorageFacade.getInstance();
 
     @Test
-    public void usernameErrato() throws NoSuchFieldException, IllegalAccessException {
-
-
+    public void credenzialiErrate() throws NoSuchFieldException, IllegalAccessException {
         AutenticazioneDAO ad= Mockito.mock(AutenticazioneDAO.class);
         Mockito.when(ad.autenticazione(Mockito.anyString(), Mockito.anyString())).thenReturn(null);
 
@@ -31,35 +29,14 @@ public class ControlloAccessoTest {
     }
 
     @Test
-    public void passwordErrata(){
-        String username="CarmineRen", password="errata";
+    public void accessoConsentito() throws NoSuchFieldException, IllegalAccessException {
         AutenticazioneDAO ad= Mockito.mock(AutenticazioneDAO.class);
-        Mockito.when(ad.autenticazione(username, password)).thenReturn(null);
+        Mockito.when(ad.autenticazione(Mockito.anyString(), Mockito.anyString())).thenReturn(new Utente());
 
-        StorageFacade.getInstance();
-        Utente utente=StorageFacade.getInstance().controlloAccesso(username, password);
-        assertEquals("Errore!", ad.autenticazione(username, password), utente);
-    }
-
-    @Test
-    public void usernameePasswordErrati(){
-        String username="errato", password="errato";
-        AutenticazioneDAO ad= Mockito.mock(AutenticazioneDAO.class);
-        Mockito.when(ad.autenticazione(username, password)).thenReturn(null);
-
-        StorageFacade.getInstance();
-        Utente utente=StorageFacade.getInstance().controlloAccesso(username, password);
-        assertEquals("Errore!", ad.autenticazione(username, password), utente);
-    }
-
-    @Test
-    public void accessoConsentito(){
-        String username="CarmineRen", password="Carmine4";
-        AutenticazioneDAO ad= Mockito.mock(AutenticazioneDAO.class);
-        Mockito.when(ad.autenticazione(username, password)).thenReturn(new Utente("", "", "", "", password, username, "", new Date(2000, 1, 1), false));
-
-        StorageFacade.getInstance();
-        Utente utente=StorageFacade.getInstance().controlloAccesso(username, password);
-        assertEquals("Errore!", ad.autenticazione(username, password).getUsername(), utente.getUsername());
+        Field field = StorageFacade.class.getDeclaredField("autenticazioneDAO");
+        field.setAccessible(true);
+        field.set(mock, ad);
+        Utente utente = mock.controlloAccesso(Mockito.anyString(), Mockito.anyString());
+        assertNotNull(utente);
     }
 }
