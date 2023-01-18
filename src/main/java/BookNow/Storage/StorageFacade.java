@@ -266,22 +266,8 @@ public final class StorageFacade {
         if(dataIn.before(new Date(System.currentTimeMillis())) ||dataIn.after(dataOut) || numOspiti <= 0 || s==null){
             throw new IllegalArgumentException("Parametri errati");
         }
-        if(numOspiti > s.getCapienza())
-            return false;
 
-        java.util.Date DataIn = new java.util.Date(dataIn.getTime());
-        java.util.Date DataOut = new java.util.Date(dataOut.getTime());
-
-        ArrayList<Prenotazione> all = (ArrayList<Prenotazione>) new PrenotazioneDAO().doRetrieveByStanza(s);
-        for(Prenotazione p : all){
-            java.util.Date DI = new java.util.Date(p.getDataIn().getTime());
-            java.util.Date DO = new java.util.Date(p.getDataOut().getTime());
-            if(DataIn.equals(DI) || DataIn.after(DI) && DataIn.before(DO))
-                return false;
-            if(DataOut.equals(DO) || DataOut.after(DI) && DataOut.before(DO))
-                return false;
-        }
-        return true;
+        return isStanzaDisponibile(s, dataIn, dataOut, numOspiti, new PrenotazioneDAO());
     }
 
     public boolean isStanzaDisponibile(Stanza s, Date dataIn, Date dataOut, int numOspiti, PrenotazioneDAO dao){
