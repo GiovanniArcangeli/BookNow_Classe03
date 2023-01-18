@@ -25,6 +25,10 @@
         <label for="numOspiti">Numero di Ospiti </label>
         <input id="numOspiti" type="text" name="numOspiti"><br>
 
+        <c:if test="${freeUpdate == true}">
+            <p>La modifica della prenotazione è gratuita</p>
+        </c:if>
+
         <input type="button" value="Modifica Prenotazione" onclick="FormModificaPrenotazione()">
     </form>
 </div>

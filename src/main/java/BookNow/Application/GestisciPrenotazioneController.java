@@ -20,6 +20,9 @@ public class GestisciPrenotazioneController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idPrenotazione = Integer.parseInt(request.getParameter("id"));
         Prenotazione prenotazione = StorageFacade.getInstance().getDatiPrenotazione(idPrenotazione);
+        Date scadenza = new Date(System.currentTimeMillis()+3L*24*60*60*1000);
+        if(prenotazione.getDataIn().compareTo(scadenza) < 0)
+            request.setAttribute("freeUpdate", true);
         request.setAttribute("prenotazione", prenotazione);
         request.getRequestDispatcher("GestisciPrenotazioneGUI/FormModificaPrenotazione.jsp").forward(request, response);
     }
