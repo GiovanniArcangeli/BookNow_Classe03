@@ -3,7 +3,7 @@ function formInserisciPost() {
     var corpo = $("#corpo").val();
     var tags = $("#tags").val();
 
-    var rxAlphanumericPattern = /^[\w,!.?#\-\s]+$/;
+    var rxAlphanumericPattern = /^[\w,!.?#\-\séèàòùì]+$/;
 
     if (titolo.length > 100 || !titolo.match(rxAlphanumericPattern)) {
         alert("Il campo Titolo presenta un formato errato.");

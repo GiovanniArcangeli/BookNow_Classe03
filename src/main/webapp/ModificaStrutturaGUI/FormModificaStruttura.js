@@ -2,7 +2,7 @@ function formModificaStruttura() {
     var nomeStruttura = $("#nomeStruct").val();
     var indirizzo = $("#indirizzo").val();
 
-    var rxAlphanumericPattern = /^[\w,!.?#\-\s]+$/;
+    var rxAlphanumericPattern = /^[\w,!.?#\-\séèàòùì]+$/;
 
     if (nomeStruttura.length > 100 || !nomeStruttura.match(rxAlphanumericPattern)) {
         alert("Il campo Nome presenta un formato errato.");
