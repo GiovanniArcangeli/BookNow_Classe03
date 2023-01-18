@@ -4,6 +4,7 @@ import BookNow.Entity.Stanza;
 import BookNow.Entity.Struttura;
 import BookNow.Storage.PrenotazioneDAO;
 import BookNow.Storage.StorageFacade;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 import java.sql.Date;
@@ -13,15 +14,21 @@ import static org.junit.Assert.assertTrue;
 
 public class StanzaDisponibileTest {
 
-    @Test
-    public void tooManyPeople(){
-        PrenotazioneDAO dao = Mockito.mock(PrenotazioneDAO.class);
-        Stanza stanza = new Stanza(1, 2, "", "", 100, new Struttura());
+    private static PrenotazioneDAO dao;
+    private static Stanza stanza;
+
+    @BeforeClass
+    public static void before(){
+        dao = Mockito.mock(PrenotazioneDAO.class);
+        stanza = new Stanza(1, 2, "", "", 100, new Struttura());
         ArrayList<Prenotazione> list = new ArrayList<>();
         list.add(new Prenotazione(1, new Date(2023, 10, 10), new Date(2023, 10, 15), 2, stanza, new Cliente()));
         list.add(new Prenotazione(2, new Date(2023, 3, 17), new Date(2023, 3, 18), 1, stanza, new Cliente()));
         Mockito.when(dao.doRetrieveByStanza(stanza)).thenReturn(list);
+    }
 
+    @Test
+    public void tooManyPeople(){
         Date dataIn = new Date(2023, 4, 4);
         Date dataOut = new Date(2023, 4, 5);
         int numOspiti = 3;
@@ -31,13 +38,6 @@ public class StanzaDisponibileTest {
 
     @Test
     public void checkInOverlap(){
-        PrenotazioneDAO dao = Mockito.mock(PrenotazioneDAO.class);
-        Stanza stanza = new Stanza(1, 2, "", "", 100, new Struttura());
-        ArrayList<Prenotazione> list = new ArrayList<>();
-        list.add(new Prenotazione(1, new Date(2023, 10, 10), new Date(2023, 10, 15), 2, stanza, new Cliente()));
-        list.add(new Prenotazione(2, new Date(2023, 3, 17), new Date(2023, 3, 18), 1, stanza, new Cliente()));
-        Mockito.when(dao.doRetrieveByStanza(stanza)).thenReturn(list);
-
         Date dataIn = new Date(2023, 10, 12);
         Date dataOut = new Date(2023, 10, 16);
         int numOspiti = 2;
@@ -47,13 +47,6 @@ public class StanzaDisponibileTest {
 
     @Test
     public void checkOutOverlap(){
-        PrenotazioneDAO dao = Mockito.mock(PrenotazioneDAO.class);
-        Stanza stanza = new Stanza(1, 2, "", "", 100, new Struttura());
-        ArrayList<Prenotazione> list = new ArrayList<>();
-        list.add(new Prenotazione(1, new Date(2023, 10, 10), new Date(2023, 10, 15), 2, stanza, new Cliente()));
-        list.add(new Prenotazione(2, new Date(2023, 3, 17), new Date(2023, 3, 18), 1, stanza, new Cliente()));
-        Mockito.when(dao.doRetrieveByStanza(stanza)).thenReturn(list);
-
         Date dataIn = new Date(2023, 3, 15);
         Date dataOut = new Date(2023, 3, 18);
         int numOspiti = 2;
@@ -63,13 +56,6 @@ public class StanzaDisponibileTest {
 
     @Test
     public void availableRoom(){
-        PrenotazioneDAO dao = Mockito.mock(PrenotazioneDAO.class);
-        Stanza stanza = new Stanza(1, 2, "", "", 100, new Struttura());
-        ArrayList<Prenotazione> list = new ArrayList<>();
-        list.add(new Prenotazione(1, new Date(2023, 10, 10), new Date(2023, 10, 15), 2, stanza, new Cliente()));
-        list.add(new Prenotazione(2, new Date(2023, 3, 17), new Date(2023, 3, 18), 1, stanza, new Cliente()));
-        Mockito.when(dao.doRetrieveByStanza(stanza)).thenReturn(list);
-
         Date dataIn = new Date(2023, 3, 15);
         Date dataOut = new Date(2023, 3, 17);
         int numOspiti = 2;
