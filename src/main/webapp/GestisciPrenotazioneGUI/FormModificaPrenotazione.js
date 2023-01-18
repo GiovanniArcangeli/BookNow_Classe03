@@ -5,7 +5,7 @@ function FormModificaPrenotazione() {
 
     var rxDatePattern = /^(\d{4})(\/)(\d{1,2})(\/)(\d{1,2})$/;
 
-    if (isNaN(numOspiti)) {
+    if (isNaN(numOspiti) || numOspiti < 0) {
         alert("Il campo Numero di Ospiti deve essere numerico.");
         $("#numOspiti").focus();
         return false;
