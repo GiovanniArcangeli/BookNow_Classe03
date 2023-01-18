@@ -3,22 +3,32 @@ import BookNow.Storage.AutenticazioneDAO;
 import BookNow.Storage.StorageFacade;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 
+import java.lang.reflect.Field;
 import java.sql.Date;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 public class ControlloAccessoTest {
+
+    @Spy
+    StorageFacade mock = StorageFacade.getInstance();
+
     @Test
-    public void usernameErrato(){
-        String username="errato", password="Carmine4";
+    public void usernameErrato() throws NoSuchFieldException, IllegalAccessException {
+
+        String username="CarmineRen", password="Carmine4";
+
         AutenticazioneDAO ad= Mockito.mock(AutenticazioneDAO.class);
         Mockito.when(ad.autenticazione(username, password)).thenReturn(null);
 
-        StorageFacade.getInstance();
-        Utente utente=StorageFacade.getInstance().controlloAccesso(username, password);
-        assertEquals("Errore!", ad.autenticazione(username, password), utente);
+        Field field = StorageFacade.class.getDeclaredField("autenticazioneDAO");
+        field.setAccessible(true);
+        field.set(mock, ad);
+        Utente utente = mock.controlloAccesso(username, password);
+        assertNull(utente);
     }
 
     @Test

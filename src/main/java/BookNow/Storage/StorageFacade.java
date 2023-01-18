@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 public final class StorageFacade {
     private static StorageFacade instance;
+    private static AutenticazioneDAO autenticazioneDAO = new AutenticazioneDAO();
 
     private StorageFacade(){
 
@@ -30,7 +31,7 @@ public final class StorageFacade {
         if(username == null || password == null){
             throw new IllegalArgumentException("Parametri errati");
         }
-        return new AutenticazioneDAO().autenticazione(username, password);
+        return autenticazioneDAO.autenticazione(username, password);
     }
 
     /**
