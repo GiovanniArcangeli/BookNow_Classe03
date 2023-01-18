@@ -88,8 +88,8 @@ public class PrenotazioneDAO {
         if(s==null) throw new IllegalArgumentException("Stanza non valida");
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("select p.idPrenotazione, p.DataIn, p.DataOut, p.NumOspiti, p.username, p.ID_Struttura, s.NumeroStanza" +
-                    " from prenotazione p, stanza s, struttura S" +
-                    " where s.ID_Struttura = S.ID_Struttura and p.ID_Struttura = S.ID_Struttura and s.NumeroStanza = ?");
+                    " from prenotazione p, stanza s, struttura st" +
+                    " where s.ID_Struttura = st.ID_Struttura and p.ID_Struttura = st.ID_Struttura and s.NumeroStanza = ?");
             ps.setInt(1, s.getNumeroStanza());
 
             ResultSet rs = ps.executeQuery();
