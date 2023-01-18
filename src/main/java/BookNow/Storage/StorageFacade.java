@@ -194,10 +194,9 @@ public final class StorageFacade {
      * @param id id della struttura da cercare
      * @return la Struttura corrispondante
      * @pre id > 0
-     * @pre StrutturaDAO.doRetrieveById(id) != null
      */
     public Struttura getDatiStruttura(int id){
-        if(id<= 0 || strutturaDAO.doRetrieveById(id) == null){
+        if(id<= 0){
             throw new IllegalArgumentException("ID Negativo");
         }
         return strutturaDAO.doRetrieveById(id);
