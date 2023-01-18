@@ -24,6 +24,7 @@ public class ControlloAccessoTest {
         Field field = StorageFacade.class.getDeclaredField("autenticazioneDAO");
         field.setAccessible(true);
         field.set(mock, ad);
+
         Utente utente = mock.controlloAccesso(Mockito.anyString(), Mockito.anyString());
         assertNull(utente);
     }

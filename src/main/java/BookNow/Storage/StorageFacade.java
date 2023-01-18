@@ -8,7 +8,7 @@ import java.util.Iterator;
 public final class StorageFacade {
     private static StorageFacade instance;
     private static AutenticazioneDAO autenticazioneDAO = new AutenticazioneDAO();
-
+    private static PrenotazioneDAO prenotazioneDAO = new PrenotazioneDAO();
     private StorageFacade(){
 
     }
@@ -80,11 +80,10 @@ public final class StorageFacade {
      * @pre PrenotazioneDAO.doRetrieveById(id) != null
      */
     public Prenotazione modificaPrenotazione(int id, Date dataIn, Date dataOut, int numOspiti){
-        if(id <= 0 || new PrenotazioneDAO().doRetrieveById(id) == null){
+        if(id <= 0 || prenotazioneDAO.doRetrieveById(id) == null){
             throw new IllegalArgumentException("Parametri errati");
         }
-        PrenotazioneDAO service = new PrenotazioneDAO();
-        Prenotazione oldOne = service.doRetrieveById(id);
+        Prenotazione oldOne = prenotazioneDAO.doRetrieveById(id);
 
         //Controllo sulla disponibilità
         if(!isStanzaDisponibile(oldOne.getStanza(), dataIn, dataOut, numOspiti))
@@ -93,8 +92,8 @@ public final class StorageFacade {
         oldOne.setDataIn(dataIn);
         oldOne.setDataOut(dataOut);
         oldOne.setNumOspiti(numOspiti);
-        service.doUpdate(oldOne);
-        return service.doRetrieveById(id);
+        prenotazioneDAO.doUpdate(oldOne);
+        return prenotazioneDAO.doRetrieveById(id);
     }
 
     /**
@@ -125,7 +124,7 @@ public final class StorageFacade {
         if(!isStanzaDisponibile(prenotazione.getStanza(), prenotazione.getDataIn(), prenotazione.getDataOut(), prenotazione.getNumOspiti()))
             return null;
 
-        int idPrenotazione = new PrenotazioneDAO().doSave(prenotazione);
+        int idPrenotazione = prenotazioneDAO.doSave(prenotazione);
         prenotazione.setID_Prenotazione(idPrenotazione);
         return prenotazione;
     }
@@ -167,7 +166,7 @@ public final class StorageFacade {
             throw new IllegalArgumentException("Utente non è un cliente");
         }
         Cliente cliente = new ClienteDAO().getClienteByUsername(utente.getUsername());
-        ArrayList<Prenotazione> prenotazioni = (ArrayList<Prenotazione>) new PrenotazioneDAO().doRetrieveByCliente(cliente);
+        ArrayList<Prenotazione> prenotazioni = (ArrayList<Prenotazione>) prenotazioneDAO.doRetrieveByCliente(cliente);
         ArrayList<Post> posts = (ArrayList<Post>) new PostDAO().doRetrieveByCliente(cliente);
         cliente.setPosts(posts);
         cliente.setPrenotazioni(prenotazioni);
@@ -179,13 +178,12 @@ public final class StorageFacade {
      * @param id id della prenotazione da cercare
      * @return la Prenotazione corrispondante
      * @pre id > 0
-     * @pre PrenotazioneDAO.doRetrieveById(id) != null
      */
     public Prenotazione getDatiPrenotazione(int id){
-        if(id<= 0 || new PrenotazioneDAO().doRetrieveById(id) == null){
+        if(id<= 0){
             throw new IllegalArgumentException("ID Negativo");
         }
-        return  new PrenotazioneDAO().doRetrieveById(id);
+        return prenotazioneDAO.doRetrieveById(id);
     }
 
     /**
@@ -268,7 +266,7 @@ public final class StorageFacade {
             throw new IllegalArgumentException("Parametri errati");
         }
 
-        return isStanzaDisponibile(s, dataIn, dataOut, numOspiti, new PrenotazioneDAO());
+        return isStanzaDisponibile(s, dataIn, dataOut, numOspiti, prenotazioneDAO);
     }
 
     public boolean isStanzaDisponibile(Stanza s, Date dataIn, Date dataOut, int numOspiti, PrenotazioneDAO dao){
